@@ -1,3 +1,5 @@
+# Start the jekyll locally with the following command:
+# bundle exec jekyll s
 # The Site Configuration
 
 # Import the theme
@@ -9,40 +11,40 @@ theme: jekyll-theme-chirpy
 lang: en
 
 # Change to your timezone › https://kevinnovak.github.io/Time-Zone-Picker
-timezone:
+timezone: Europe/Copenhagen
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Chirpy # the main title
+title: Mynster # the main title
 
-tagline: A text-focused Jekyll theme # it will display as the subtitle
+tagline: Automation Specialist | Powershell | Python | Terraform | DK # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+  A blog about automation, scripting, and homelabbing. I write about Powershell, Python, Terraform, and other automation tools. I also write about my homelab setup and projects.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
-url: ""
+url: "https://mynster9361.github.io"
 
 github:
-  username: github_username # change to your GitHub username
+  username: mynster9361 # change to your GitHub username
 
-twitter:
-  username: twitter_username # change to your Twitter username
+#twitter:
+#  username: twitter_username # change to your Twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: your_full_name
-  email: example@domain.com # change to your email address
+  name: Morten Mynster
+  #email: example@domain.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username # change to your Twitter homepage
-    - https://github.com/username # change to your GitHub homepage
+    #- https://twitter.com/username # change to your Twitter homepage
+    - https://github.com/mynster9361 # change to your GitHub homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    - https://www.linkedin.com/in/mortenmynster
 
 # Site Verification Settings
 webmaster_verifications:
@@ -98,7 +100,7 @@ theme_mode: # [light | dark]
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: https://media.licdn.com/dms/image/v2/D4E03AQGJKWLa2YoEAQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1699376098357?e=1743033600&v=beta&t=Z3sQtriQ7q8rKM_xeVOgIqZ6E0m15eSIJVAV2YNDE6M
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
