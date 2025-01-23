@@ -16,19 +16,19 @@ The certificate-based authentication method is more secure than using a client s
 ## First off we need to create the app registration in Azure/Entra
 
 Go to App Registrations page and click create "New registration"
-![img-description](/assets/lib/2025-01-23 19_36_54-App registrations - Microsoft Azure.png)
+![img-description](/assets/img/posts/2025-01-23 19_36_54-App registrations - Microsoft Azure.png)
 
 Give it a new and click "Register"
-![img-description](/assets/lib/2025-01-23 19_38_29-Register an application - Microsoft Azure.png)
+![img-description](/assets/img/posts/2025-01-23 19_38_29-Register an application - Microsoft Azure.png)
 
 On the front page of the new app also called "Overview" we need to get the "Directory (tenant) ID" and "Application (client) ID"
-![img-description](/assets/lib/2025-01-23 19_43_12-Some Name - Microsoft Azure.png)
+![img-description](/assets/img/posts/2025-01-23 19_43_12-Some Name - Microsoft Azure.png)
 
 Go to the "Certificates & secrets" page and click "Certificates" tab and "Upload certificate"
 - Note if you do not have a certificate then you can generate a self signed certificate by following this article from Microsoft
 - [https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-self-signed-certificate](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-self-signed-certificate)
 
-![img-description](/assets/lib/2025-01-23 22_07_49-Upload certificate - Microsoft Azure.png)
+![img-description](/assets/img/posts/2025-01-23 22_07_49-Upload certificate - Microsoft Azure.png)
 
 ### Now lets take what we just created and ask for a token
 

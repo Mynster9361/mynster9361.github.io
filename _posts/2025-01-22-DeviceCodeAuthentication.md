@@ -17,16 +17,16 @@ The device code method is suitable for client-to-server communication where a in
 ## First off we need to create the app registration in Azure/Entra
 
 Go to App Registrations page and click create "New registration"
-![img-description](/assets/lib/2025-01-23 19_36_54-App registrations - Microsoft Azure.png)
+![img-description](/assets/img/posts/2025-01-23 19_36_54-App registrations - Microsoft Azure.png)
 
 Give it a new and click "Register"
-![img-description](/assets/lib/2025-01-23 19_38_29-Register an application - Microsoft Azure.png)
+![img-description](/assets/img/posts/2025-01-23 19_38_29-Register an application - Microsoft Azure.png)
 
 On the front page of the new app also called "Overview" we need to get the "Directory (tenant) ID" and "Application (client) ID"
-![img-description](/assets/lib/2025-01-23 19_43_12-Some Name - Microsoft Azure.png)
+![img-description](/assets/img/posts/2025-01-23 19_43_12-Some Name - Microsoft Azure.png)
 
 Go to the "Authentication" page and Change the "Allow public client flows" (under Advanced settings) and switch the No to a Yes
-![img-description](/assets/lib/2025-01-23 21_47_36-Some Name - Microsoft Azure.png)
+![img-description](/assets/img/posts/2025-01-23 21_47_36-Some Name - Microsoft Azure.png)
 
 
 ### Now lets take what we just created and ask for a token
@@ -114,7 +114,7 @@ Now this is only part 1 for this authentication flow the above will return the f
 
 Now what needs to happen is you open the url "https://microsoft.com/devicelogin" and enter the code in from the user_code property.
 
-![img-description](/assets/lib/2025-01-23 21_57_56-Sign in to your account.png)
+![img-description](/assets/img/posts/2025-01-23 21_57_56-Sign in to your account.png)
 
 Great now we have authenticated to the endpoint but we still do not have a token that we can use in further api calls.
 Now that we have authenticated we need to request a token from Azure/Entra by passing the device code we received from the previous call.

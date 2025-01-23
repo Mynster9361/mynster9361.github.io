@@ -17,19 +17,19 @@ The client secret method is suitable for server-to-server communication where a 
 ## First off we need to create the app registration in Azure/Entra
 
 Go to App Registrations page and click create "New registration"
-![img-description](/assets/lib/2025-01-23 19_36_54-App registrations - Microsoft Azure.png)
+![img-description](/assets/img/posts/2025-01-23 19_36_54-App registrations - Microsoft Azure.png)
 
 Give it a new and click "Register"
-![img-description](/assets/lib/2025-01-23 19_38_29-Register an application - Microsoft Azure.png)
+![img-description](/assets/img/posts/2025-01-23 19_38_29-Register an application - Microsoft Azure.png)
 
 On the front page of the new app also called "Overview" we need to get the "Directory (tenant) ID" and "Application (client) ID"
-![img-description](/assets/lib/2025-01-23 19_43_12-Some Name - Microsoft Azure.png)
+![img-description](/assets/img/posts/2025-01-23 19_43_12-Some Name - Microsoft Azure.png)
 
 Go to the "Certificates & secrets" page and click "New client secret"
-![img-description](/assets/lib/2025-01-23 19_40_04-Add a client secret - Microsoft Azure.png)
+![img-description](/assets/img/posts/2025-01-23 19_40_04-Add a client secret - Microsoft Azure.png)
 
 Now you should see your new secret (Save this for later as it will not always be visible on the app registration)
-![img-description](/assets/lib/2025-01-23 19_41_28-Some Name - Microsoft Azure.png)
+![img-description](/assets/img/posts/2025-01-23 19_41_28-Some Name - Microsoft Azure.png)
 
 ### Now lets take what we just created and ask for a token
 
