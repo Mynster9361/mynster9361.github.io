@@ -1,1 +1,77 @@
+---
+title: Client ID and Certificate Authentication to Microsoft Graph API
+author: <1>
+date: YYYY-MM-DD HH:MM:ss +0100
+categories: [Microsoft Graph, Authentication]
+tags: [powershell, msgraph]
+description: Demonstrating Client ID and Certificate Authentication to Microsoft Graph
+---
 
+H1
+# Authenticating to Microsoft Graph API
+H2
+## First off we need to create the app registration in Azure/Entra
+
+H3
+### Now lets take what we just created and ask for a token
+
+IMG Reference
+![img-description](/assets/img/posts/2025-01-23 19_36_54-App registrations - Microsoft Azure.png)
+
+Bullet point
+- Note if you do not have a certificate then you can generate a self signed certificate by following this article from Microsoft
+
+Link opens in new tab
+[https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-self-signed-certificate](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-self-signed-certificate){:target="_blank"}
+
+
+Code block with syntax highlighting code language defined by name
+```powershell
+# Tenant ID, Client ID, and Client Secret for the MS Graph API
+$tenantId = "Your-tenant-id"
+$clientId = "Your-client-id"
+$thumbprint = "Your-Certificate-thumbprint"
+```
+
+Also supports html tables in html
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Condition</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>tenant</td>
+      <td>Required</td>
+      <td>The directory tenant the application plans to operate against, in GUID or domain-name format.</td>
+    </tr>
+    <tr>
+      <td>client_id</td>
+      <td>Required</td>
+      <td>The application (client) ID that's assigned to your app.</td>
+    </tr>
+    <tr>
+      <td>scope</td>
+      <td>Required</td>
+      <td>The value passed for the scope parameter in this request should be the resource identifier (application ID URI) of the resource you want, suffixed with .default. All scopes included must be for a single resource. Including scopes for multiple resources will result in an error. For the Microsoft Graph example, the value is <code>https://graph.microsoft.com/.default</code>. This value tells the Microsoft identity platform that of all the direct application permissions you have configured for your app, the endpoint should issue a token for the ones associated with the resource you want to use. To learn more about the /.default scope, see the consent documentation.</td>
+    </tr>
+    <tr>
+      <td>client_assertion_type</td>
+      <td>Required</td>
+      <td>The value must be set to <code>urn:ietf:params:oauth:client-assertion-type:jwt-bearer</code>.</td>
+    </tr>
+    <tr>
+      <td>client_assertion</td>
+      <td>Required</td>
+      <td>An assertion (a JSON web token) that you need to create and sign with the certificate you registered as credentials for your application. Read about certificate credentials to learn how to register your certificate and the format of the assertion.</td>
+    </tr>
+    <tr>
+      <td>grant_type</td>
+      <td>Required</td>
+      <td>Must be set to <code>client_credentials</code>.</td>
+    </tr>
+  </tbody>
+</table>

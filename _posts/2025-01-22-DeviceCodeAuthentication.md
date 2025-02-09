@@ -42,7 +42,7 @@ $clientId = "Your-client-id"
 Next up we need to configure our body for authenticaton.
 By looking at [Microsoft documentation](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code#device-authorization-request)
 We can see that we need to provide the following information in our body:
-<table>
+<table aria-label="Table 1" class="table table-sm margin-top-none">
   <thead>
     <tr>
       <th>Parameter</th>
