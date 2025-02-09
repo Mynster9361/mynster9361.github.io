@@ -1,10 +1,10 @@
 ---
-title: Filtering/AdvancedFiltering in MSGRAPH
+title: Filtering / Advanced Filtering in MS GRAPH
 author: <1>
 date: 2025-02-09 21:45:00 +0100
-categories: [Microsoft Graph, Filter]
+categories: [Microsoft Graph, Filtering]
 tags: [powershell, msgraph, speaker]
-description: Demonstrating how to use $filterand advanced filters
+description: Demonstrating how to use $filter and advanced filters
 ---
 
 # Prerequisites
