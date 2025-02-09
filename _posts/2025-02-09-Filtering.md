@@ -513,5 +513,5 @@ $filteredServices | Select-Object Name, Status
 
 ## Reference/Documentation links
 
-- Filtering: [https://learn.microsoft.com/en-us/graph/filter-query-parameter?tabs=http](https://learn.microsoft.com/en-us/graph/filter-query-parameter?tabs=http)
-- Advanced Filtering: [https://learn.microsoft.com/en-us/graph/aad-advanced-queries?tabs=http](https://learn.microsoft.com/en-us/graph/aad-advanced-queries?tabs=http)
+- Filtering: [https://learn.microsoft.com/en-us/graph/filter-query-parameter?tabs=http](https://learn.microsoft.com/en-us/graph/filter-query-parameter?tabs=http){:target="_blank"}
+- Advanced Filtering: [https://learn.microsoft.com/en-us/graph/aad-advanced-queries?tabs=http](https://learn.microsoft.com/en-us/graph/aad-advanced-queries?tabs=http){:target="_blank"}
