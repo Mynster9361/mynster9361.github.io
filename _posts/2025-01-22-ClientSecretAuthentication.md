@@ -1,6 +1,6 @@
 ---
 title: Client ID and Secret Authentication to Microsoft Graph API
-author: <1>
+author: 1
 date: 2025-01-23 21:30:00 +0100
 categories: [Microsoft Graph, Authentication]
 tags: [powershell, msgraph]
