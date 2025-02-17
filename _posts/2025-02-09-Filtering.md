@@ -1,6 +1,6 @@
 ---
 title: Filtering / Advanced Filtering in MS GRAPH
-author: 1
+author: mynster
 date: 2025-02-09 21:45:00 +0100
 categories: [Microsoft Graph, Filtering]
 tags: [powershell, msgraph, speaker]

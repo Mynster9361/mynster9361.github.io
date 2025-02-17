@@ -1,3 +1,9 @@
-<1>:
+## Template › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/advanced-usage.md#setting-author-url
+# -------------------------------------
+# {author_id}:
+#   name: {full name}
+#   url: {homepage_of_author}
+# -------------------------------------
+mynster:
   name: Morten Mynster
   url: https://www.linkedin.com/in/mortenmynster
