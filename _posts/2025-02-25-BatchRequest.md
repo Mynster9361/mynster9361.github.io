@@ -1,7 +1,7 @@
 ---
 title: Batch Requests in MS GRAPH
 author: mynster
-date: 2025-02-24 11:00:00 +0100
+date: 2025-02-24 16:00:00 +0100
 categories: [Microsoft Graph, Batch Requests]
 tags: [powershell, msgraph, speaker]
 description: Demonstrating how to use batch requests in MS Graph
