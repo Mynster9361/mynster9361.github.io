@@ -182,7 +182,7 @@ And your result would look something like this:
 
 
 Right now that we have tried that lets try and filter on a collection instead.
-Lets try with the same thing except for this one we will not be using $expand=memberOf since we cab bit yse the expand together with a any operation.
+Lets try with the same thing except for this one we will not be using $expand=memberOf since we cannot use the expand together with a any operation.
 So our criteria will look like this:
 - All users that has the value "Denmark" in the property country.
 - We are only looking for active users
