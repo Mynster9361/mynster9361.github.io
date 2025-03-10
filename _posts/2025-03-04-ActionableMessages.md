@@ -90,7 +90,7 @@ Here is an example of an adaptive card:
 {
     "type": "AdaptiveCard",
     "version": "1.2",
-    "originator": "$($originatorId)$",
+    "originator": "$($originatorId)",
     "hideOriginalBody": true,
     "body": [
         {
