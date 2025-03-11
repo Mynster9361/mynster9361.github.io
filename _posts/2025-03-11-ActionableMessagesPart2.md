@@ -654,7 +654,7 @@ $params = @{
         toRecipients = @(
             @{
                 emailAddress = @{
-                    address = "morten.kristensen@bestseller.com"
+                    address = "Jane.Doe@contoso.com"
                 }
             }
         )
@@ -1012,7 +1012,7 @@ $params = @{
         toRecipients = @(
             @{
                 emailAddress = @{
-                    address = "morten.kristensen@bestseller.com"
+                    address = "Jane.Doe@contoso.com"
                 }
             }
         )
