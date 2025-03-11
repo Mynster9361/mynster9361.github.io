@@ -321,7 +321,7 @@ $params = @{
         )
     }
     saveToSentItems = "false"
-}
+} | ConvertTo-Json -Depth 10
 
 
 
@@ -661,7 +661,7 @@ $params = @{
 
     }
     saveToSentItems = "false"
-}
+} | ConvertTo-Json -Depth 10
 
 # Default Token Body
 $tokenBody = @{
@@ -1019,7 +1019,7 @@ $params = @{
 
     }
     saveToSentItems = "false"
-}
+} | ConvertTo-Json -Depth 10
 
 # Default Token Body
 $tokenBody = @{
