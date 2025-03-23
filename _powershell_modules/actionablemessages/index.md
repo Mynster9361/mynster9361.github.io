@@ -4,27 +4,49 @@ title: ActionableMessages PowerShell Module
 permalink: /modules/actionablemessages/
 ---
 
-# ActionableMessages PowerShell Module
+A PowerShell module for creating Microsoft Actionable Messages.
+
+## Installation
+
+`powershellInstall-Module -Name ActionableMessages -Scope CurrentUser`"
+
+# Fixed Quick Start section with proper code block
+---
+layout: page
+title: ActionableMessages PowerShell Module
+permalink: /modules/actionablemessages/
+---
 
 A PowerShell module for creating Microsoft Actionable Messages.
 
 ## Installation
 
-`powershell
-Install-Module -Name ActionableMessages -Scope CurrentUser
-``r
+`powershellInstall-Module -Name ActionableMessages -Scope CurrentUser += `powershell$card = New-AMCard -ThemeColor "#0078D7"Add-AMElement -InputObject $card -Element (New-AMTextBlock -Text "Hello, World!")$jsonCard = Export-AMCard -Card $card`"
 
-## Quick Start
+---
+layout: page
+title: ActionableMessages PowerShell Module
+permalink: /modules/actionablemessages/
+---
 
-`powershell
-$card = New-AMCard -ThemeColor "#0078D7"
-Add-AMElement -InputObject $card -Element (New-AMTextBlock -Text "Hello, World!")
-$jsonCard = Export-AMCard -Card $card
-``r
+A PowerShell module for creating Microsoft Actionable Messages.
 
-## Command Reference
+## Installation
 
-- [`Add-AMElement`](commands/Add-AMElement/)
+`powershellInstall-Module -Name ActionableMessages -Scope CurrentUser`"
+
+# Fixed Quick Start section with proper code block
+---
+layout: page
+title: ActionableMessages PowerShell Module
+permalink: /modules/actionablemessages/
+---
+
+A PowerShell module for creating Microsoft Actionable Messages.
+
+## Installation
+
+`powershellInstall-Module -Name ActionableMessages -Scope CurrentUser += `powershell$card = New-AMCard -ThemeColor "#0078D7"Add-AMElement -InputObject $card -Element (New-AMTextBlock -Text "Hello, World!")$jsonCard = Export-AMCard -Card $card += - [`Add-AMElement`](commands/Add-AMElement/)
 - [`Export-AMCard`](commands/Export-AMCard/)
 - [`Export-AMCardForEmail`](commands/Export-AMCardForEmail/)
 - [`New-AMActionSet`](commands/New-AMActionSet/)
