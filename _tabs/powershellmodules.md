@@ -5,8 +5,6 @@ icon: fas fa-terminal
 order: 5
 ---
 
-# PowerShell Modules
-
 Documentation for PowerShell modules I maintain:
 
 ## [ActionableMessages](/modules/actionablemessages/)
