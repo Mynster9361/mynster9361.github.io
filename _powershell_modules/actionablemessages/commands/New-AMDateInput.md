@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMDateInput
+permalink: /modules/actionablemessages/commands/New-AMDateInput/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/Input.Date.html
@@ -178,4 +184,5 @@ Date inputs in Adaptive Cards will render differently depending on the client:
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/Input.Date.html](https://adaptivecards.io/explorer/Input.Date.html)
+
 

@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMOpenUrlAction
+permalink: /modules/actionablemessages/commands/New-AMOpenUrlAction/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/Action.OpenUrl.html
@@ -154,4 +160,5 @@ In Outlook, the URL will typically open in the user's default web browser.
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/Action.OpenUrl.html](https://adaptivecards.io/explorer/Action.OpenUrl.html)
+
 

@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMChoiceSetInput
+permalink: /modules/actionablemessages/commands/New-AMChoiceSetInput/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/Input.ChoiceSet.html
@@ -239,4 +245,5 @@ that is displayed to the user.
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/Input.ChoiceSet.html](https://adaptivecards.io/explorer/Input.ChoiceSet.html)
+
 

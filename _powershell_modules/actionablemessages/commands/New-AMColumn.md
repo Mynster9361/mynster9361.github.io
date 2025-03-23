@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMColumn
+permalink: /modules/actionablemessages/commands/New-AMColumn/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/Column.html
@@ -172,4 +178,5 @@ Width values can be:
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/Column.html](https://adaptivecards.io/explorer/Column.html)
+
 

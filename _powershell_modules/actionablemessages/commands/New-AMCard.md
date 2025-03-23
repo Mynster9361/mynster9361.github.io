@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMCard
+permalink: /modules/actionablemessages/commands/New-AMCard/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://docs.microsoft.com/en-us/outlook/actionable-messages/
@@ -156,4 +162,5 @@ like New-AMTextBlock and New-AMImage to populate the card with content.
 [https://docs.microsoft.com/en-us/outlook/actionable-messages/](https://docs.microsoft.com/en-us/outlook/actionable-messages/)
 
 [https://adaptivecards.io/explorer/](https://adaptivecards.io/explorer/)
+
 

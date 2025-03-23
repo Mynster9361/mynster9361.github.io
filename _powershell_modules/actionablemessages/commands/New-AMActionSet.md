@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMActionSet
+permalink: /modules/actionablemessages/commands/New-AMActionSet/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/ActionSet.html
@@ -130,4 +136,5 @@ in the card's top-level actions property.
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/ActionSet.html](https://adaptivecards.io/explorer/ActionSet.html)
+
 

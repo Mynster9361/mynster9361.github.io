@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMImageSet
+permalink: /modules/actionablemessages/commands/New-AMImageSet/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/ImageSet.html
@@ -124,4 +130,5 @@ For best results:
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/ImageSet.html](https://adaptivecards.io/explorer/ImageSet.html)
+
 

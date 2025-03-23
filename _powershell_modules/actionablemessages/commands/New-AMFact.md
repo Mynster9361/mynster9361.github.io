@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMFact
+permalink: /modules/actionablemessages/commands/New-AMFact/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/FactSet.html
@@ -129,4 +135,5 @@ complex formatting may not render consistently across all Adaptive Card hosts.
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/FactSet.html](https://adaptivecards.io/explorer/FactSet.html)
+
 

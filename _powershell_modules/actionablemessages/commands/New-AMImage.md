@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMImage
+permalink: /modules/actionablemessages/commands/New-AMImage/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/Image.html
@@ -137,4 +143,5 @@ Consider the following best practices:
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/Image.html](https://adaptivecards.io/explorer/Image.html)
+
 

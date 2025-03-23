@@ -1,4 +1,10 @@
 ---
+layout: page
+title: Add-AMElement
+permalink: /modules/actionablemessages/commands/Add-AMElement/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/
@@ -170,4 +176,5 @@ expects containers to already be present when referencing them by ID.
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/](https://adaptivecards.io/explorer/)
+
 

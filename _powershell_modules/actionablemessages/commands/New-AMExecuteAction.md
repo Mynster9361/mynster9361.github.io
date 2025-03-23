@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMExecuteAction
+permalink: /modules/actionablemessages/commands/New-AMExecuteAction/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://docs.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#actions
@@ -184,4 +190,5 @@ and associated with your Originator ID before it can be used in production envir
 ## RELATED LINKS
 
 [https://docs.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#actions](https://docs.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#actions)
+
 

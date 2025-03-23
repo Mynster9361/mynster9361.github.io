@@ -1,4 +1,10 @@
 ---
+layout: page
+title: Export-AMCardForEmail
+permalink: /modules/actionablemessages/commands/Export-AMCardForEmail/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://docs.microsoft.com/en-us/outlook/actionable-messages/
@@ -231,4 +237,5 @@ https://adaptivecards.io/)
 [https://docs.microsoft.com/en-us/outlook/actionable-messages/
 https://docs.microsoft.com/en-us/graph/api/user-sendmail
 https://adaptivecards.io/]()
+
 

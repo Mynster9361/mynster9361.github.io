@@ -4,22 +4,47 @@ title: ActionableMessages PowerShell Module
 permalink: /modules/actionablemessages/
 ---
 
+# ActionableMessages PowerShell Module
+
 A PowerShell module for creating Microsoft Actionable Messages.
 
 ## Installation
 
 `powershell
 Install-Module -Name ActionableMessages -Scope CurrentUser
-`
+``r
 
 ## Quick Start
 
 `powershell
- = New-AMCard -ThemeColor "#0078D7"
-Add-AMElement -InputObject  -Element (New-AMTextBlock -Text "Hello, World!")
- = Export-AMCard -Card 
-`
+$card = New-AMCard -ThemeColor "#0078D7"
+$Add-AMElement -InputObject $card -Element (New-AMTextBlock -Text "Hello, World!")
+$jsonCard = Export-AMCard -Card $card
+``r
 
 ## Command Reference
 
-- [`Add-AMElement`](commands/Add-AMElement.html) - [`Export-AMCard`](commands/Export-AMCard.html) - [`Export-AMCardForEmail`](commands/Export-AMCardForEmail.html) - [`New-AMActionSet`](commands/New-AMActionSet.html) - [`New-AMCard`](commands/New-AMCard.html) - [`New-AMChoice`](commands/New-AMChoice.html) - [`New-AMChoiceSetInput`](commands/New-AMChoiceSetInput.html) - [`New-AMColumn`](commands/New-AMColumn.html) - [`New-AMColumnSet`](commands/New-AMColumnSet.html) - [`New-AMContainer`](commands/New-AMContainer.html) - [`New-AMDateInput`](commands/New-AMDateInput.html) - [`New-AMExecuteAction`](commands/New-AMExecuteAction.html) - [`New-AMFact`](commands/New-AMFact.html) - [`New-AMFactSet`](commands/New-AMFactSet.html) - [`New-AMImage`](commands/New-AMImage.html) - [`New-AMImageSet`](commands/New-AMImageSet.html) - [`New-AMNumberInput`](commands/New-AMNumberInput.html) - [`New-AMOpenUrlAction`](commands/New-AMOpenUrlAction.html) - [`New-AMShowCardAction`](commands/New-AMShowCardAction.html) - [`New-AMTextBlock`](commands/New-AMTextBlock.html) - [`New-AMTextInput`](commands/New-AMTextInput.html) - [`New-AMTimeInput`](commands/New-AMTimeInput.html) - [`New-AMToggleInput`](commands/New-AMToggleInput.html) - [`New-AMToggleVisibilityAction`](commands/New-AMToggleVisibilityAction.html)
+- [`Add-AMElement`](commands/Add-AMElement/)
+- [`Export-AMCard`](commands/Export-AMCard/)
+- [`Export-AMCardForEmail`](commands/Export-AMCardForEmail/)
+- [`New-AMActionSet`](commands/New-AMActionSet/)
+- [`New-AMCard`](commands/New-AMCard/)
+- [`New-AMChoice`](commands/New-AMChoice/)
+- [`New-AMChoiceSetInput`](commands/New-AMChoiceSetInput/)
+- [`New-AMColumn`](commands/New-AMColumn/)
+- [`New-AMColumnSet`](commands/New-AMColumnSet/)
+- [`New-AMContainer`](commands/New-AMContainer/)
+- [`New-AMDateInput`](commands/New-AMDateInput/)
+- [`New-AMExecuteAction`](commands/New-AMExecuteAction/)
+- [`New-AMFact`](commands/New-AMFact/)
+- [`New-AMFactSet`](commands/New-AMFactSet/)
+- [`New-AMImage`](commands/New-AMImage/)
+- [`New-AMImageSet`](commands/New-AMImageSet/)
+- [`New-AMNumberInput`](commands/New-AMNumberInput/)
+- [`New-AMOpenUrlAction`](commands/New-AMOpenUrlAction/)
+- [`New-AMShowCardAction`](commands/New-AMShowCardAction/)
+- [`New-AMTextBlock`](commands/New-AMTextBlock/)
+- [`New-AMTextInput`](commands/New-AMTextInput/)
+- [`New-AMTimeInput`](commands/New-AMTimeInput/)
+- [`New-AMToggleInput`](commands/New-AMToggleInput/)
+- [`New-AMToggleVisibilityAction`](commands/New-AMToggleVisibilityAction/)

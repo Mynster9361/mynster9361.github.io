@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMTimeInput
+permalink: /modules/actionablemessages/commands/New-AMTimeInput/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/Input.Time.html
@@ -156,4 +162,5 @@ Time inputs in Adaptive Cards:
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/Input.Time.html](https://adaptivecards.io/explorer/Input.Time.html)
+
 

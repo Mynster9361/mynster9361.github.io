@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMChoice
+permalink: /modules/actionablemessages/commands/New-AMChoice/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/Input.ChoiceSet.html
@@ -123,4 +129,5 @@ or standardized values in your form data.
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/Input.ChoiceSet.html](https://adaptivecards.io/explorer/Input.ChoiceSet.html)
+
 

@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMToggleVisibilityAction
+permalink: /modules/actionablemessages/commands/New-AMToggleVisibilityAction/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/Action.ToggleVisibility.html
@@ -156,4 +162,5 @@ Note that elements referenced in targetElements must have proper IDs defined.
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/Action.ToggleVisibility.html](https://adaptivecards.io/explorer/Action.ToggleVisibility.html)
+
 

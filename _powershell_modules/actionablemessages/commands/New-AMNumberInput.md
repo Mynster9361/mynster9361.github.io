@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMNumberInput
+permalink: /modules/actionablemessages/commands/New-AMNumberInput/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/Input.Number.html
@@ -166,4 +172,5 @@ when processing the card data.
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/Input.Number.html](https://adaptivecards.io/explorer/Input.Number.html)
+
 

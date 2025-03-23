@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMShowCardAction
+permalink: /modules/actionablemessages/commands/New-AMShowCardAction/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/Action.OpenUrl.html
@@ -132,3 +138,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+

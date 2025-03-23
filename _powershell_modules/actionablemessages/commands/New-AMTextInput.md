@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMTextInput
+permalink: /modules/actionablemessages/commands/New-AMTextInput/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/Input.Text.html
@@ -221,4 +227,5 @@ Some best practices:
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/Input.Text.html](https://adaptivecards.io/explorer/Input.Text.html)
+
 

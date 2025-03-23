@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMTextBlock
+permalink: /modules/actionablemessages/commands/New-AMTextBlock/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/TextBlock.html
@@ -150,4 +156,5 @@ Some best practices:
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/TextBlock.html](https://adaptivecards.io/explorer/TextBlock.html)
+
 

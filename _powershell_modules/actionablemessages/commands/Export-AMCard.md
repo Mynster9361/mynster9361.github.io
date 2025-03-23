@@ -1,4 +1,10 @@
 ---
+layout: page
+title: Export-AMCard
+permalink: /modules/actionablemessages/commands/Export-AMCard/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://docs.microsoft.com/en-us/outlook/actionable-messages/
@@ -145,4 +151,5 @@ nested card structures are properly serialized.
 ## RELATED LINKS
 
 [https://docs.microsoft.com/en-us/outlook/actionable-messages/](https://docs.microsoft.com/en-us/outlook/actionable-messages/)
+
 

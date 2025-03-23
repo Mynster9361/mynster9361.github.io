@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMContainer
+permalink: /modules/actionablemessages/commands/New-AMContainer/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/Container.html
@@ -200,4 +206,5 @@ the -ContainerId parameter.
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/Container.html](https://adaptivecards.io/explorer/Container.html)
+
 

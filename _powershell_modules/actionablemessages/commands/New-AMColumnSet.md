@@ -1,4 +1,10 @@
 ---
+layout: page
+title: New-AMColumnSet
+permalink: /modules/actionablemessages/commands/New-AMColumnSet/
+---
+
+---
 external help file: ActionableMessages-help.xml
 Module Name: ActionableMessages
 online version: https://adaptivecards.io/explorer/ColumnSet.html
@@ -154,4 +160,5 @@ container element using Add-AMElement.
 ## RELATED LINKS
 
 [https://adaptivecards.io/explorer/ColumnSet.html](https://adaptivecards.io/explorer/ColumnSet.html)
+
 
