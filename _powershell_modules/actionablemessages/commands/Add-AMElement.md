@@ -55,7 +55,7 @@ $container = New-AMContainer -Id "info-section" -Style "emphasis"
 Add-AMElement -Card $card -Element $container
 ```powershell
 
-# Now add elements to the container\r\n```powershell\r\n$header = New-AMTextBlock -Text "Important Information" -Size "Medium" -Weight "Bolder"
+# Now add elements to the container\r\n\r\n```powershell\r\n$header = New-AMTextBlock -Text "Important Information" -Size "Medium" -Weight "Bolder"
 Add-AMElement -Card $card -Element $header -ContainerId "info-section"
 
 $content = New-AMTextBlock -Text "Here are the details you requested..." -Wrap $true
