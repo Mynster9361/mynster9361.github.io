@@ -3,26 +3,18 @@ layout: page
 title: ActionableMessages PowerShell Module
 permalink: /modules/actionablemessages/
 ---
-
 A PowerShell module for creating Microsoft Actionable Messages.
-
 ## Installation
-
 ```powershell
 Install-Module -Name ActionableMessages -Scope CurrentUser
 ```
-
 ## Quick Start
-
 ```powershell
 $card = New-AMCard -ThemeColor "#0078D7"
 Add-AMElement -InputObject $card -Element (New-AMTextBlock -Text "Hello, World!")
 $jsonCard = Export-AMCard -Card $card
 ```
-
-## Command Reference
-
-- [`Add-AMElement`](commands/Add-AMElement/)
+## Command Reference- [`Add-AMElement`](commands/Add-AMElement/)
 - [`Export-AMCard`](commands/Export-AMCard/)
 - [`Export-AMCardForEmail`](commands/Export-AMCardForEmail/)
 - [`New-AMActionSet`](commands/New-AMActionSet/)
