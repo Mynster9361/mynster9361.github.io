@@ -4,6 +4,13 @@ title: New-AMTimeInput
 permalink: /modules/actionablemessages/commands/New-AMTimeInput/
 ---
 
+---
+external help file: ActionableMessages-help.xml
+Module Name: ActionableMessages
+online version: https://adaptivecards.io/explorer/Input.Time.html
+schema: 2.0.0
+---
+
 # New-AMTimeInput
 
 ## SYNOPSIS

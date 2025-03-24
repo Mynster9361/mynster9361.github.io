@@ -4,6 +4,13 @@ title: New-AMNumberInput
 permalink: /modules/actionablemessages/commands/New-AMNumberInput/
 ---
 
+---
+external help file: ActionableMessages-help.xml
+Module Name: ActionableMessages
+online version: https://adaptivecards.io/explorer/Input.Number.html
+schema: 2.0.0
+---
+
 # New-AMNumberInput
 
 ## SYNOPSIS
@@ -144,7 +151,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

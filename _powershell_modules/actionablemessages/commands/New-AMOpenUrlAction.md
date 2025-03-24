@@ -4,6 +4,13 @@ title: New-AMOpenUrlAction
 permalink: /modules/actionablemessages/commands/New-AMOpenUrlAction/
 ---
 
+---
+external help file: ActionableMessages-help.xml
+Module Name: ActionableMessages
+online version: https://adaptivecards.io/explorer/Action.OpenUrl.html
+schema: 2.0.0
+---
+
 # New-AMOpenUrlAction
 
 ## SYNOPSIS
@@ -134,7 +141,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
