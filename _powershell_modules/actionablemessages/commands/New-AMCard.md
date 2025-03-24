@@ -11,9 +11,9 @@ Creates a new Adaptive Card object.
 
 ## SYNTAX
 
-`powershell
+```powershell
 New-AMCard [-Version <String>] [-OriginatorId] <String> [-HideOriginalBody <Boolean>] [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
-``r
+```
 
 ## DESCRIPTION
 Creates a new Adaptive Card hashtable that serves as the foundation for building
@@ -26,32 +26,32 @@ for an Adaptive Card, including empty collections for body elements and actions.
 ## EXAMPLES
 
 ### EXAMPLE 1
-`powershell
+```powershell
 # Create a basic card
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
-``r
+```
 
-    
 
 ### EXAMPLE 2
-`powershell
+```powershell
 # Create a card and show the original email body
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2" -HideOriginalBody $false
-``r
+```
 
-    
 
 ### EXAMPLE 3
-`powershell
+```powershell
 # Create a complete card with content
 $card = New-AMCard -OriginatorId "1234567890"
 Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Expense Approval Required" -Size "Large" -Weight "Bolder")
 Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Please review the following expense report:" -Wrap $true)
-``r
+```
 
+#### Example explanation
+```powershell
 # Add more elements and then export
-$json = Export-AMCard -Card $card    
-
+$json = Export-AMCard -Card $card
+```
 ## PARAMETERS
 
 ### -Version
@@ -64,7 +64,7 @@ Different versions support different card features:
 - 1.1: Adds support for additional features like horizontal alignment
 - 1.2: Adds support for more advanced features and styling options
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -74,7 +74,7 @@ Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -OriginatorId
 A unique identifier for the sender of the card. For Outlook Actionable Messages,
@@ -83,7 +83,7 @@ this should be the originator ID registered with Microsoft.
 This ID is critical for security purposes, as it validates that your organization
 is authorized to send Actionable Messages and make HTTP requests to your endpoints.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -93,7 +93,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -HideOriginalBody
 Specifies whether to hide the original email body when displaying the card.
@@ -103,7 +103,7 @@ When set to $false, both the original email text and the card are displayed.
 
 Default: $true
 
-`yaml
+```yaml
 Type: Boolean
 Parameter Sets: (All)
 Aliases: None
@@ -113,7 +113,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
@@ -136,6 +136,5 @@ After creating a card, use Add-AMElement along with element creation functions
 like New-AMTextBlock and New-AMImage to populate the card with content.
 
 ## RELATED LINKS
-* [](https://docs.microsoft.com/en-us/outlook/actionable-messages/)
-* [](https://adaptivecards.io/explorer/)
-
+- [https://docs.microsoft.com/en-us/outlook/actionable-messages/](https://docs.microsoft.com/en-us/outlook/actionable-messages/)
+- [https://adaptivecards.io/explorer/](https://adaptivecards.io/explorer/)

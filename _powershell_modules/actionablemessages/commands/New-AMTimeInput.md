@@ -11,9 +11,9 @@ Creates a Time Input element for an Adaptive Card.
 
 ## SYNTAX
 
-`powershell
+```powershell
 New-AMTimeInput [-id <String>] [-title <String>] [-value <String>] [-placeholder <String>] [-style <String>] [<CommonParameters>]
-``r
+```
 
 ## DESCRIPTION
 Creates an Input.Time element that allows users to select a time value.
@@ -26,29 +26,29 @@ though the exact appearance may vary across different Adaptive Card hosts.
 ## EXAMPLES
 
 ### EXAMPLE 1
-`powershell
+```powershell
 # Create a simple time input with default values (current time)
 $meetingTime = New-AMTimeInput -id "meetingStart" -title "Meeting Start Time:"
 Add-AMElement -Card $card -Element $meetingTime
-``r
+```
 
-    
 
 ### EXAMPLE 2
-`powershell
+```powershell
 # Create a time input with specific default time
 $reminderTime = New-AMTimeInput -id "reminderTime" -title "Set Reminder For:" `
     -value "14:30" -placeholder "Select reminder time"
-``r
+```
 
-    
 
 ### EXAMPLE 3
-`powershell
+```powershell
 # Create a time input for a form
 $card = New-AMCard -OriginatorId "calendar-app"
-``r
+```
 
+#### Example explanation
+```powershell
 $startTime = New-AMTimeInput -id "startTime" -title "Start Time:" -value "09:00"
 $endTime = New-AMTimeInput -id "endTime" -title "End Time:" -value "17:00"
 
@@ -56,15 +56,15 @@ Add-AMElement -Card $card -Element $startTime
 Add-AMElement -Card $card -Element $endTime
 
 $submitAction = New-AMSubmitAction -Title "Schedule" -Data @{ action = "createEvent" }
-Add-AMAction -Card $card -Action $submitAction    
-
+Add-AMAction -Card $card -Action $submitAction
+```
 ## PARAMETERS
 
 ### -id
 A unique identifier for the time input element. This ID will be used when the card
 is submitted to identify the time value selected by the user.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -74,12 +74,12 @@ Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -title
 Text label to display above the input field, describing what the time selection is for.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -89,13 +89,13 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -value
 Optional default time value for the input. Should be in 24-hour format (HH:MM).
 If not specified, defaults to the current time.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -105,13 +105,13 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -placeholder
 Optional text to display when no time has been selected.
 Default: "Select time"
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -121,14 +121,14 @@ Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -style
 Optional visual style for the input element.
 Valid values: "default", "expanded"
 Default: "default"
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -138,7 +138,7 @@ Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
@@ -157,5 +157,4 @@ Time inputs in Adaptive Cards:
 - Not all Adaptive Card hosts support all time input features consistently
 
 ## RELATED LINKS
-* [](https://adaptivecards.io/explorer/Input.Time.html)
-
+- [https://adaptivecards.io/explorer/Input.Time.html](https://adaptivecards.io/explorer/Input.Time.html)

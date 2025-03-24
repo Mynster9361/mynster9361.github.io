@@ -11,9 +11,9 @@ Creates a choice object for use in a ChoiceSet.
 
 ## SYNTAX
 
-`powershell
+```powershell
 New-AMChoice [-Title] <String> [-Value] <String> [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
-``r
+```
 
 ## DESCRIPTION
 Creates a choice option to be used in a ChoiceSetInput element. Each choice represents
@@ -26,15 +26,14 @@ New-AMChoiceSetInput function as the -Choices parameter.
 ## EXAMPLES
 
 ### EXAMPLE 1
-`powershell
+```powershell
 # Create a single choice
 $choice = New-AMChoice -Title "Red" -Value "red"
-``r
+```
 
-    
 
 ### EXAMPLE 2
-`powershell
+```powershell
 # Create multiple choices for a dropdown list
 $colors = @(
     New-AMChoice -Title "Red" -Value "red"
@@ -42,12 +41,11 @@ $colors = @(
     New-AMChoice -Title "Blue" -Value "blue"
 )
 $colorPicker = New-AMChoiceSetInput -Id "favoriteColor" -Label "Select your favorite color:" -Choices $colors
-``r
+```
 
-    
 
 ### EXAMPLE 3
-`powershell
+```powershell
 # Create yes/no choices
 $yesNoChoices = @(
     New-AMChoice -Title "Yes, I approve" -Value "approve"
@@ -55,9 +53,7 @@ $yesNoChoices = @(
 )
 $approvalInput = New-AMChoiceSetInput -Id "approval" -Label "Do you approve this request?" `
     -Choices $yesNoChoices -Style "expanded" -IsMultiSelect $false
-``r
-
-    
+```
 
 ## PARAMETERS
 
@@ -65,7 +61,7 @@ $approvalInput = New-AMChoiceSetInput -Id "approval" -Label "Do you approve this
 The text to display for this choice option in the user interface.
 This is what users will see in the dropdown list, checkbox, or radio button.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -75,14 +71,14 @@ Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Value
 The value to be submitted when this choice is selected.
 This is the data that will be sent back when the card is submitted, and may
 be different from the displayed title.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -92,7 +88,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
@@ -110,5 +106,4 @@ This separation allows you to display user-friendly text while submitting more c
 or standardized values in your form data.
 
 ## RELATED LINKS
-* [](https://adaptivecards.io/explorer/Input.ChoiceSet.html)
-
+- [https://adaptivecards.io/explorer/Input.ChoiceSet.html](https://adaptivecards.io/explorer/Input.ChoiceSet.html)

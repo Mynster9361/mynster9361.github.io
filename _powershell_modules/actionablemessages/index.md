@@ -10,17 +10,17 @@ A PowerShell module for creating Microsoft Actionable Messages.
 
 ## Installation
 
-`powershell
+```powershell
 Install-Module -Name ActionableMessages -Scope CurrentUser
-``r
+```
 
 ## Quick Start
 
-`powershell
+```powershell
 $card = New-AMCard -ThemeColor "#0078D7"
 Add-AMElement -InputObject $card -Element (New-AMTextBlock -Text "Hello, World!")
 $jsonCard = Export-AMCard -Card $card
-``r
+```
 
 ## Command Reference
 

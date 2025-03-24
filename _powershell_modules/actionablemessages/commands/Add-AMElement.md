@@ -11,9 +11,9 @@ Adds an element to an Adaptive Card.
 
 ## SYNTAX
 
-`powershell
+```powershell
 Add-AMElement [-Card] <Hashtable> [-Element] <Hashtable> [-ContainerId <String>] [-ColumnId <String>] [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
-``r
+```
 
 ## DESCRIPTION
 Adds an element directly to the card body or to a specific container within the card.
@@ -27,30 +27,30 @@ The function handles adding elements to:
 ## EXAMPLES
 
 ### EXAMPLE 1
-`powershell
+```powershell
 # Add a text block directly to card body
 $title = New-AMTextBlock -Text "Hello World" -Size "Large" -Weight "Bolder"
 Add-AMElement -Card $card -Element $title
-``r
+```
 
-    
 
 ### EXAMPLE 2
-`powershell
+```powershell
 # Add a text block to a container
 $text = New-AMTextBlock -Text "This text is inside a container" -Wrap $true
 Add-AMElement -Card $card -Element $text -ContainerId "details-container"
-``r
+```
 
-    
 
 ### EXAMPLE 3
-`powershell
+```powershell
 # Create a container and add multiple elements to it
 $container = New-AMContainer -Id "info-section" -Style "emphasis"
 Add-AMElement -Card $card -Element $container
-``r
+```
 
+#### Example explanation
+```powershell
 # Now add elements to the container
 $header = New-AMTextBlock -Text "Important Information" -Size "Medium" -Weight "Bolder"
 Add-AMElement -Card $card -Element $header -ContainerId "info-section"
@@ -62,15 +62,15 @@ $factSet = New-AMFactSet -Facts @(
     (New-AMFact -Title "Status" -Value "Active"),
     (New-AMFact -Title "Priority" -Value "High")
 )
-Add-AMElement -Card $card -Element $factSet -ContainerId "info-section"    
-
+Add-AMElement -Card $card -Element $factSet -ContainerId "info-section"
+```
 ## PARAMETERS
 
 ### -ColumnId
 Optional. The ID of a column within a container to add the element to. Only applicable
 when ContainerId is also specified.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -80,13 +80,13 @@ Position: -2147483648
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -ContainerId
 Optional. The ID of a container to add the element to. If specified, the element
 will be added to the container's items collection rather than directly to the card body.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -96,12 +96,12 @@ Position: -2147483648
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Card
 The Adaptive Card hashtable to add the element to.
 
-`yaml
+```yaml
 Type: Collections.Hashtable
 Parameter Sets: (All)
 Aliases: None
@@ -111,13 +111,13 @@ Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Element
 The element to add to the card. This should be a hashtable created by one of the
 New-AM* functions such as New-AMTextBlock, New-AMImage, New-AMContainer, etc.
 
-`yaml
+```yaml
 Type: Collections.Hashtable
 Parameter Sets: (All)
 Aliases: None
@@ -127,7 +127,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
@@ -149,5 +149,4 @@ The function automatically creates the body array if it doesn't exist, but it
 expects containers to already be present when referencing them by ID.
 
 ## RELATED LINKS
-* [](https://adaptivecards.io/explorer/)
-
+- [https://adaptivecards.io/explorer/](https://adaptivecards.io/explorer/)

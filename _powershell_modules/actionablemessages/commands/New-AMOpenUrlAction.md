@@ -11,9 +11,9 @@ Creates an OpenUrl Action for an Adaptive Card.
 
 ## SYNTAX
 
-`powershell
+```powershell
 New-AMOpenUrlAction [-Title] <String> [-Url] <String> [-Id <String>] [-Tooltip <String>] [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
-``r
+```
 
 ## DESCRIPTION
 Creates an Action.OpenUrl element that opens a URL in a web browser when clicked.
@@ -23,43 +23,39 @@ or related web pages from within your Adaptive Card.
 ## EXAMPLES
 
 ### EXAMPLE 1
-`powershell
+```powershell
 # Create a simple "Learn More" button
 $learnMoreAction = New-AMOpenUrlAction -Title "Learn More" -Url "https://example.com"
 Add-AMElement -Card $card -Element (New-AMActionSet -Actions @($learnMoreAction))
-``r
+```
 
-    
 
 ### EXAMPLE 2
-`powershell
+```powershell
 # Create a button with custom ID and tooltip
 $docsButton = New-AMOpenUrlAction -Title "View Documentation" `
     -Url "https://docs.contoso.com/project" `
     -Id "docs-button" `
     -Tooltip "Open the project documentation in a new browser window"
-``r
+```
 
-    
 
 ### EXAMPLE 3
-`powershell
+```powershell
 # Creating multiple URL actions in an ActionSet
 $actions = @(
     (New-AMOpenUrlAction -Title "Product Page" -Url "https://contoso.com/products"),
     (New-AMOpenUrlAction -Title "Support" -Url "https://contoso.com/support")
 )
 $actionSet = New-AMActionSet -Id "links" -Actions $actions
-``r
-
-    
+```
 
 ## PARAMETERS
 
 ### -Title
 The title text to display on the action button.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -69,13 +65,13 @@ Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Url
 The URL to open when the button is clicked. This must be a valid URL including
 the protocol (e.g., "https://").
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -85,14 +81,14 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Id
 Optional unique identifier for the action. If not specified, a new GUID will be
 generated automatically. The ID can be useful when you need to reference this
 action programmatically.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -102,13 +98,13 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Tooltip
 Optional tooltip text to display when the user hovers over the button.
 Use this to provide additional context about what will happen when clicked.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -118,7 +114,7 @@ Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
@@ -138,5 +134,4 @@ or registrations since it simply opens a URL in the user's browser.
 In Outlook, the URL will typically open in the user's default web browser.
 
 ## RELATED LINKS
-* [](https://adaptivecards.io/explorer/Action.OpenUrl.html)
-
+- [https://adaptivecards.io/explorer/Action.OpenUrl.html](https://adaptivecards.io/explorer/Action.OpenUrl.html)

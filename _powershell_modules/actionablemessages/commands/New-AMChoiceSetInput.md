@@ -11,9 +11,9 @@ Creates a ChoiceSetInput element for an Adaptive Card.
 
 ## SYNTAX
 
-`powershell
+```powershell
 New-AMChoiceSetInput [-Id] <String> [-Label <String>] [-Choices] <Array> [-IsMultiSelect <Boolean>] [-Style <String>] [-Value <String>] [-Placeholder <String>] [-IsVisible <Boolean>] [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
-``r
+```
 
 ## DESCRIPTION
 Creates a ChoiceSetInput element that allows users to select from a list of options.
@@ -26,7 +26,7 @@ selecting preferences, categories, options, or making decisions from predefined 
 ## EXAMPLES
 
 ### EXAMPLE 1
-`powershell
+```powershell
 # Create a simple dropdown list
 $colorChoices = @(
     New-AMChoice -Title "Red" -Value "red"
@@ -35,12 +35,11 @@ $colorChoices = @(
 )
 $colorDropdown = New-AMChoiceSetInput -Id "color" -Label "Select a color:" -Choices $colorChoices
 Add-AMElement -Card $card -Element $colorDropdown
-``r
+```
 
-    
 
 ### EXAMPLE 2
-`powershell
+```powershell
 # Create a radio button group with a default selection
 $priorityChoices = @(
     New-AMChoice -Title "High" -Value "high"
@@ -49,12 +48,11 @@ $priorityChoices = @(
 )
 $priorityInput = New-AMChoiceSetInput -Id "priority" -Label "Priority level:" `
     -Choices $priorityChoices -Style "expanded" -Value "medium"
-``r
+```
 
-    
 
 ### EXAMPLE 3
-`powershell
+```powershell
 # Create a multi-select checkbox list
 $toppingsChoices = @(
     New-AMChoice -Title "Cheese" -Value "cheese"
@@ -65,9 +63,7 @@ $toppingsChoices = @(
 )
 $toppingsInput = New-AMChoiceSetInput -Id "toppings" -Label "Select toppings:" `
     -Choices $toppingsChoices -IsMultiSelect $true -Style "expanded"
-``r
-
-    
+```
 
 ## PARAMETERS
 
@@ -75,7 +71,7 @@ $toppingsInput = New-AMChoiceSetInput -Id "toppings" -Label "Select toppings:" `
 A unique identifier for the input element. This ID will be used when the card is submitted
 to identify the selected value(s).
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -85,12 +81,12 @@ Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Label
 Optional text label to display above the input field, describing what the input is for.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -100,13 +96,13 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Choices
 An array of choice objects created using the New-AMChoice function. Each choice should
 have a title (displayed text) and value (data submitted when selected).
 
-`yaml
+```yaml
 Type: Array
 Parameter Sets: (All)
 Aliases: None
@@ -116,14 +112,14 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -IsMultiSelect
 Determines whether multiple choices can be selected.
 When set to $true, the input allows multiple selections (checkboxes).
 When set to $false (default), only a single option can be selected (dropdown or radio buttons).
 
-`yaml
+```yaml
 Type: Boolean
 Parameter Sets: (All)
 Aliases: None
@@ -133,7 +129,7 @@ Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Style
 Controls how the choices are displayed:
@@ -141,7 +137,7 @@ Controls how the choices are displayed:
 - "expanded": Renders as a set of radio buttons or checkboxes
 - "filtered": Renders as a dropdown with filtering capability (for long lists)
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -151,13 +147,13 @@ Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Value
 Optional default selected value(s). For single-select, this should match the value of one choice.
 For multi-select, this should be a comma-separated list of values.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -167,12 +163,12 @@ Position: 5
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Placeholder
 Optional text to display when no selection has been made. Only applicable for dropdown style.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -182,12 +178,12 @@ Position: 6
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -IsVisible
 Controls whether the input is initially visible or hidden.
 
-`yaml
+```yaml
 Type: Boolean
 Parameter Sets: (All)
 Aliases: None
@@ -197,7 +193,7 @@ Position: 7
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
@@ -221,5 +217,4 @@ Remember that the value submitted will be the "value" property of the choice, no
 that is displayed to the user.
 
 ## RELATED LINKS
-* [](https://adaptivecards.io/explorer/Input.ChoiceSet.html)
-
+- [https://adaptivecards.io/explorer/Input.ChoiceSet.html](https://adaptivecards.io/explorer/Input.ChoiceSet.html)

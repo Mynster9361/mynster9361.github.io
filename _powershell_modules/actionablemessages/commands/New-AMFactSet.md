@@ -11,9 +11,9 @@ Creates a FactSet element for an Adaptive Card.
 
 ## SYNTAX
 
-`powershell
+```powershell
 New-AMFactSet [-Facts] <Array> [-Id <String>] [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
-``r
+```
 
 ## DESCRIPTION
 Creates a FactSet element that displays a series of facts (key-value pairs) in a
@@ -26,7 +26,7 @@ in the left column (typically bold) and values in the right column.
 ## EXAMPLES
 
 ### EXAMPLE 1
-`powershell
+```powershell
 # Create a simple employee information FactSet
 $facts = @(
     New-AMFact -Title "Employee" -Value "John Doe"
@@ -36,12 +36,11 @@ $facts = @(
 )
 $factSet = New-AMFactSet -Facts $facts
 Add-AMElement -Card $card -Element $factSet
-``r
+```
 
-    
 
 ### EXAMPLE 2
-`powershell
+```powershell
 # Create a product specification FactSet with ID
 $specs = @(
     New-AMFact -Title "Model" -Value "ThinkPad X1"
@@ -50,20 +49,22 @@ $specs = @(
     New-AMFact -Title "Storage" -Value "512 GB SSD"
 )
 $specSheet = New-AMFactSet -Facts $specs -Id "product-specs"
-``r
+```
 
+#### Example explanation
+```powershell
 # Add the FactSet to a container
 $container = New-AMContainer -Id "spec-container" -Style "emphasis"
 Add-AMElement -Card $card -Element $container
-Add-AMElement -Card $card -Element $specSheet -ContainerId "spec-container"    
-
+Add-AMElement -Card $card -Element $specSheet -ContainerId "spec-container"
+```
 ## PARAMETERS
 
 ### -Facts
 An array of fact objects created with New-AMFact. Each fact represents a key-value
 pair with a Title (key) and Value.
 
-`yaml
+```yaml
 Type: Array
 Parameter Sets: (All)
 Aliases: None
@@ -73,13 +74,13 @@ Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Id
 Optional unique identifier for the FactSet. This can be useful when you need to
 reference this element in other parts of the card or target it with actions.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -89,7 +90,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
@@ -112,5 +113,4 @@ are important. Some best practices:
   so test your cards in the target environment
 
 ## RELATED LINKS
-* [](https://adaptivecards.io/explorer/FactSet.html)
-
+- [https://adaptivecards.io/explorer/FactSet.html](https://adaptivecards.io/explorer/FactSet.html)

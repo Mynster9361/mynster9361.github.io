@@ -11,9 +11,9 @@ Exports an Adaptive Card as JSON.
 
 ## SYNTAX
 
-`powershell
+```powershell
 Export-AMCard [-Card] <Hashtable> [-Path <String>] [-Compress <SwitchParameter>] [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
-``r
+```
 
 ## DESCRIPTION
 Converts an Adaptive Card object to JSON format for use in Actionable Messages.
@@ -26,41 +26,36 @@ This function does not modify the original card object.
 ## EXAMPLES
 
 ### EXAMPLE 1
-`powershell
+```powershell
 # Export a card as formatted JSON string
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
 Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Hello World")
 $json = Export-AMCard -Card $card
-``r
+```
 
-    
 
 ### EXAMPLE 2
-`powershell
+```powershell
 # Export a card as compressed JSON string
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
 $json = Export-AMCard -Card $card -Compress
-``r
+```
 
-    
 
 ### EXAMPLE 3
-`powershell
+```powershell
 # Save a card to a file
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
 Export-AMCard -Card $card -Path "C:\Cards\mycard.json"
-``r
+```
 
-    
 
 ### EXAMPLE 4
-`powershell
+```powershell
 # Using pipeline input
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
 $card | Export-AMCard -Path "C:\Cards\mycard.json"
-``r
-
-    
+```
 
 ## PARAMETERS
 
@@ -69,7 +64,7 @@ Optional switch. When specified, produces compressed JSON with no whitespace.
 This is useful for production environments to reduce message size.
 When omitted, the JSON will be formatted with indentation for better readability.
 
-`yaml
+```yaml
 Type: Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases: None
@@ -79,13 +74,13 @@ Position: -2147483648
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Path
 Optional. The file path where the JSON should be saved.
 If not specified, the function will return the JSON as a string.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -95,12 +90,12 @@ Position: -2147483648
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Card
 The Adaptive Card object (hashtable) to convert to JSON.
 
-`yaml
+```yaml
 Type: Collections.Hashtable
 Parameter Sets: (All)
 Aliases: None
@@ -110,7 +105,7 @@ Position: 0
 Default value: None
 Accept pipeline input: True
 Accept wildcard characters: False
-``r
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
@@ -131,5 +126,4 @@ The function uses a high depth value (100) for JSON conversion to ensure that de
 nested card structures are properly serialized.
 
 ## RELATED LINKS
-* [](https://docs.microsoft.com/en-us/outlook/actionable-messages/)
-
+- [https://docs.microsoft.com/en-us/outlook/actionable-messages/](https://docs.microsoft.com/en-us/outlook/actionable-messages/)

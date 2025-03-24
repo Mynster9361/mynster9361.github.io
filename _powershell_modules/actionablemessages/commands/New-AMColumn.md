@@ -11,9 +11,9 @@ Creates a Column element for use in ColumnSets within an Adaptive Card.
 
 ## SYNTAX
 
-`powershell
+```powershell
 New-AMColumn [-Width <String>] [-VerticalContentAlignment <String>] [-Items <Array>] [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
-``r
+```
 
 ## DESCRIPTION
 Creates a Column object that can be used in a ColumnSet to create multi-column layouts.
@@ -24,39 +24,43 @@ New-AMColumnSet.
 ## EXAMPLES
 
 ### EXAMPLE 1
-`powershell
+```powershell
 # Create a simple column with text
 $column = New-AMColumn -Width "1" -Items @(
     (New-AMTextBlock -Text "Column 1 Content" -Wrap $true)
 )
-``r
+```
 
-    
 
 ### EXAMPLE 2
-`powershell
+```powershell
 # Create multiple columns for use in a ColumnSet
 $leftColumn = New-AMColumn -Width "auto" -Items @(
     (New-AMImage -Url "https://example.com/profile.jpg" -Size "Small")
 )
-``r
+```
 
+#### Example explanation
+```powershell
 $rightColumn = New-AMColumn -Width "stretch" -Items @(
     (New-AMTextBlock -Text "John Doe" -Size "Medium" -Weight "Bolder"),
     (New-AMTextBlock -Text "Software Developer" -Spacing "None")
 )
 
 # Combine columns into a ColumnSet
-$columnSet = New-AMColumnSet -Columns @($leftColumn, $rightColumn)    
+$columnSet = New-AMColumnSet -Columns @($leftColumn, $rightColumn)
+```
 
 ### EXAMPLE 3
-`powershell
+```powershell
 # Create a three-column layout with vertical alignment
 $col1 = New-AMColumn -Width "1" -VerticalContentAlignment "top" -Items @(
     (New-AMTextBlock -Text "Top Aligned")
 )
-``r
+```
 
+#### Example explanation
+```powershell
 $col2 = New-AMColumn -Width "1" -VerticalContentAlignment "center" -Items @(
     (New-AMTextBlock -Text "Center Aligned")
 )
@@ -65,8 +69,8 @@ $col3 = New-AMColumn -Width "1" -VerticalContentAlignment "bottom" -Items @(
     (New-AMTextBlock -Text "Bottom Aligned")
 )
 
-$columnSet = New-AMColumnSet -Columns @($col1, $col2, $col3)    
-
+$columnSet = New-AMColumnSet -Columns @($col1, $col2, $col3)
+```
 ## PARAMETERS
 
 ### -Width
@@ -78,7 +82,7 @@ Specifies the width of the column. This can be:
 
 Default: "auto"
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -88,7 +92,7 @@ Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -VerticalContentAlignment
 Controls how the content is vertically aligned within the column.
@@ -96,7 +100,7 @@ Valid values: "top", "center", "bottom"
 
 Default: "top"
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -106,7 +110,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Items
 An array of elements to place inside the column. These should be created using
@@ -114,7 +118,7 @@ other New-AM* functions like New-AMTextBlock, New-AMImage, etc.
 
 Default: empty array (@())
 
-`yaml
+```yaml
 Type: Array
 Parameter Sets: (All)
 Aliases: None
@@ -124,7 +128,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
@@ -149,5 +153,4 @@ Width values can be:
 - Numeric proportion (e.g., "1", "2") - Relative width compared to other columns
 
 ## RELATED LINKS
-* [](https://adaptivecards.io/explorer/Column.html)
-
+- [https://adaptivecards.io/explorer/Column.html](https://adaptivecards.io/explorer/Column.html)

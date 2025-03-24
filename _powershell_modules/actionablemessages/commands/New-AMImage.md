@@ -11,9 +11,9 @@ Creates an Image element for an Adaptive Card.
 
 ## SYNTAX
 
-`powershell
+```powershell
 New-AMImage [-Url] <String> [-AltText <String>] [-Size <String>] [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
-``r
+```
 
 ## DESCRIPTION
 Creates an Image element that displays an image within an Adaptive Card.
@@ -23,40 +23,40 @@ that enhances the card's appearance and information.
 ## EXAMPLES
 
 ### EXAMPLE 1
-`powershell
+```powershell
 # Create a simple image
 $logo = New-AMImage -Url "https://example.com/logo.png" -AltText "Company Logo"
 Add-AMElement -Card $card -Element $logo
-``r
+```
 
-    
 
 ### EXAMPLE 2
-`powershell
+```powershell
 # Create a large image with alt text
 $banner = New-AMImage -Url "https://example.com/banner.jpg" -Size "Large" -AltText "Product Banner"
-``r
+```
 
-    
 
 ### EXAMPLE 3
-`powershell
+```powershell
 # Add an image to a container
 $icon = New-AMImage -Url "https://example.com/icon.png" -Size "Small" -AltText "Alert Icon"
 $container = New-AMContainer -Id "alert-container" -Style "warning"
-``r
+```
 
+#### Example explanation
+```powershell
 Add-AMElement -Card $card -Element $container
 Add-AMElement -Card $card -Element $icon -ContainerId "alert-container"
-Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Warning: Action required") -ContainerId "alert-container"    
-
+Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Warning: Action required") -ContainerId "alert-container"
+```
 ## PARAMETERS
 
 ### -Url
 The URL to the image. This must be a valid and accessible URL that points to the image file.
 Required parameter.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -66,13 +66,13 @@ Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -AltText
 Alternative text for the image, which provides a textual description of the image for
 accessibility purposes or in cases where the image cannot be displayed.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -82,14 +82,14 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Size
 Controls the size of the image.
 Valid values: "Auto", "Stretch", "Small", "Medium", "Large"
 Default: "Medium"
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -99,7 +99,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
@@ -121,5 +121,4 @@ Consider the following best practices:
 - Remember that some email clients may block external images by default
 
 ## RELATED LINKS
-* [](https://adaptivecards.io/explorer/Image.html)
-
+- [https://adaptivecards.io/explorer/Image.html](https://adaptivecards.io/explorer/Image.html)

@@ -11,9 +11,9 @@ Creates a Number Input element for an Adaptive Card.
 
 ## SYNTAX
 
-`powershell
+```powershell
 New-AMNumberInput [-Id] <String> [-Max <String>] [-Min <String>] [-Placeholder <String>] [-Value <String>] [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
-``r
+```
 
 ## DESCRIPTION
 Creates an Input.Number element that allows users to enter or select a numeric value.
@@ -24,31 +24,27 @@ values.
 ## EXAMPLES
 
 ### EXAMPLE 1
-`powershell
+```powershell
 # Create a simple number input
 $quantityInput = New-AMNumberInput -Id "quantity"
 Add-AMElement -Card $card -Element $quantityInput
-``r
+```
 
-    
 
 ### EXAMPLE 2
-`powershell
+```powershell
 # Create a number input with range constraints
 $ratingInput = New-AMNumberInput -Id "rating" `
     -Min "1" -Max "10" -Value "5" -Placeholder "Enter rating (1-10)"
-``r
+```
 
-    
 
 ### EXAMPLE 3
-`powershell
+```powershell
 # Create a quantity selector with default value
 $quantityInput = New-AMNumberInput -Id "quantity" `
     -Min "1" -Max "100" -Value "1" -Placeholder "Enter quantity"
-``r
-
-    
+```
 
 ## PARAMETERS
 
@@ -56,7 +52,7 @@ $quantityInput = New-AMNumberInput -Id "quantity" `
 A unique identifier for the input element. This ID will be used when the card is submitted
 to identify the numeric value entered by the user.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -66,12 +62,12 @@ Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Max
 Optional maximum allowed numeric value. Users will not be able to enter a value above this.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -81,12 +77,12 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Min
 Optional minimum allowed numeric value. Users will not be able to enter a value below this.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -96,12 +92,12 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Placeholder
 Optional text to display when no value has been entered.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -111,12 +107,12 @@ Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Value
 Optional default numeric value for the input. If not specified, the field will be empty.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -126,7 +122,7 @@ Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
@@ -147,5 +143,4 @@ Values are submitted as strings, so you'll need to convert them to numeric types
 when processing the card data.
 
 ## RELATED LINKS
-* [](https://adaptivecards.io/explorer/Input.Number.html)
-
+- [https://adaptivecards.io/explorer/Input.Number.html](https://adaptivecards.io/explorer/Input.Number.html)

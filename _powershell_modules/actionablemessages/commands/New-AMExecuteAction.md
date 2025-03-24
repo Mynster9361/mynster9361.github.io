@@ -11,9 +11,9 @@ Creates an HTTP action for an Adaptive Card.
 
 ## SYNTAX
 
-`powershell
+```powershell
 New-AMExecuteAction [-Title] <String> [-Verb] <String> [-Url <String>] [-Body <String>] [-Data <Object>] [-Id <String>] [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
-``r
+```
 
 ## DESCRIPTION
 Creates an Action.Http element that makes an HTTP request when the action button is clicked.
@@ -23,27 +23,25 @@ approving requests, submitting data, or any other operation requiring a backend 
 ## EXAMPLES
 
 ### EXAMPLE 1
-`powershell
+```powershell
 # Create a simple approval action
 $approveAction = New-AMExecuteAction -Title "Approve" -Verb "POST" `
     -Url "https://api.example.com/approve" `
     -Body '{"requestId": "12345", "status": "approved"}'
-``r
+```
 
-    
 
 ### EXAMPLE 2
-`powershell
+```powershell
 # Create an action with dynamic user data
 $rejectAction = New-AMExecuteAction -Title "Reject" -Verb "POST" `
     -Url "https://api.contoso.com/api/requests/reject" `
     -Body '{"requestId": "ABC123", "rejectedBy": "{{userEmail}}", "timestamp": "{{utcNow}}"}'
-``r
+```
 
-    
 
 ### EXAMPLE 3
-`powershell
+```powershell
 # Create an action with a PowerShell object as data
 $data = @{
     requestId = "REQ-789"
@@ -53,16 +51,14 @@ $data = @{
 $completeAction = New-AMExecuteAction -Title "Mark Complete" -Verb "POST" `
     -Url "https://tasks.example.org/api/complete" `
     -Data $data
-``r
-
-    
+```
 
 ## PARAMETERS
 
 ### -Title
 The text to display on the action button.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -72,12 +68,12 @@ Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Verb
 The HTTP verb/method to use for the request (e.g., "POST", "GET", "PUT", "DELETE").
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -87,12 +83,12 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Url
 The URL endpoint that will receive the HTTP request when the button is clicked.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -102,13 +98,13 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Body
 Optional JSON string containing the payload to send with the request.
 You can include user-specific tokens like {{userEmail}} that will be replaced at runtime.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -118,13 +114,13 @@ Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Data
 Optional data object (hashtable) to include with the request. This is an alternative to Body
 for when you want to specify the data as a PowerShell object rather than a JSON string.
 
-`yaml
+```yaml
 Type: Object
 Parameter Sets: (All)
 Aliases: None
@@ -134,12 +130,12 @@ Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Id
 Optional unique identifier for the action. If not specified, an empty string is used.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -149,7 +145,7 @@ Position: 5
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
@@ -169,5 +165,4 @@ For security reasons, the target URL must be registered with the Actionable Emai
 and associated with your Originator ID before it can be used in production environments.
 
 ## RELATED LINKS
-* [](https://docs.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#actions)
-
+- [https://docs.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#actions](https://docs.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#actions)

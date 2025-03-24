@@ -11,9 +11,9 @@ Creates a ColumnSet element for an Adaptive Card.
 
 ## SYNTAX
 
-`powershell
+```powershell
 New-AMColumnSet [-Id] <String> [-Columns] <Array> [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
-``r
+```
 
 ## DESCRIPTION
 Creates a ColumnSet element that allows you to arrange content in multiple columns.
@@ -26,28 +26,33 @@ function. Each column can contain its own set of elements (text, images, etc.).
 ## EXAMPLES
 
 ### EXAMPLE 1
-`powershell
+```powershell
 # Create a simple two-column layout
 $leftColumn = New-AMColumn -Width "1" -Items @(
     (New-AMTextBlock -Text "Left Column Content" -Wrap $true)
 )
-``r
+```
 
+#### Example explanation
+```powershell
 $rightColumn = New-AMColumn -Width "1" -Items @(
     (New-AMTextBlock -Text "Right Column Content" -Wrap $true)
 )
 
 $columnSet = New-AMColumnSet -Id "two-column-layout" -Columns @($leftColumn, $rightColumn)
-Add-AMElement -Card $card -Element $columnSet    
+Add-AMElement -Card $card -Element $columnSet
+```
 
 ### EXAMPLE 2
-`powershell
+```powershell
 # Create a profile card with image and info
 $imageColumn = New-AMColumn -Width "auto" -Items @(
     (New-AMImage -Url "https://example.com/profile.jpg" -Size "Small")
 )
-``r
+```
 
+#### Example explanation
+```powershell
 $infoColumn = New-AMColumn -Width "stretch" -Items @(
     (New-AMTextBlock -Text "Jane Smith" -Size "Medium" -Weight "Bolder"),
     (New-AMTextBlock -Text "Senior Engineer" -Spacing "None"),
@@ -55,16 +60,19 @@ $infoColumn = New-AMColumn -Width "stretch" -Items @(
 )
 
 $profileLayout = New-AMColumnSet -Id "profile-card" -Columns @($imageColumn, $infoColumn)
-Add-AMElement -Card $card -Element $profileLayout    
+Add-AMElement -Card $card -Element $profileLayout
+```
 
 ### EXAMPLE 3
-`powershell
+```powershell
 # Create a three-column layout with different widths
 $col1 = New-AMColumn -Width "2" -Items @(
     (New-AMTextBlock -Text "Column 1 (Width 2)")
 )
-``r
+```
 
+#### Example explanation
+```powershell
 $col2 = New-AMColumn -Width "1" -Items @(
     (New-AMTextBlock -Text "Column 2 (Width 1)")
 )
@@ -74,15 +82,15 @@ $col3 = New-AMColumn -Width "1" -Items @(
 )
 
 $threeColumnLayout = New-AMColumnSet -Id "proportional-columns" -Columns @($col1, $col2, $col3)
-Add-AMElement -Card $card -Element $threeColumnLayout    
-
+Add-AMElement -Card $card -Element $threeColumnLayout
+```
 ## PARAMETERS
 
 ### -Id
 A unique identifier for the ColumnSet. This ID can be used to reference the ColumnSet
 when adding elements to it, or when targeting it with visibility toggle actions.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -92,13 +100,13 @@ Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Columns
 An array of Column objects created using the New-AMColumn function. These columns
 will be displayed side-by-side within the ColumnSet.
 
-`yaml
+```yaml
 Type: Array
 Parameter Sets: (All)
 Aliases: None
@@ -108,7 +116,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
@@ -132,5 +140,4 @@ The resulting ColumnSet can be added directly to a card body or to another
 container element using Add-AMElement.
 
 ## RELATED LINKS
-* [](https://adaptivecards.io/explorer/ColumnSet.html)
-
+- [https://adaptivecards.io/explorer/ColumnSet.html](https://adaptivecards.io/explorer/ColumnSet.html)

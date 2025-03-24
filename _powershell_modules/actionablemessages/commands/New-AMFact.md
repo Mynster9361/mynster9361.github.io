@@ -11,9 +11,9 @@ Creates a Fact object for use in a FactSet within an Adaptive Card.
 
 ## SYNTAX
 
-`powershell
+```powershell
 New-AMFact [-Title] <String> [-Value] <String> [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
-``r
+```
 
 ## DESCRIPTION
 Creates a key-value pair (fact) to be displayed in a FactSet element.
@@ -26,15 +26,14 @@ created with New-AMFactSet to create a list of related information.
 ## EXAMPLES
 
 ### EXAMPLE 1
-`powershell
+```powershell
 # Create a single fact
 $employeeFact = New-AMFact -Title "Employee" -Value "John Doe"
-``r
+```
 
-    
 
 ### EXAMPLE 2
-`powershell
+```powershell
 # Create multiple facts for a person
 $personFacts = @(
     New-AMFact -Title "Name" -Value "Jane Smith"
@@ -42,14 +41,17 @@ $personFacts = @(
     New-AMFact -Title "Department" -Value "R&D"
     New-AMFact -Title "Email" -Value "jane.smith@example.com"
 )
-``r
+```
 
+#### Example explanation
+```powershell
 # Add these facts to a FactSet
 $factSet = New-AMFactSet -Facts $personFacts
-Add-AMElement -Card $card -Element $factSet    
+Add-AMElement -Card $card -Element $factSet
+```
 
 ### EXAMPLE 3
-`powershell
+```powershell
 # Create facts with formatted values
 $orderFacts = @(
     New-AMFact -Title "Order Number" -Value "ORD-12345"
@@ -57,9 +59,7 @@ $orderFacts = @(
     New-AMFact -Title "Status" -Value "**Shipped**"
     New-AMFact -Title "Total" -Value "$125.99"
 )
-``r
-
-    
+```
 
 ## PARAMETERS
 
@@ -67,7 +67,7 @@ $orderFacts = @(
 The label or name of the fact. This appears in the left column of the FactSet
 and is typically bold or emphasized in the rendered card.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -77,13 +77,13 @@ Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### -Value
 The value or content of the fact. This appears in the right column of the FactSet,
 paired with the Title.
 
-`yaml
+```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: None
@@ -93,7 +93,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-``r
+```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
@@ -113,5 +113,4 @@ While Values can contain simple Markdown formatting (bold, italics, etc.),
 complex formatting may not render consistently across all Adaptive Card hosts.
 
 ## RELATED LINKS
-* [](https://adaptivecards.io/explorer/FactSet.html)
-
+- [https://adaptivecards.io/explorer/FactSet.html](https://adaptivecards.io/explorer/FactSet.html)
