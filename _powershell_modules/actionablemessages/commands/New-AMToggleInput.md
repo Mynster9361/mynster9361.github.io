@@ -4,13 +4,6 @@ title: New-AMToggleInput
 permalink: /modules/actionablemessages/commands/New-AMToggleInput/
 ---
 
----
-external help file: ActionableMessages-help.xml
-Module Name: ActionableMessages
-online version: https://adaptivecards.io/explorer/Input.Toggle.html
-schema: 2.0.0
----
-
 # New-AMToggleInput
 
 ## SYNOPSIS
@@ -18,10 +11,89 @@ Creates a Toggle Input element for an Adaptive Card.
 
 ## SYNTAX
 
-```
-New-AMToggleInput [[-id] <String>] [[-title] <String>] [[-value] <String>] [[-valueOn] <String>]
- [[-valueOff] <String>] [[-style] <String>]
-```powershell
+`powershell
+<#
+.SYNOPSIS
+Creates a Toggle Input element for an Adaptive Card.
+.DESCRIPTION
+Creates an Input.Toggle element that allows users to switch between two states: on or off.
+Toggle inputs are useful for boolean choices, preferences, or any yes/no decision.
+The element typically renders as a checkbox or toggle switch depending on the host
+application, making it ideal for settings, confirmations, or agreement inputs.
+.PARAMETER id
+A unique identifier for the toggle input element. This ID will be used when the card
+is submitted to identify the toggle's state.
+.PARAMETER title
+The text label displayed next to the toggle control. This describes what the toggle
+represents or controls.
+.PARAMETER value
+The initial state of the toggle.
+- $true or "true": The toggle is initially on/checked
+- $false or "false": The toggle is initially off/unchecked
+Default: $false
+.PARAMETER valueOn
+Optional text value to submit when the toggle is in the "on" state.
+Default: "true"
+.PARAMETER valueOff
+Optional text value to submit when the toggle is in the "off" state.
+Default: "false"
+.PARAMETER style
+Optional visual style for the toggle input.
+Valid values: "default", "expanded", "compact"
+Default: "default"
+.EXAMPLE
+# Create a simple toggle for agreement
+$agreementToggle = New-AMToggleInput -id "termsAgreed" -title "I agree to the terms and conditions"
+Add-AMElement -Card $card -Element $agreementToggle
+.EXAMPLE
+# Create a toggle with custom values
+$notificationToggle = New-AMToggleInput -id "notifications" -title "Enable notifications" `
+-value $true -valueOn "enabled" -valueOff "disabled"
+.EXAMPLE
+# Create multiple toggles for settings
+$card = New-AMCard -OriginatorId "preferences-app"
+$settingsContainer = New-AMContainer -Id "settings" -Style "emphasis"
+Add-AMElement -Card $card -Element $settingsContainer
+$emailToggle = New-AMToggleInput -id "emailAlerts" -title "Email notifications" -value $true
+$smsToggle = New-AMToggleInput -id "smsAlerts" -title "SMS notifications" -value $false
+$weeklyToggle = New-AMToggleInput -id "weeklyDigest" -title "Weekly summary report" -value $true
+Add-AMElement -Card $card -Element $emailToggle -ContainerId "settings"
+Add-AMElement -Card $card -Element $smsToggle -ContainerId "settings"
+Add-AMElement -Card $card -Element $weeklyToggle -ContainerId "settings"
+.INPUTS
+None. You cannot pipe input to New-AMToggleInput.
+.OUTPUTS
+System.Collections.Hashtable
+Returns a hashtable representing the Input.Toggle element.
+.NOTES
+Toggle inputs are ideal for binary choices where the user must select one of two options.
+When designing forms with toggles:
+- Use clear, concise labels that indicate the "on" state
+- Consider grouping related toggles together
+- For more complex choices with multiple options, consider using ChoiceSet instead
+.LINK
+https://adaptivecards.io/explorer/Input.Toggle.html
+#>
+param (
+[string]$id,
+[string]$title,
+[string]$value = $false,
+[string]$valueOn = "true",
+[string]$valueOff = "false",
+[string]$style = "default"
+)
+$toggleInput = @{
+type = "Input.Toggle"
+id = $id
+title = $title
+value = $value
+valueOn = $valueOn
+valueOff = $valueOff
+style = $style
+}
+return $toggleInput
+
+``r
 
 ## DESCRIPTION
 Creates an Input.Toggle element that allows users to switch between two states: on or off.
@@ -33,24 +105,28 @@ application, making it ideal for settings, confirmations, or agreement inputs.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```powershell
+`powershell
 # Create a simple toggle for agreement
 $agreementToggle = New-AMToggleInput -id "termsAgreed" -title "I agree to the terms and conditions"
 Add-AMElement -Card $card -Element $agreementToggle
-```powershell
+``r
+
+    
 
 ### EXAMPLE 2
-```powershell
+`powershell
 # Create a toggle with custom values
 $notificationToggle = New-AMToggleInput -id "notifications" -title "Enable notifications" `
     -value $true -valueOn "enabled" -valueOff "disabled"
-```powershell
+``r
+
+    
 
 ### EXAMPLE 3
-```powershell
+`powershell
 # Create multiple toggles for settings
 $card = New-AMCard -OriginatorId "preferences-app"
-```powershell
+``r
 
 $settingsContainer = New-AMContainer -Id "settings" -Style "emphasis"
 Add-AMElement -Card $card -Element $settingsContainer
@@ -61,43 +137,41 @@ $weeklyToggle = New-AMToggleInput -id "weeklyDigest" -title "Weekly summary repo
 
 Add-AMElement -Card $card -Element $emailToggle -ContainerId "settings"
 Add-AMElement -Card $card -Element $smsToggle -ContainerId "settings"
-Add-AMElement -Card $card -Element $weeklyToggle -ContainerId "settings"
+Add-AMElement -Card $card -Element $weeklyToggle -ContainerId "settings"    
 
 ## PARAMETERS
 
 ### -id
-A unique identifier for the toggle input element.
-This ID will be used when the card
+A unique identifier for the toggle input element. This ID will be used when the card
 is submitted to identify the toggle's state.
 
-```yaml
+`yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: None
+
+Required: False
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+``r
+
+### -title
+The text label displayed next to the toggle control. This describes what the toggle
+represents or controls.
+
+`yaml
+Type: String
+Parameter Sets: (All)
+Aliases: None
 
 Required: False
 Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```powershell
-
-### -title
-The text label displayed next to the toggle control.
-This describes what the toggle
-represents or controls.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```powershell
+``r
 
 ### -value
 The initial state of the toggle.
@@ -105,74 +179,79 @@ The initial state of the toggle.
 - $false or "false": The toggle is initially off/unchecked
 Default: $false
 
-```yaml
+`yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: None
 
 Required: False
-Position: 3
-Default value: False
+Position: 2
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```powershell
+``r
 
 ### -valueOn
 Optional text value to submit when the toggle is in the "on" state.
 Default: "true"
 
-```yaml
+`yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: None
 
 Required: False
-Position: 4
-Default value: True
+Position: 3
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```powershell
+``r
 
 ### -valueOff
 Optional text value to submit when the toggle is in the "off" state.
 Default: "false"
 
-```yaml
+`yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: None
 
 Required: False
-Position: 5
-Default value: False
+Position: 4
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```powershell
+``r
 
 ### -style
 Optional visual style for the toggle input.
 Valid values: "default", "expanded", "compact"
 Default: "default"
 
-```yaml
+`yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: None
 
 Required: False
-Position: 6
-Default value: Default
+Position: 5
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```powershell
+``r
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
-
 ### None. You cannot pipe input to New-AMToggleInput.
-## OUTPUTS
 
+
+## OUTPUTS
 ### System.Collections.Hashtable
-### Returns a hashtable representing the Input.Toggle element.
+Returns a hashtable representing the Input.Toggle element.
+
+
 ## NOTES
 Toggle inputs are ideal for binary choices where the user must select one of two options.
 
@@ -182,7 +261,5 @@ When designing forms with toggles:
 - For more complex choices with multiple options, consider using ChoiceSet instead
 
 ## RELATED LINKS
-
-[https://adaptivecards.io/explorer/Input.Toggle.html](https://adaptivecards.io/explorer/Input.Toggle.html)
-
+[](https://adaptivecards.io/explorer/Input.Toggle.html)
 

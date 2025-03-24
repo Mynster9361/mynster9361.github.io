@@ -4,15 +4,6 @@ title: Export-AMCardForEmail
 permalink: /modules/actionablemessages/commands/Export-AMCardForEmail/
 ---
 
----
-external help file: ActionableMessages-help.xml
-Module Name: ActionableMessages
-online version: https://docs.microsoft.com/en-us/outlook/actionable-messages/
-https://docs.microsoft.com/en-us/graph/api/user-sendmail
-https://adaptivecards.io/
-schema: 2.0.0
----
-
 # Export-AMCardForEmail
 
 ## SYNOPSIS
@@ -20,59 +11,194 @@ Exports an Adaptive Card as HTML email content for Microsoft Graph API.
 
 ## SYNTAX
 
-```
-Export-AMCardForEmail [-Card] <Hashtable> [-Subject <String>] [-FallbackText <String>]
- [-ToRecipients <String[]>] [-CreateGraphParams] [-SaveToSentItems <Boolean>]
- [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```powershell
+`powershell
+<#
+.SYNOPSIS
+Exports an Adaptive Card as HTML email content for Microsoft Graph API.
+.DESCRIPTION
+Prepares an Adaptive Card for sending via email by embedding it in HTML with the proper format
+for Microsoft Graph API. The card is embedded as a JSON payload in a script tag with the
+appropriate content type.
+The function provides two main output options:
+1. HTML content only - suitable for use with any email sending mechanism
+2. Complete Microsoft Graph API parameters object - ready to use with Graph API endpoints
+This enables seamless integration with either Microsoft Graph API or other email sending methods.
+.PARAMETER Card
+The Adaptive Card object to embed in the email. This should be a hashtable created using
+New-AMCard and populated with elements using Add-AMElement.
+.PARAMETER Subject
+Optional email subject line. Default is "Adaptive Card Notification".
+.PARAMETER FallbackText
+Optional text to show in email clients that don't support Adaptive Cards.
+Default is "This email contains an Adaptive Card. Please use Outlook to view it."
+.PARAMETER ToRecipients
+Optional array of email addresses to send to. Required if CreateGraphParams is specified.
+.PARAMETER CreateGraphParams
+If specified, returns a complete Microsoft Graph API parameters object instead of just the HTML content.
+This object can be directly used with Invoke-MgGraphRequest or other Graph API methods.
+.PARAMETER SaveToSentItems
+When used with -CreateGraphParams, controls whether the sent message is saved to Sent Items.
+Default is $true.
+.EXAMPLE
+# Get HTML content for an email (for use with any email system)
+$card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
+Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Hello World")
+$htmlContent = Export-AMCardForEmail -Card $card
+# Send using standard Send-MailMessage cmdlet
+Send-MailMessage -To "recipient@example.com" -From "sender@example.com" `
+-Subject "Adaptive Card Test" -Body $htmlContent -BodyAsHtml `
+-SmtpServer "smtp.office365.com"
+.EXAMPLE
+# Get complete Graph API parameters for sending an email
+$card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
+Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Hello World")
+$params = Export-AMCardForEmail -Card $card -Subject "Important Notification" `
+-ToRecipients "user@example.com" -CreateGraphParams
+# Send via Microsoft Graph
+Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/me/sendMail" -Body $params
+.EXAMPLE
+# Sending to multiple recipients with Graph API
+$card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
+Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Team Meeting Reminder" -Size "Large")
+# Add action buttons
+$acceptAction = New-AMOpenUrlAction -Title "Accept" -Url "https://teams.microsoft.com/meeting/accept"
+$declineAction = New-AMOpenUrlAction -Title "Decline" -Url "https://teams.microsoft.com/meeting/decline"
+$actionSet = New-AMActionSet -Actions @($acceptAction, $declineAction)
+Add-AMElement -Card $card -Element $actionSet
+# Create and send email to multiple recipients
+$recipients = @("team.member1@example.com", "team.member2@example.com", "team.lead@example.com")
+$params = Export-AMCardForEmail -Card $card -Subject "Team Meeting - Action Required" `
+-ToRecipients $recipients -CreateGraphParams
+# Send using Microsoft Graph SDK
+Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/me/sendMail" -Body $params
+.INPUTS
+System.Collections.Hashtable
+An Adaptive Card object created using New-AMCard and populated with elements.
+.OUTPUTS
+System.String or System.Collections.Hashtable
+Returns either HTML content (default) or a complete Graph API parameters object (with -CreateGraphParams).
+.NOTES
+This function creates HTML that embeds an Adaptive Card for use with Microsoft Graph API or other email systems.
+For the Adaptive Card to render correctly, the recipient must be using Outlook.
+Adaptive Cards in emails are rendered by Outlook clients (desktop, web, and mobile). Other email
+clients will display the fallback text instead.
+When using with Microsoft Graph API, you will need appropriate authentication and permissions:
+- Mail.Send permission for sending from your own mailbox
+- Mail.Send.Shared for sending from a shared or delegated mailbox
+.LINK
+https://docs.microsoft.com/en-us/outlook/actionable-messages/
+https://docs.microsoft.com/en-us/graph/api/user-sendmail
+https://adaptivecards.io/
+#>
+[CmdletBinding()]
+param(
+[Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
+[hashtable]$Card,
+[Parameter()]
+[string]$Subject = "Adaptive Card Notification",
+[Parameter()]
+[string]$FallbackText = "This email contains an Adaptive Card. Please use Outlook to view it.",
+[Parameter()]
+[string[]]$ToRecipients,
+[Parameter()]
+[switch]$CreateGraphParams,
+[Parameter()]
+[bool]$SaveToSentItems = $true
+)
+process {
+# Export the card to JSON
+$cardJson = Export-AMCard -Card $Card -Compress
+# Create the HTML content with embedded card
+$htmlContent = @"
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="application/adaptivecard+json">
+$cardJson
+</script>
+</head>
+<body>
+<p>$FallbackText</p>
+</body>
+</html>
+"@
+# If not creating Graph parameters, just return the HTML
+if (-not $CreateGraphParams) {
+return $htmlContent
+}
+# Create recipient objects for Graph API
+$recipients = @()
+foreach ($recipient in $ToRecipients) {
+$recipients += @{
+EmailAddress = @{
+Address = $recipient
+}
+}
+}
+# Create message parameters for Graph API
+$params = @{
+Message = @{
+Subject = $Subject
+Body = @{
+ContentType = "HTML"
+Content = $htmlContent
+}
+}
+SaveToSentItems = $SaveToSentItems
+}
+# Add recipients if provided
+if ($recipients.Count -gt 0) {
+$params.Message.ToRecipients = $recipients
+}
+return $params
+}
+
+``r
 
 ## DESCRIPTION
 Prepares an Adaptive Card for sending via email by embedding it in HTML with the proper format
-for Microsoft Graph API.
-The card is embedded as a JSON payload in a script tag with the
+for Microsoft Graph API. The card is embedded as a JSON payload in a script tag with the
 appropriate content type.
 
 The function provides two main output options:
-1.
-HTML content only - suitable for use with any email sending mechanism
-2.
-Complete Microsoft Graph API parameters object - ready to use with Graph API endpoints
+1. HTML content only - suitable for use with any email sending mechanism
+2. Complete Microsoft Graph API parameters object - ready to use with Graph API endpoints
 
 This enables seamless integration with either Microsoft Graph API or other email sending methods.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
-```powershell
+`powershell
 # Get HTML content for an email (for use with any email system)
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
 Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Hello World")
 $htmlContent = Export-AMCardForEmail -Card $card
-```powershell
+``r
 
 # Send using standard Send-MailMessage cmdlet
-Send-MailMessage -To "recipient@example.com" -From "sender@example.com" \`
-    -Subject "Adaptive Card Test" -Body $htmlContent -BodyAsHtml \`
-    -SmtpServer "smtp.office365.com"
+Send-MailMessage -To "recipient@example.com" -From "sender@example.com" `
+    -Subject "Adaptive Card Test" -Body $htmlContent -BodyAsHtml `
+    -SmtpServer "smtp.office365.com"    
 
 ### EXAMPLE 2
-```powershell
+`powershell
 # Get complete Graph API parameters for sending an email
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
 Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Hello World")
 $params = Export-AMCardForEmail -Card $card -Subject "Important Notification" `
     -ToRecipients "user@example.com" -CreateGraphParams
-```powershell
+``r
 
 # Send via Microsoft Graph
-Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/me/sendMail" -Body $params
+Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/me/sendMail" -Body $params    
 
 ### EXAMPLE 3
-```powershell
+`powershell
 # Sending to multiple recipients with Graph API
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
 Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Team Meeting Reminder" -Size "Large")
-```powershell
+``r
 
 # Add action buttons
 $acceptAction = New-AMOpenUrlAction -Title "Accept" -Url "https://teams.microsoft.com/meeting/accept"
@@ -82,144 +208,306 @@ Add-AMElement -Card $card -Element $actionSet
 
 # Create and send email to multiple recipients
 $recipients = @("team.member1@example.com", "team.member2@example.com", "team.lead@example.com")
-$params = Export-AMCardForEmail -Card $card -Subject "Team Meeting - Action Required" \`
+$params = Export-AMCardForEmail -Card $card -Subject "Team Meeting - Action Required" `
     -ToRecipients $recipients -CreateGraphParams
 
 # Send using Microsoft Graph SDK
-Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/me/sendMail" -Body $params
+Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/me/sendMail" -Body $params    
 
 ## PARAMETERS
-
-### -Card
-The Adaptive Card object to embed in the email.
-This should be a hashtable created using
-New-AMCard and populated with elements using Add-AMElement.
-
-```yaml
-Type: Hashtable
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```powershell
-
-### -Subject
-Optional email subject line.
-Default is "Adaptive Card Notification".
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: Adaptive Card Notification
-Accept pipeline input: False
-Accept wildcard characters: False
-```powershell
-
-### -FallbackText
-Optional text to show in email clients that don't support Adaptive Cards.
-Default is "This email contains an Adaptive Card.
-Please use Outlook to view it."
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: This email contains an Adaptive Card. Please use Outlook to view it.
-Accept pipeline input: False
-Accept wildcard characters: False
-```powershell
-
-### -ToRecipients
-Optional array of email addresses to send to.
-Required if CreateGraphParams is specified.
-
-```yaml
-Type: String[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```powershell
 
 ### -CreateGraphParams
 If specified, returns a complete Microsoft Graph API parameters object instead of just the HTML content.
 This object can be directly used with Invoke-MgGraphRequest or other Graph API methods.
 
-```yaml
-Type: SwitchParameter
+`yaml
+Type: Management.Automation.SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: None
 
 Required: False
-Position: Named
-Default value: False
+Position: -2147483648
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```powershell
+``r
+
+### -Debug
+
+
+`yaml
+Type: Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: -2147483648
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+``r
+
+### -ErrorAction
+
+
+`yaml
+Type: Management.Automation.ActionPreference
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: -2147483648
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+``r
+
+### -ErrorVariable
+
+
+`yaml
+Type: String
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: -2147483648
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+``r
+
+### -FallbackText
+Optional text to show in email clients that don't support Adaptive Cards.
+Default is "This email contains an Adaptive Card. Please use Outlook to view it."
+
+`yaml
+Type: String
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: -2147483648
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+``r
+
+### -InformationAction
+
+
+`yaml
+Type: Management.Automation.ActionPreference
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: -2147483648
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+``r
+
+### -InformationVariable
+
+
+`yaml
+Type: String
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: -2147483648
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+``r
+
+### -OutBuffer
+
+
+`yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: -2147483648
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+``r
+
+### -OutVariable
+
+
+`yaml
+Type: String
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: -2147483648
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+``r
+
+### -PipelineVariable
+
+
+`yaml
+Type: String
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: -2147483648
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+``r
+
+### -ProgressAction
+
+
+`yaml
+Type: Management.Automation.ActionPreference
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: -2147483648
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+``r
 
 ### -SaveToSentItems
 When used with -CreateGraphParams, controls whether the sent message is saved to Sent Items.
 Default is $true.
 
-```yaml
+`yaml
 Type: Boolean
 Parameter Sets: (All)
-Aliases:
+Aliases: None
 
 Required: False
-Position: Named
-Default value: True
-Accept pipeline input: False
-Accept wildcard characters: False
-```powershell
-
-### -ProgressAction
-{{ Fill ProgressAction Description }}
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: proga
-
-Required: False
-Position: Named
+Position: -2147483648
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```powershell
+``r
+
+### -Subject
+Optional email subject line. Default is "Adaptive Card Notification".
+
+`yaml
+Type: String
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: -2147483648
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+``r
+
+### -ToRecipients
+Optional array of email addresses to send to. Required if CreateGraphParams is specified.
+
+`yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: -2147483648
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+``r
+
+### -Verbose
+
+
+`yaml
+Type: Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: -2147483648
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+``r
+
+### -WarningAction
+
+
+`yaml
+Type: Management.Automation.ActionPreference
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: -2147483648
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+``r
+
+### -WarningVariable
+
+
+`yaml
+Type: String
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: -2147483648
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+``r
+
+### -Card
+The Adaptive Card object to embed in the email. This should be a hashtable created using
+New-AMCard and populated with elements using Add-AMElement.
+
+`yaml
+Type: Collections.Hashtable
+Parameter Sets: (All)
+Aliases: None
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: True
+Accept wildcard characters: False
+``r
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
-
 ### System.Collections.Hashtable
-### An Adaptive Card object created using New-AMCard and populated with elements.
-## OUTPUTS
+An Adaptive Card object created using New-AMCard and populated with elements.
 
+
+## OUTPUTS
 ### System.String or System.Collections.Hashtable
-### Returns either HTML content (default) or a complete Graph API parameters object (with -CreateGraphParams).
+Returns either HTML content (default) or a complete Graph API parameters object (with -CreateGraphParams).
+
+
 ## NOTES
 This function creates HTML that embeds an Adaptive Card for use with Microsoft Graph API or other email systems.
 For the Adaptive Card to render correctly, the recipient must be using Outlook.
 
-Adaptive Cards in emails are rendered by Outlook clients (desktop, web, and mobile).
-Other email
+Adaptive Cards in emails are rendered by Outlook clients (desktop, web, and mobile). Other email
 clients will display the fallback text instead.
 
 When using with Microsoft Graph API, you will need appropriate authentication and permissions:
@@ -227,15 +515,10 @@ When using with Microsoft Graph API, you will need appropriate authentication an
 - Mail.Send.Shared for sending from a shared or delegated mailbox
 
 ## RELATED LINKS
-
-[https://docs.microsoft.com/en-us/outlook/actionable-messages/
-https://docs.microsoft.com/en-us/graph/api/user-sendmail
-https://adaptivecards.io/](https://docs.microsoft.com/en-us/outlook/actionable-messages/
+[](https://docs.microsoft.com/en-us/outlook/actionable-messages/
 https://docs.microsoft.com/en-us/graph/api/user-sendmail
 https://adaptivecards.io/)
-
 [https://docs.microsoft.com/en-us/outlook/actionable-messages/
 https://docs.microsoft.com/en-us/graph/api/user-sendmail
-https://adaptivecards.io/]()
-
+https://adaptivecards.io/]
 
