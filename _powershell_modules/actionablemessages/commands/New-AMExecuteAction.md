@@ -4,13 +4,6 @@ title: New-AMExecuteAction
 permalink: /modules/actionablemessages/commands/New-AMExecuteAction/
 ---
 
----
-external help file: ActionableMessages-help.xml
-Module Name: ActionableMessages
-online version: https://docs.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#actions
-schema: 2.0.0
----
-
 # New-AMExecuteAction
 
 ## SYNOPSIS
@@ -171,7 +164,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

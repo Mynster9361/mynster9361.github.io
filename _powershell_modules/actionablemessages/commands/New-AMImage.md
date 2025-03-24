@@ -4,13 +4,6 @@ title: New-AMImage
 permalink: /modules/actionablemessages/commands/New-AMImage/
 ---
 
----
-external help file: ActionableMessages-help.xml
-Module Name: ActionableMessages
-online version: https://adaptivecards.io/explorer/Image.html
-schema: 2.0.0
----
-
 # New-AMImage
 
 ## SYNOPSIS
@@ -122,7 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

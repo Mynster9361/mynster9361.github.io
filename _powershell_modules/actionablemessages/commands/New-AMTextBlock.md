@@ -4,13 +4,6 @@ title: New-AMTextBlock
 permalink: /modules/actionablemessages/commands/New-AMTextBlock/
 ---
 
----
-external help file: ActionableMessages-help.xml
-Module Name: ActionableMessages
-online version: https://adaptivecards.io/explorer/TextBlock.html
-schema: 2.0.0
----
-
 # New-AMTextBlock
 
 ## SYNOPSIS

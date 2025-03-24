@@ -4,13 +4,6 @@ title: New-AMToggleInput
 permalink: /modules/actionablemessages/commands/New-AMToggleInput/
 ---
 
----
-external help file: ActionableMessages-help.xml
-Module Name: ActionableMessages
-online version: https://adaptivecards.io/explorer/Input.Toggle.html
-schema: 2.0.0
----
-
 # New-AMToggleInput
 
 ## SYNOPSIS
