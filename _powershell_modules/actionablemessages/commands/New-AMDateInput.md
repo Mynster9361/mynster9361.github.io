@@ -21,7 +21,7 @@ Creates a Date Input element for an Adaptive Card.
 ```
 New-AMDateInput [-Id] <String> [-Label] <String> [[-Value] <String>] [[-Placeholder] <String>]
  [[-Min] <String>] [[-Max] <String>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates an Input.Date element that allows users to select a date from a calendar interface.
@@ -31,25 +31,25 @@ for scheduling events, setting deadlines, or specifying birthdates.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a simple date input with default values
 $dueDateInput = New-AMDateInput -Id "dueDate" -Label "Due Date:"
 Add-AMElement -Card $card -Element $dueDateInput
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Create a date input with a specific default date
 $eventDateInput = New-AMDateInput -Id "eventDate" -Label "Event Date:" -Value "2025-04-15"
-```
+```powershell
 
 ### EXAMPLE 3
-```
+```powershell
 # Create a date input with restricted date range
 $birthDateInput = New-AMDateInput -Id "birthDate" -Label "Birth Date:" `
     -Placeholder "Enter your date of birth" `
     -Min "1900-01-01" -Max "2020-12-31"
-```
+```powershell
 
 ## PARAMETERS
 
@@ -68,7 +68,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Label
 Text label to display above the input field, describing what the date selection is for.
@@ -83,7 +83,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Value
 Optional default date value for the input.
@@ -100,7 +100,7 @@ Position: 3
 Default value: $(Get-Date -Format 'yyyy-MM-dd')
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Placeholder
 Optional text to display when no date has been selected.
@@ -116,7 +116,7 @@ Position: 4
 Default value: Select a date
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Min
 Optional minimum allowed date (inclusive) in ISO 8601 format (YYYY-MM-DD).
@@ -132,7 +132,7 @@ Position: 5
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Max
 Optional maximum allowed date (inclusive) in ISO 8601 format (YYYY-MM-DD).
@@ -148,7 +148,7 @@ Position: 6
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -163,10 +163,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

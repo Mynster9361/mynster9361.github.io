@@ -21,7 +21,7 @@ Creates an Image element for an Adaptive Card.
 ```
 New-AMImage [-Url] <String> [[-AltText] <String>] [[-Size] <String>] [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates an Image element that displays an image within an Adaptive Card.
@@ -31,20 +31,20 @@ that enhances the card's appearance and information.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a simple image
 $logo = New-AMImage -Url "https://example.com/logo.png" -AltText "Company Logo"
 Add-AMElement -Card $card -Element $logo
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Create a large image with alt text
 $banner = New-AMImage -Url "https://example.com/banner.jpg" -Size "Large" -AltText "Product Banner"
-```
+```powershell
 
 ### EXAMPLE 3
-```
+```powershell
 # Add an image to a container
 $icon = New-AMImage -Url "https://example.com/icon.png" -Size "Small" -AltText "Alert Icon"
 $container = New-AMContainer -Id "alert-container" -Style "warning"
@@ -71,7 +71,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -AltText
 Alternative text for the image, which provides a textual description of the image for
@@ -87,7 +87,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Size
 Controls the size of the image.
@@ -104,7 +104,7 @@ Position: 3
 Default value: Auto
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -119,10 +119,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

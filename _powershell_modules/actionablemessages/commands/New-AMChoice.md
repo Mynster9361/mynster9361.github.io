@@ -20,7 +20,7 @@ Creates a choice object for use in a ChoiceSet.
 
 ```
 New-AMChoice [-Title] <String> [-Value] <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates a choice option to be used in a ChoiceSetInput element.
@@ -34,13 +34,13 @@ New-AMChoiceSetInput function as the -Choices parameter.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a single choice
 $choice = New-AMChoice -Title "Red" -Value "red"
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Create multiple choices for a dropdown list
 $colors = @(
     New-AMChoice -Title "Red" -Value "red"
@@ -48,10 +48,10 @@ $colors = @(
     New-AMChoice -Title "Blue" -Value "blue"
 )
 $colorPicker = New-AMChoiceSetInput -Id "favoriteColor" -Label "Select your favorite color:" -Choices $colors
-```
+```powershell
 
 ### EXAMPLE 3
-```
+```powershell
 # Create yes/no choices
 $yesNoChoices = @(
     New-AMChoice -Title "Yes, I approve" -Value "approve"
@@ -59,7 +59,7 @@ $yesNoChoices = @(
 )
 $approvalInput = New-AMChoiceSetInput -Id "approval" -Label "Do you approve this request?" `
     -Choices $yesNoChoices -Style "expanded" -IsMultiSelect $false
-```
+```powershell
 
 ## PARAMETERS
 
@@ -77,7 +77,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Value
 The value to be submitted when this choice is selected.
@@ -94,7 +94,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -109,10 +109,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

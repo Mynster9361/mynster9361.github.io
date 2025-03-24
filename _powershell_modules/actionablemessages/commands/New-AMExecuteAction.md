@@ -21,7 +21,7 @@ Creates an HTTP action for an Adaptive Card.
 ```
 New-AMExecuteAction [-Title] <String> [-Verb] <String> [[-Url] <String>] [[-Body] <String>] [[-Data] <Object>]
  [[-Id] <String>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates an Action.Http element that makes an HTTP request when the action button is clicked.
@@ -31,23 +31,23 @@ approving requests, submitting data, or any other operation requiring a backend 
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a simple approval action
 $approveAction = New-AMExecuteAction -Title "Approve" -Verb "POST" `
     -Url "https://api.example.com/approve" `
     -Body '{"requestId": "12345", "status": "approved"}'
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Create an action with dynamic user data
 $rejectAction = New-AMExecuteAction -Title "Reject" -Verb "POST" `
     -Url "https://api.contoso.com/api/requests/reject" `
     -Body '{"requestId": "ABC123", "rejectedBy": "{{userEmail}}", "timestamp": "{{utcNow}}"}'
-```
+```powershell
 
 ### EXAMPLE 3
-```
+```powershell
 # Create an action with a PowerShell object as data
 $data = @{
     requestId = "REQ-789"
@@ -57,7 +57,7 @@ $data = @{
 $completeAction = New-AMExecuteAction -Title "Mark Complete" -Verb "POST" `
     -Url "https://tasks.example.org/api/complete" `
     -Data $data
-```
+```powershell
 
 ## PARAMETERS
 
@@ -74,7 +74,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Verb
 The HTTP verb/method to use for the request (e.g., "POST", "GET", "PUT", "DELETE").
@@ -89,7 +89,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Url
 The URL endpoint that will receive the HTTP request when the button is clicked.
@@ -104,7 +104,7 @@ Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Body
 Optional JSON string containing the payload to send with the request.
@@ -120,7 +120,7 @@ Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Data
 Optional data object (hashtable) to include with the request.
@@ -137,7 +137,7 @@ Position: 5
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Id
 Optional unique identifier for the action.
@@ -153,7 +153,7 @@ Position: 6
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -168,10 +168,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

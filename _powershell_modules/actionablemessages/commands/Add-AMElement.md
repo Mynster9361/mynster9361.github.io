@@ -21,7 +21,7 @@ Adds an element to an Adaptive Card.
 ```
 Add-AMElement [-Card] <Hashtable> [-Element] <Hashtable> [-ContainerId <String>] [-ColumnId <String>]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Adds an element directly to the card body or to a specific container within the card.
@@ -35,28 +35,27 @@ The function handles adding elements to:
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Add a text block directly to card body
 $title = New-AMTextBlock -Text "Hello World" -Size "Large" -Weight "Bolder"
 Add-AMElement -Card $card -Element $title
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Add a text block to a container
 $text = New-AMTextBlock -Text "This text is inside a container" -Wrap $true
 Add-AMElement -Card $card -Element $text -ContainerId "details-container"
-```
+```powershell
 
 ### EXAMPLE 3
-```
+```powershell
 # Create a container and add multiple elements to it
 $container = New-AMContainer -Id "info-section" -Style "emphasis"
 Add-AMElement -Card $card -Element $container
-```
+```powershell
 
-# Now add elements to the container
-$header = New-AMTextBlock -Text "Important Information" -Size "Medium" -Weight "Bolder"
+# Now add elements to the container\r\n```powershell\r\n$header = New-AMTextBlock -Text "Important Information" -Size "Medium" -Weight "Bolder"
 Add-AMElement -Card $card -Element $header -ContainerId "info-section"
 
 $content = New-AMTextBlock -Text "Here are the details you requested..." -Wrap $true
@@ -65,8 +64,7 @@ Add-AMElement -Card $card -Element $content -ContainerId "info-section"
 $factSet = New-AMFactSet -Facts @(
     (New-AMFact -Title "Status" -Value "Active"),
     (New-AMFact -Title "Priority" -Value "High")
-)
-Add-AMElement -Card $card -Element $factSet -ContainerId "info-section"
+)\r\nAdd-AMElement -Card $card -Element $factSet -ContainerId "info-section"\r\n```
 
 ## PARAMETERS
 
@@ -83,7 +81,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Element
 The element to add to the card.
@@ -100,7 +98,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ContainerId
 Optional.
@@ -118,7 +116,7 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ColumnId
 Optional.
@@ -136,7 +134,7 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -151,10 +149,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

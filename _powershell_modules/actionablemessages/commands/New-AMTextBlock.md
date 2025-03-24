@@ -21,7 +21,7 @@ Creates a TextBlock element for an Adaptive Card.
 ```
 New-AMTextBlock [[-Text] <String>] [[-Size] <String>] [[-Weight] <String>] [[-Color] <String>]
  [[-Wrap] <String>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates a TextBlock element that displays formatted text within an Adaptive Card.
@@ -32,23 +32,23 @@ They can also support simple markdown formatting.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a simple text block
 $text = New-AMTextBlock -Text "Hello World!"
 Add-AMElement -Card $card -Element $text
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Create a heading with larger text and bold weight
 $heading = New-AMTextBlock -Text "Important Notification" -Size "Large" -Weight "Bolder" -Color "Accent"
-```
+```powershell
 
 ### EXAMPLE 3
-```
+```powershell
 # Create text with markdown formatting
 $markdownText = New-AMTextBlock -Text "Please **review** the [documentation](https://docs.example.com) before continuing."
-```
+```powershell
 
 ## PARAMETERS
 
@@ -67,7 +67,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Size
 Controls the size of the text.
@@ -84,7 +84,7 @@ Position: 2
 Default value: Medium
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Weight
 Controls the font weight (boldness) of the text.
@@ -101,7 +101,7 @@ Position: 3
 Default value: Default
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Color
 Sets the color of the text.
@@ -118,7 +118,7 @@ Position: 4
 Default value: Default
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Wrap
 Specifies whether the text should wrap to multiple lines when it doesn't fit on a single line.
@@ -135,7 +135,7 @@ Position: 5
 Default value: True
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ## INPUTS
 

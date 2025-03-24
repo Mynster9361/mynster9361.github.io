@@ -22,7 +22,7 @@ Creates a ChoiceSetInput element for an Adaptive Card.
 New-AMChoiceSetInput [-Id] <String> [[-Label] <String>] [-Choices] <Array> [[-IsMultiSelect] <Boolean>]
  [[-Style] <String>] [[-Value] <String>] [[-Placeholder] <String>] [[-IsVisible] <Boolean>]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates a ChoiceSetInput element that allows users to select from a list of options.
@@ -35,7 +35,7 @@ selecting preferences, categories, options, or making decisions from predefined 
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a simple dropdown list
 $colorChoices = @(
     New-AMChoice -Title "Red" -Value "red"
@@ -44,10 +44,10 @@ $colorChoices = @(
 )
 $colorDropdown = New-AMChoiceSetInput -Id "color" -Label "Select a color:" -Choices $colorChoices
 Add-AMElement -Card $card -Element $colorDropdown
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Create a radio button group with a default selection
 $priorityChoices = @(
     New-AMChoice -Title "High" -Value "high"
@@ -56,10 +56,10 @@ $priorityChoices = @(
 )
 $priorityInput = New-AMChoiceSetInput -Id "priority" -Label "Priority level:" `
     -Choices $priorityChoices -Style "expanded" -Value "medium"
-```
+```powershell
 
 ### EXAMPLE 3
-```
+```powershell
 # Create a multi-select checkbox list
 $toppingsChoices = @(
     New-AMChoice -Title "Cheese" -Value "cheese"
@@ -70,7 +70,7 @@ $toppingsChoices = @(
 )
 $toppingsInput = New-AMChoiceSetInput -Id "toppings" -Label "Select toppings:" `
     -Choices $toppingsChoices -IsMultiSelect $true -Style "expanded"
-```
+```powershell
 
 ## PARAMETERS
 
@@ -89,7 +89,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Label
 Optional text label to display above the input field, describing what the input is for.
@@ -104,7 +104,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Choices
 An array of choice objects created using the New-AMChoice function.
@@ -121,7 +121,7 @@ Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -IsMultiSelect
 Determines whether multiple choices can be selected.
@@ -138,7 +138,7 @@ Position: 4
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Style
 Controls how the choices are displayed:
@@ -156,7 +156,7 @@ Position: 5
 Default value: Compact
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Value
 Optional default selected value(s).
@@ -173,7 +173,7 @@ Position: 6
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Placeholder
 Optional text to display when no selection has been made.
@@ -189,7 +189,7 @@ Position: 7
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -IsVisible
 Controls whether the input is initially visible or hidden.
@@ -204,7 +204,7 @@ Position: 8
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -219,10 +219,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

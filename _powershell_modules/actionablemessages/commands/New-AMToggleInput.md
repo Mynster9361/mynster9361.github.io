@@ -21,7 +21,7 @@ Creates a Toggle Input element for an Adaptive Card.
 ```
 New-AMToggleInput [[-id] <String>] [[-title] <String>] [[-value] <String>] [[-valueOn] <String>]
  [[-valueOff] <String>] [[-style] <String>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates an Input.Toggle element that allows users to switch between two states: on or off.
@@ -33,24 +33,24 @@ application, making it ideal for settings, confirmations, or agreement inputs.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a simple toggle for agreement
 $agreementToggle = New-AMToggleInput -id "termsAgreed" -title "I agree to the terms and conditions"
 Add-AMElement -Card $card -Element $agreementToggle
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Create a toggle with custom values
 $notificationToggle = New-AMToggleInput -id "notifications" -title "Enable notifications" `
     -value $true -valueOn "enabled" -valueOff "disabled"
-```
+```powershell
 
 ### EXAMPLE 3
-```
+```powershell
 # Create multiple toggles for settings
 $card = New-AMCard -OriginatorId "preferences-app"
-```
+```powershell
 
 $settingsContainer = New-AMContainer -Id "settings" -Style "emphasis"
 Add-AMElement -Card $card -Element $settingsContainer
@@ -80,7 +80,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -title
 The text label displayed next to the toggle control.
@@ -97,7 +97,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -value
 The initial state of the toggle.
@@ -115,7 +115,7 @@ Position: 3
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -valueOn
 Optional text value to submit when the toggle is in the "on" state.
@@ -131,7 +131,7 @@ Position: 4
 Default value: True
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -valueOff
 Optional text value to submit when the toggle is in the "off" state.
@@ -147,7 +147,7 @@ Position: 5
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -style
 Optional visual style for the toggle input.
@@ -164,7 +164,7 @@ Position: 6
 Default value: Default
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ## INPUTS
 

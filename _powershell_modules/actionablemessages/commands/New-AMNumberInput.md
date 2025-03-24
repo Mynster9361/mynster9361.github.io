@@ -21,7 +21,7 @@ Creates a Number Input element for an Adaptive Card.
 ```
 New-AMNumberInput [-Id] <String> [[-Max] <String>] [[-Min] <String>] [[-Placeholder] <String>]
  [[-Value] <String>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates an Input.Number element that allows users to enter or select a numeric value.
@@ -33,25 +33,25 @@ values.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a simple number input
 $quantityInput = New-AMNumberInput -Id "quantity"
 Add-AMElement -Card $card -Element $quantityInput
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Create a number input with range constraints
 $ratingInput = New-AMNumberInput -Id "rating" `
     -Min "1" -Max "10" -Value "5" -Placeholder "Enter rating (1-10)"
-```
+```powershell
 
 ### EXAMPLE 3
-```
+```powershell
 # Create a quantity selector with default value
 $quantityInput = New-AMNumberInput -Id "quantity" `
     -Min "1" -Max "100" -Value "1" -Placeholder "Enter quantity"
-```
+```powershell
 
 ## PARAMETERS
 
@@ -70,7 +70,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Max
 Optional maximum allowed numeric value.
@@ -86,7 +86,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Min
 Optional minimum allowed numeric value.
@@ -102,7 +102,7 @@ Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Placeholder
 Optional text to display when no value has been entered.
@@ -117,7 +117,7 @@ Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Value
 Optional default numeric value for the input.
@@ -133,7 +133,7 @@ Position: 5
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -148,10 +148,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

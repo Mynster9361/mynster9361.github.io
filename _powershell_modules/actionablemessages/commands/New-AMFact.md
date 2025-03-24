@@ -20,7 +20,7 @@ Creates a Fact object for use in a FactSet within an Adaptive Card.
 
 ```
 New-AMFact [-Title] <String> [-Value] <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates a key-value pair (fact) to be displayed in a FactSet element.
@@ -33,13 +33,13 @@ created with New-AMFactSet to create a list of related information.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a single fact
 $employeeFact = New-AMFact -Title "Employee" -Value "John Doe"
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Create multiple facts for a person
 $personFacts = @(
     New-AMFact -Title "Name" -Value "Jane Smith"
@@ -47,14 +47,14 @@ $personFacts = @(
     New-AMFact -Title "Department" -Value "R&D"
     New-AMFact -Title "Email" -Value "jane.smith@example.com"
 )
-```
+```powershell
 
 # Add these facts to a FactSet
 $factSet = New-AMFactSet -Facts $personFacts
 Add-AMElement -Card $card -Element $factSet
 
 ### EXAMPLE 3
-```
+```powershell
 # Create facts with formatted values
 $orderFacts = @(
     New-AMFact -Title "Order Number" -Value "ORD-12345"
@@ -62,7 +62,7 @@ $orderFacts = @(
     New-AMFact -Title "Status" -Value "**Shipped**"
     New-AMFact -Title "Total" -Value "$125.99"
 )
-```
+```powershell
 
 ## PARAMETERS
 
@@ -81,7 +81,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Value
 The value or content of the fact.
@@ -98,7 +98,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -113,10 +113,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

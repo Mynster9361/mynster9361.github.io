@@ -21,7 +21,7 @@ Creates a Column element for use in ColumnSets within an Adaptive Card.
 ```
 New-AMColumn [[-Width] <String>] [[-VerticalContentAlignment] <String>] [[-Items] <Array>]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates a Column object that can be used in a ColumnSet to create multi-column layouts.
@@ -32,20 +32,20 @@ New-AMColumnSet.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a simple column with text
 $column = New-AMColumn -Width "1" -Items @(
     (New-AMTextBlock -Text "Column 1 Content" -Wrap $true)
 )
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Create multiple columns for use in a ColumnSet
 $leftColumn = New-AMColumn -Width "auto" -Items @(
     (New-AMImage -Url "https://example.com/profile.jpg" -Size "Small")
 )
-```
+```powershell
 
 $rightColumn = New-AMColumn -Width "stretch" -Items @(
     (New-AMTextBlock -Text "John Doe" -Size "Medium" -Weight "Bolder"),
@@ -56,12 +56,12 @@ $rightColumn = New-AMColumn -Width "stretch" -Items @(
 $columnSet = New-AMColumnSet -Columns @($leftColumn, $rightColumn)
 
 ### EXAMPLE 3
-```
+```powershell
 # Create a three-column layout with vertical alignment
 $col1 = New-AMColumn -Width "1" -VerticalContentAlignment "top" -Items @(
     (New-AMTextBlock -Text "Top Aligned")
 )
-```
+```powershell
 
 $col2 = New-AMColumn -Width "1" -VerticalContentAlignment "center" -Items @(
     (New-AMTextBlock -Text "Center Aligned")
@@ -95,7 +95,7 @@ Position: 1
 Default value: Auto
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -VerticalContentAlignment
 Controls how the content is vertically aligned within the column.
@@ -113,7 +113,7 @@ Position: 2
 Default value: Top
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Items
 An array of elements to place inside the column.
@@ -132,7 +132,7 @@ Position: 3
 Default value: @()
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -147,10 +147,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

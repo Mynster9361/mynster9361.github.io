@@ -21,7 +21,7 @@ Creates a ShowCard Action for an Adaptive Card.
 ```
 New-AMShowCardAction [-Title] <String> [[-Id] <String>] [[-Card] <Hashtable>]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates an Action.ShowCard element that reveals a nested card when clicked.
@@ -32,26 +32,26 @@ another HTTP request.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a ShowCard action with an empty card
 $showAction = New-AMShowCardAction -Title "Show Details"
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Create a ShowCard action with a pre-configured card
 $detailCard = New-AMCard -OriginatorId "nested-card"
 Add-AMElement -Card $detailCard -Element (New-AMTextBlock -Text "These are additional details" -Wrap $true)
 $showAction = New-AMShowCardAction -Title "Show Details" -Card $detailCard
-```
+```powershell
 
 ### EXAMPLE 3
-```
+```powershell
 # Create a ShowCard action with a form inside
 $feedbackCard = New-AMCard -OriginatorId "feedback-card"
 Add-AMElement -Card $feedbackCard -Element (New-AMTextBlock -Text "Please provide your feedback:")
 Add-AMElement -Card $feedbackCard -Element (New-AMTextInput -Id "comments" -Placeholder "Type your comments here" -IsMultiline $true)
-```
+```powershell
 
 # Create submit button for the nested card
 $submitAction = New-AMSubmitAction -Title "Submit Feedback" -Data @{ action = "feedback" }
@@ -75,7 +75,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Id
 Optional unique identifier for the action.
@@ -94,7 +94,7 @@ Position: 2
 Default value: [guid]::NewGuid().ToString()
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Card
 Optional pre-configured card to show when the button is clicked.
@@ -111,7 +111,7 @@ Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -126,10 +126,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

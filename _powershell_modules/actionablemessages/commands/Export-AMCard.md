@@ -21,7 +21,7 @@ Exports an Adaptive Card as JSON.
 ```
 Export-AMCard [-Card] <Hashtable> [-Path <String>] [-Compress] [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Converts an Adaptive Card object to JSON format for use in Actionable Messages.
@@ -35,33 +35,33 @@ This function does not modify the original card object.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Export a card as formatted JSON string
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
 Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Hello World")
 $json = Export-AMCard -Card $card
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Export a card as compressed JSON string
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
 $json = Export-AMCard -Card $card -Compress
-```
+```powershell
 
 ### EXAMPLE 3
-```
+```powershell
 # Save a card to a file
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
 Export-AMCard -Card $card -Path "C:\Cards\mycard.json"
-```
+```powershell
 
 ### EXAMPLE 4
-```
+```powershell
 # Using pipeline input
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
 $card | Export-AMCard -Path "C:\Cards\mycard.json"
-```
+```powershell
 
 ## PARAMETERS
 
@@ -78,7 +78,7 @@ Position: 1
 Default value: None
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Path
 Optional.
@@ -95,7 +95,7 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Compress
 Optional switch.
@@ -113,7 +113,7 @@ Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -128,10 +128,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

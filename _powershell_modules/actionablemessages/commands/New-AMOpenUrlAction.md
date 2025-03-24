@@ -21,7 +21,7 @@ Creates an OpenUrl Action for an Adaptive Card.
 ```
 New-AMOpenUrlAction [-Title] <String> [-Url] <String> [[-Id] <String>] [[-Tooltip] <String>]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates an Action.OpenUrl element that opens a URL in a web browser when clicked.
@@ -31,30 +31,30 @@ or related web pages from within your Adaptive Card.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a simple "Learn More" button
 $learnMoreAction = New-AMOpenUrlAction -Title "Learn More" -Url "https://example.com"
 Add-AMElement -Card $card -Element (New-AMActionSet -Actions @($learnMoreAction))
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Create a button with custom ID and tooltip
 $docsButton = New-AMOpenUrlAction -Title "View Documentation" `
     -Url "https://docs.contoso.com/project" `
     -Id "docs-button" `
     -Tooltip "Open the project documentation in a new browser window"
-```
+```powershell
 
 ### EXAMPLE 3
-```
+```powershell
 # Creating multiple URL actions in an ActionSet
 $actions = @(
     (New-AMOpenUrlAction -Title "Product Page" -Url "https://contoso.com/products"),
     (New-AMOpenUrlAction -Title "Support" -Url "https://contoso.com/support")
 )
 $actionSet = New-AMActionSet -Id "links" -Actions $actions
-```
+```powershell
 
 ## PARAMETERS
 
@@ -71,7 +71,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Url
 The URL to open when the button is clicked.
@@ -88,7 +88,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Id
 Optional unique identifier for the action.
@@ -107,7 +107,7 @@ Position: 3
 Default value: [guid]::NewGuid().ToString()
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Tooltip
 Optional tooltip text to display when the user hovers over the button.
@@ -123,7 +123,7 @@ Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -138,10 +138,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

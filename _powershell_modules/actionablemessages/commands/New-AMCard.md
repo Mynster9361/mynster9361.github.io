@@ -21,7 +21,7 @@ Creates a new Adaptive Card object.
 ```
 New-AMCard [[-Version] <String>] [-OriginatorId] <String> [[-HideOriginalBody] <Boolean>]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates a new Adaptive Card hashtable that serves as the foundation for building
@@ -35,24 +35,24 @@ for an Adaptive Card, including empty collections for body elements and actions.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a basic card
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Create a card and show the original email body
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2" -HideOriginalBody $false
-```
+```powershell
 
 ### EXAMPLE 3
-```
+```powershell
 # Create a complete card with content
 $card = New-AMCard -OriginatorId "1234567890"
 Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Expense Approval Required" -Size "Large" -Weight "Bolder")
 Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Please review the following expense report:" -Wrap $true)
-```
+```powershell
 
 # Add more elements and then export
 $json = Export-AMCard -Card $card
@@ -79,7 +79,7 @@ Position: 1
 Default value: 1.2
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -OriginatorId
 A unique identifier for the sender of the card.
@@ -99,7 +99,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -HideOriginalBody
 Specifies whether to hide the original email body when displaying the card.
@@ -119,7 +119,7 @@ Position: 3
 Default value: True
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -134,10 +134,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

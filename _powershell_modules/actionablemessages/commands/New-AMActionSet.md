@@ -21,7 +21,7 @@ Creates an ActionSet element for an Adaptive Card.
 ```
 New-AMActionSet [[-Id] <String>] [-Actions] <Array> [[-Padding] <String>] [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates an ActionSet element that can contain multiple actions (buttons) and be added to a card's body.
@@ -31,22 +31,22 @@ not just at the bottom.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a simple ActionSet with two actions
 $openUrlAction = New-AMOpenUrlAction -Title "Visit Website" -Url "https://example.com"
 $executeAction = New-AMExecuteAction -Title "Approve" -Verb "POST" -Url "https://api.example.com/approve" -Body '{"id": "12345"}'
-```
+```powershell
 
 $actionSet = New-AMActionSet -Id "main-actions" -Actions @($openUrlAction, $submitAction)
 Add-AMElement -Card $card -Element $actionSet
 
 ### EXAMPLE 2
-```
+```powershell
 # Create an ActionSet with no padding containing an execute action
 $executeAction = New-AMExecuteAction -Title "Approve" -Verb "POST" -Url "https://api.example.com/approve"
 $actionSet = New-AMActionSet -Id "approval-actions" -Actions @($executeAction) -Padding "None"
 Add-AMElement -Card $card -Element $actionSet -ContainerId "container1"
-```
+```powershell
 
 ## PARAMETERS
 
@@ -65,7 +65,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Actions
 An array of action objects to include in the ActionSet.
@@ -82,7 +82,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Padding
 Optional padding value to apply around the ActionSet.
@@ -98,7 +98,7 @@ Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -113,10 +113,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

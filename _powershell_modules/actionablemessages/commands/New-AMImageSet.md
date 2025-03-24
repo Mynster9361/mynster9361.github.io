@@ -21,7 +21,7 @@ Creates an ImageSet element for an Adaptive Card.
 ```
 New-AMImageSet [-Images] <String[]> [[-AltText] <String>] [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates an ImageSet element that displays a collection of images in a grid layout.
@@ -34,25 +34,25 @@ images within the set share the same size.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a simple image set with three images
 $imageUrls = @(
     "https://example.com/product1.jpg",
     "https://example.com/product2.jpg",
     "https://example.com/product3.jpg"
 )
-```
+```powershell
 
 $productGallery = New-AMImageSet -Images $imageUrls -AltText "Product Photos"
 Add-AMElement -Card $card -Element $productGallery
 
 ### EXAMPLE 2
-```
+```powershell
 # Create an image set from local files
 $baseUrl = "https://storage.contoso.com/images/"
 $fileNames = @("photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg")
 $imageUrls = $fileNames | ForEach-Object { $baseUrl + $_ }
-```
+```powershell
 
 $photoGallery = New-AMImageSet -Images $imageUrls -AltText "Vacation Photos"
 
@@ -73,7 +73,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -AltText
 Alternative text for the image set, providing a textual description for
@@ -91,7 +91,7 @@ Position: 2
 Default value: Image Set
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -106,10 +106,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

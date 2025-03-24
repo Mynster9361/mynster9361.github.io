@@ -24,7 +24,7 @@ Exports an Adaptive Card as HTML email content for Microsoft Graph API.
 Export-AMCardForEmail [-Card] <Hashtable> [-Subject <String>] [-FallbackText <String>]
  [-ToRecipients <String[]>] [-CreateGraphParams] [-SaveToSentItems <Boolean>]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Prepares an Adaptive Card for sending via email by embedding it in HTML with the proper format
@@ -43,12 +43,12 @@ This enables seamless integration with either Microsoft Graph API or other email
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Get HTML content for an email (for use with any email system)
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
 Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Hello World")
 $htmlContent = Export-AMCardForEmail -Card $card
-```
+```powershell
 
 # Send using standard Send-MailMessage cmdlet
 Send-MailMessage -To "recipient@example.com" -From "sender@example.com" \`
@@ -56,23 +56,23 @@ Send-MailMessage -To "recipient@example.com" -From "sender@example.com" \`
     -SmtpServer "smtp.office365.com"
 
 ### EXAMPLE 2
-```
+```powershell
 # Get complete Graph API parameters for sending an email
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
 Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Hello World")
 $params = Export-AMCardForEmail -Card $card -Subject "Important Notification" `
     -ToRecipients "user@example.com" -CreateGraphParams
-```
+```powershell
 
 # Send via Microsoft Graph
 Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/me/sendMail" -Body $params
 
 ### EXAMPLE 3
-```
+```powershell
 # Sending to multiple recipients with Graph API
 $card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
 Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Team Meeting Reminder" -Size "Large")
-```
+```powershell
 
 # Add action buttons
 $acceptAction = New-AMOpenUrlAction -Title "Accept" -Url "https://teams.microsoft.com/meeting/accept"
@@ -105,7 +105,7 @@ Position: 1
 Default value: None
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Subject
 Optional email subject line.
@@ -121,7 +121,7 @@ Position: Named
 Default value: Adaptive Card Notification
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -FallbackText
 Optional text to show in email clients that don't support Adaptive Cards.
@@ -138,7 +138,7 @@ Position: Named
 Default value: This email contains an Adaptive Card. Please use Outlook to view it.
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ToRecipients
 Optional array of email addresses to send to.
@@ -154,7 +154,7 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -CreateGraphParams
 If specified, returns a complete Microsoft Graph API parameters object instead of just the HTML content.
@@ -170,7 +170,7 @@ Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -SaveToSentItems
 When used with -CreateGraphParams, controls whether the sent message is saved to Sent Items.
@@ -186,7 +186,7 @@ Position: Named
 Default value: True
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -201,10 +201,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

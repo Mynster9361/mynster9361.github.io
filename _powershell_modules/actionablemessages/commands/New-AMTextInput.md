@@ -22,7 +22,7 @@ Creates a text input field for an Adaptive Card.
 New-AMTextInput [-Id] <String> [[-Label] <String>] [[-Placeholder] <String>] [[-Value] <String>]
  [[-IsMultiline] <Boolean>] [[-IsRequired] <Boolean>] [[-MaxLength] <Int32>] [[-Separator] <Boolean>]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates an Input.Text element that allows users to enter text in an Adaptive Card.
@@ -34,32 +34,32 @@ This is one of the most common input elements used for collecting free-form text
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a simple single-line text input
 $nameInput = New-AMTextInput -Id "userName" -Label "Your Name:"
 Add-AMElement -Card $card -Element $nameInput
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Create a multiline text input with placeholder
 $feedbackInput = New-AMTextInput -Id "feedback" -Label "Your Feedback:" `
     -Placeholder "Please share your thoughts..." -IsMultiline $true
-```
+```powershell
 
 ### EXAMPLE 3
-```
+```powershell
 # Create a required text input with maximum length
 $subjectInput = New-AMTextInput -Id "subject" -Label "Subject:" `
     -IsRequired $true -MaxLength 100 -Separator $true
-```
+```powershell
 
 ### EXAMPLE 4
-```
+```powershell
 # Create a text input with default value
 $emailInput = New-AMTextInput -Id "email" -Label "Email Address:" `
     -Value "user@example.com" -Placeholder "name@company.com"
-```
+```powershell
 
 ## PARAMETERS
 
@@ -78,7 +78,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Label
 Optional text label to display above the input field, describing what the input is for.
@@ -93,7 +93,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Placeholder
 Optional text to display when the input field is empty.
@@ -110,7 +110,7 @@ Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Value
 Optional default text to pre-fill in the input field when the card is displayed.
@@ -125,7 +125,7 @@ Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -IsMultiline
 When set to $true, creates a text area that allows for multiple lines of text.
@@ -141,7 +141,7 @@ Position: 5
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -IsRequired
 When set to $true, the field must contain text when submitted.
@@ -157,7 +157,7 @@ Position: 6
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -MaxLength
 Optional maximum number of characters allowed in the input field.
@@ -172,7 +172,7 @@ Position: 7
 Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Separator
 When set to $true, adds a visible separator line above the input field.
@@ -187,7 +187,7 @@ Position: 8
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -202,10 +202,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

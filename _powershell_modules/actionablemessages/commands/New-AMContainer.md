@@ -21,7 +21,7 @@ Creates a Container element for an Adaptive Card.
 ```
 New-AMContainer [[-Id] <String>] [[-Items] <Array>] [[-Style] <String>] [[-IsVisible] <Boolean>]
  [[-Padding] <String>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates a Container element that can group and style multiple elements together.
@@ -35,11 +35,11 @@ other containers, column sets, and more.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a simple container with text
 $container = New-AMContainer -Id "info-section" -Style "emphasis"
 Add-AMElement -Card $card -Element $container
-```
+```powershell
 
 # Add elements to the container
 $title = New-AMTextBlock -Text "Important Information" -Size "Medium" -Weight "Bolder"
@@ -49,24 +49,24 @@ $text = New-AMTextBlock -Text "Here are the details you need to know..." -Wrap $
 Add-AMElement -Card $card -Element $text -ContainerId "info-section"
 
 ### EXAMPLE 2
-```
+```powershell
 # Create a container with pre-populated items
 $items = @(
     (New-AMTextBlock -Text "Container Title" -Size "Medium" -Weight "Bolder"),
     (New-AMTextBlock -Text "This container has multiple elements" -Wrap $true),
     (New-AMImage -Url "https://example.com/image.jpg" -Size "Medium")
 )
-```
+```powershell
 
 $container = New-AMContainer -Id "pre-populated" -Items $items -Style "good" -Padding "Default"
 Add-AMElement -Card $card -Element $container
 
 ### EXAMPLE 3
-```
+```powershell
 # Create a hidden container that can be toggled
 $detailsContainer = New-AMContainer -Id "details-section" -IsVisible $false -Style "emphasis" -Padding "Small"
 Add-AMElement -Card $card -Element $detailsContainer
-```
+```powershell
 
 # Add content to the hidden container
 $detailsText = New-AMTextBlock -Text "These are additional details that are initially hidden." -Wrap $true
@@ -94,7 +94,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Items
 An array of elements to place inside the container.
@@ -111,7 +111,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Style
 Optional styling to apply to the container.
@@ -132,7 +132,7 @@ Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -IsVisible
 Optional boolean that controls whether the container is initially visible.
@@ -148,7 +148,7 @@ Position: 4
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Padding
 Optional spacing to apply around the container contents.
@@ -165,7 +165,7 @@ Position: 5
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -180,10 +180,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

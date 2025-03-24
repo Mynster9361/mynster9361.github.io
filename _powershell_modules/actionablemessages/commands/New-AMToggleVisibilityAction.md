@@ -21,7 +21,7 @@ Creates a ToggleVisibility Action for an Adaptive Card.
 ```
 New-AMToggleVisibilityAction [-Title] <String> [-TargetElements] <String[]> [[-Id] <String>]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates an Action.ToggleVisibility element that toggles the visibility of one or more elements.
@@ -32,21 +32,21 @@ or implementing tabbed interfaces within a card.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a simple toggle action for one element
 $toggleAction = New-AMToggleVisibilityAction -Title "Show Details" -TargetElements @("details-section")
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Toggle multiple elements with one button
 $toggleAction = New-AMToggleVisibilityAction -Title "Toggle Sections" `
     -TargetElements @("section1", "section2", "section3") `
     -Id "toggle-all-sections"
-```
+```powershell
 
 ### EXAMPLE 3
-```
+```powershell
 # Creating a tab-like interface with toggle actions
 $tab1Content = New-AMContainer -Id "tab1-content" -Items @(
     (New-AMTextBlock -Text "This is the content of tab 1" -Wrap $true)
@@ -54,7 +54,7 @@ $tab1Content = New-AMContainer -Id "tab1-content" -Items @(
 $tab2Content = New-AMContainer -Id "tab2-content" -Items @(
     (New-AMTextBlock -Text "This is the content of tab 2" -Wrap $true)
 ) -IsVisible $false
-```
+```powershell
 
 # Add content containers to card
 Add-AMElement -Card $card -Element $tab1Content
@@ -83,7 +83,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -TargetElements
 An array of element IDs to toggle visibility.
@@ -100,7 +100,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Id
 Optional unique identifier for the action.
@@ -119,7 +119,7 @@ Position: 3
 Default value: [guid]::NewGuid().ToString()
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -134,10 +134,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

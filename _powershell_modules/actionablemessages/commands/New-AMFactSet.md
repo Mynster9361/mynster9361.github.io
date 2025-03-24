@@ -20,7 +20,7 @@ Creates a FactSet element for an Adaptive Card.
 
 ```
 New-AMFactSet [-Facts] <Array> [[-Id] <String>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates a FactSet element that displays a series of facts (key-value pairs) in a
@@ -34,7 +34,7 @@ in the left column (typically bold) and values in the right column.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a simple employee information FactSet
 $facts = @(
     New-AMFact -Title "Employee" -Value "John Doe"
@@ -44,10 +44,10 @@ $facts = @(
 )
 $factSet = New-AMFactSet -Facts $facts
 Add-AMElement -Card $card -Element $factSet
-```
+```powershell
 
 ### EXAMPLE 2
-```
+```powershell
 # Create a product specification FactSet with ID
 $specs = @(
     New-AMFact -Title "Model" -Value "ThinkPad X1"
@@ -56,7 +56,7 @@ $specs = @(
     New-AMFact -Title "Storage" -Value "512 GB SSD"
 )
 $specSheet = New-AMFactSet -Facts $specs -Id "product-specs"
-```
+```powershell
 
 # Add the FactSet to a container
 $container = New-AMContainer -Id "spec-container" -Style "emphasis"
@@ -80,7 +80,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Id
 Optional unique identifier for the FactSet.
@@ -97,7 +97,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -112,10 +112,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 

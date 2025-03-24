@@ -20,7 +20,7 @@ Creates a ColumnSet element for an Adaptive Card.
 
 ```
 New-AMColumnSet [-Id] <String> [-Columns] <Array> [-ProgressAction <ActionPreference>] [<CommonParameters>]
-```
+```powershell
 
 ## DESCRIPTION
 Creates a ColumnSet element that allows you to arrange content in multiple columns.
@@ -34,12 +34,12 @@ Each column can contain its own set of elements (text, images, etc.).
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 # Create a simple two-column layout
 $leftColumn = New-AMColumn -Width "1" -Items @(
     (New-AMTextBlock -Text "Left Column Content" -Wrap $true)
 )
-```
+```powershell
 
 $rightColumn = New-AMColumn -Width "1" -Items @(
     (New-AMTextBlock -Text "Right Column Content" -Wrap $true)
@@ -49,12 +49,12 @@ $columnSet = New-AMColumnSet -Id "two-column-layout" -Columns @($leftColumn, $ri
 Add-AMElement -Card $card -Element $columnSet
 
 ### EXAMPLE 2
-```
+```powershell
 # Create a profile card with image and info
 $imageColumn = New-AMColumn -Width "auto" -Items @(
     (New-AMImage -Url "https://example.com/profile.jpg" -Size "Small")
 )
-```
+```powershell
 
 $infoColumn = New-AMColumn -Width "stretch" -Items @(
     (New-AMTextBlock -Text "Jane Smith" -Size "Medium" -Weight "Bolder"),
@@ -66,12 +66,12 @@ $profileLayout = New-AMColumnSet -Id "profile-card" -Columns @($imageColumn, $in
 Add-AMElement -Card $card -Element $profileLayout
 
 ### EXAMPLE 3
-```
+```powershell
 # Create a three-column layout with different widths
 $col1 = New-AMColumn -Width "2" -Items @(
     (New-AMTextBlock -Text "Column 1 (Width 2)")
 )
-```
+```powershell
 
 $col2 = New-AMColumn -Width "1" -Items @(
     (New-AMTextBlock -Text "Column 2 (Width 1)")
@@ -101,7 +101,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -Columns
 An array of Column objects created using the New-AMColumn function.
@@ -118,7 +118,7 @@ Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### -ProgressAction
 {{ Fill ProgressAction Description }}
@@ -133,10 +133,10 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+```powershell
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
 
