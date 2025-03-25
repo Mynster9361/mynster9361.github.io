@@ -25,6 +25,7 @@ $jsonCard = Export-AMCard -Card $card
 ## Command Reference
 
 * [`Add-AMElement`](commands/Add-AMElement/)
+* [`ConvertFrom-AMJson`](commands/ConvertFrom-AMJson/)
 * [`Export-AMCard`](commands/Export-AMCard/)
 * [`Export-AMCardForEmail`](commands/Export-AMCardForEmail/)
 * [`New-AMActionSet`](commands/New-AMActionSet/)

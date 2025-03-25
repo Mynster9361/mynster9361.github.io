@@ -7,6 +7,7 @@ permalink: /modules/actionablemessages/commands/
 # ActionableMessages Commands
 
 * [`Add-AMElement`](Add-AMElement/)
+* [`ConvertFrom-AMJson`](ConvertFrom-AMJson/)
 * [`Export-AMCard`](Export-AMCard/)
 * [`Export-AMCardForEmail`](Export-AMCardForEmail/)
 * [`New-AMActionSet`](New-AMActionSet/)
