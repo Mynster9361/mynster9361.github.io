@@ -12,7 +12,7 @@ Creates a new Adaptive Card object.
 ## SYNTAX
 
 ```powershell
-New-AMCard [-Version <String>] [-OriginatorId] <String> [-HideOriginalBody <Boolean>] [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
+New-AMCard [-Version <String>] [-OriginatorId] <String> [-HideOriginalBody <Boolean>] [-Padding <String>] [-BackgroundImage <String>] [-RTL <Boolean>] [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,41 +28,36 @@ for an Adaptive Card, including empty collections for body elements and actions.
 ### EXAMPLE 1
 ```powershell
 # Create a basic card
-$card = New-AMCard -OriginatorId "1234567890" -Version "1.2"
+$card = New-AMCard -OriginatorId "1234567890" -Version "1.0"
 ```
 
 
 ### EXAMPLE 2
 ```powershell
-# Create a card and show the original email body
-$card = New-AMCard -OriginatorId "1234567890" -Version "1.2" -HideOriginalBody $false
+# Create a card with a background image
+$card = New-AMCard -OriginatorId "1234567890" -Version "1.0" -BackgroundImage "https://example.com/image.jpg"
 ```
 
 
 ### EXAMPLE 3
 ```powershell
-# Create a complete card with content
-$card = New-AMCard -OriginatorId "1234567890"
-Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Expense Approval Required" -Size "Large" -Weight "Bolder")
-Add-AMElement -Card $card -Element (New-AMTextBlock -Text "Please review the following expense report:" -Wrap $true)
+# Create a card with right-to-left support
+$card = New-AMCard -OriginatorId "1234567890" -Version "1.0" -RTL $true
 ```
 
-#### Example explanation
-```powershell
-# Add more elements and then export
-$json = Export-AMCard -Card $card
-```
 ## PARAMETERS
 
 ### -Version
 The version of the Adaptive Card schema to use.
-Valid values: "1.0", "1.1", "1.2"
-Default: "1.2"
+For outlook always use 1.0
+Valid values: "1.0", "1.1", "1.2", "1.3", "1.4", "1.5"
+Default: "1.0"
 
 Different versions support different card features:
 - 1.0: Basic layout and elements
 - 1.1: Adds support for additional features like horizontal alignment
 - 1.2: Adds support for more advanced features and styling options
+- 1.3+: Adds support for the latest Adaptive Card features
 
 ```yaml
 Type: String
@@ -110,6 +105,54 @@ Aliases: None
 
 Required: False
 Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Padding
+Specifies the padding setting for the card.
+Valid values: "None", "Default", "Small", "Medium", "Large", "ExtraLarge"
+Default: "None"
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -BackgroundImage
+URL to an image that will be used as the background for the card.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: 4
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RTL
+When set to $true, renders the card in right-to-left mode.
+Default: $false
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: 5
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
