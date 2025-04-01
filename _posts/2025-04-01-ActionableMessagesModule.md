@@ -33,11 +33,11 @@ Install-Module -Name ActionableMessages -Scope CurrentUser
 Let's start with a simple example:
 OVA result:
 
-![simple example ova](/assets/img/posts/2025-04-02-ActionableMessagesModule-Basic-ova.png)
+![simple example ova](/assets/img/posts/2025-04-01-ActionableMessagesModule-Basic-ova.png)
 
 Mobile result:
 
-![simple example mobile](/assets/img/posts/2025-04-02-ActionableMessagesModule-Basic-mobile.png){: width="300" height="400" }
+![simple example mobile](/assets/img/posts/2025-04-01-ActionableMessagesModule-Basic-mobile.png){: width="300" height="400" }
 
 ```powershell
 # Import the module
@@ -90,11 +90,11 @@ Now let's recreate the examples from my previous post using this module.
 
 OVA result:
 
-![pto example ova](/assets/img/posts/2025-04-02-ActionableMessagesModule-PTO-ova.png)
+![pto example ova](/assets/img/posts/2025-04-01-ActionableMessagesModule-PTO-ova.png)
 
 Mobile result:
 
-![pto example mobile](/assets/img/posts/2025-04-02-ActionableMessagesModule-PTO-mobile.png){: width="300" height="400" }
+![pto example mobile](/assets/img/posts/2025-04-01-ActionableMessagesModule-PTO-mobile.png){: width="300" height="400" }
 
 ```powershell
 # Import the module
@@ -177,11 +177,11 @@ Invoke-RestMethod -Method POST -Uri $uri -Headers $authHeaders -Body $params
 #### Access Request with Choice Selection
 OVA result:
 
-![access request example ova](/assets/img/posts/2025-04-02-ActionableMessagesModule-AccessRequest-ova.png)
+![access request example ova](/assets/img/posts/2025-04-01-ActionableMessagesModule-AccessRequest-ova.png)
 
 Mobile result:
 
-![access request example mobile](/assets/img/posts/2025-04-02-ActionableMessagesModule-AccessRequest-mobile.png){: width="300" height="400" }
+![access request example mobile](/assets/img/posts/2025-04-01-ActionableMessagesModule-AccessRequest-mobile.png){: width="300" height="400" }
 
 ```powershell
 # Import the module
@@ -252,15 +252,15 @@ Invoke-RestMethod -Method POST -Uri $uri -Headers $authHeaders -Body $params
 #### New Owner Selection Card
 OVA result:
 
-![new owner example ova](/assets/img/posts/2025-04-02-ActionableMessagesModule-NewOwner-ova.png)
+![new owner example ova](/assets/img/posts/2025-04-01-ActionableMessagesModule-NewOwner-ova.png)
 
 Mobile result:
 
-![new owner1 example mobile](/assets/img/posts/2025-04-02-ActionableMessagesModule-NewOwner1-mobile.png){: width="300" height="400" }
+![new owner1 example mobile](/assets/img/posts/2025-04-01-ActionableMessagesModule-NewOwner1-mobile.png){: width="300" height="400" }
 
 Mobile result selection:
 
-![new owner2 example mobile](/assets/img/posts/2025-04-02-ActionableMessagesModule-NewOwner2-mobile.png){: width="300" height="400" }
+![new owner2 example mobile](/assets/img/posts/2025-04-01-ActionableMessagesModule-NewOwner2-mobile.png){: width="300" height="400" }
 
 ```powershell
 # Create a new card with header and info (similar to previous examples)
