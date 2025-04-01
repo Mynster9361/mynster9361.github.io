@@ -1,7 +1,7 @@
 ---
 title: ActionableMessages PowerShell Module - Building Interactive Emails Made Easy
 author: mynster
-date: 2025-04-01 22:45:00 +0100
+date: 2025-04-01 21:45:00 +0100
 categories: [PowerShell, Modules]
 tags: [powershell, msgraph, mail, adaptive cards, actionable messages]
 description: Introducing the ActionableMessages PowerShell module - a powerful way to create interactive Adaptive Cards for email
