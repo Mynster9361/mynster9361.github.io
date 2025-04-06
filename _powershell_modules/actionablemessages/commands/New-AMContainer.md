@@ -12,7 +12,7 @@ Creates a Container element for an Adaptive Card.
 ## SYNTAX
 
 ```powershell
-New-AMContainer [-Id <String>] [-Items <Array>] [-Style <String>] [-IsVisible <Boolean>] [-Padding <String>] [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
+New-AMContainer [-Id <String>] [-Items <Array>] [-Style <String>] [-IsVisible <Boolean>] [-Padding <String>] [-CustomPadding <Hashtable>] [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -75,6 +75,23 @@ Add-AMElement -Card $card -Element $detailsText -ContainerId "details-section"
 # Create a button to toggle visibility
 $toggleAction = New-AMToggleVisibilityAction -Title "Show/Hide Details" -TargetElements @("details-section")
 Add-AMElement -Card $card -Element (New-AMActionSet -Id "actions" -Actions @($toggleAction))
+```
+
+### EXAMPLE 4
+```powershell
+# Create a container with custom padding on different sides
+$customPadding = @{
+    top = "None"
+    bottom = "Large"
+    left = "Small"
+    right = "Small"
+}
+```
+
+#### Example explanation
+```powershell
+$container = New-AMContainer -Id "custom-padding" -Padding "Custom" -CustomPadding $customPadding
+Add-AMElement -Card $card -Element $container
 ```
 ## PARAMETERS
 
@@ -150,8 +167,10 @@ Accept wildcard characters: False
 
 ### -Padding
 Optional spacing to apply around the container contents.
-Valid values: "None", "Small", "Default", "Large"
+Valid values: "None", "Small", "Default", "Medium", "Large", "ExtraLarge", "Custom"
 Default: "None"
+
+When set to "Custom", the CustomPadding parameter is used instead.
 
 ```yaml
 Type: String
@@ -160,6 +179,27 @@ Aliases: None
 
 Required: False
 Position: 4
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CustomPadding
+A hashtable that specifies different padding values for each side of the container.
+Only used when Padding is set to "Custom".
+
+The hashtable can include these keys: top, bottom, left, right
+Each value must be one of: "None", "Small", "Default", "Medium", "Large", "ExtraLarge"
+
+Example: @{top="None"; bottom="Default"; left="Default"; right="Default"}
+
+```yaml
+Type: Collections.Hashtable
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: 5
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

@@ -12,7 +12,7 @@ Creates an HTTP action for an Adaptive Card.
 ## SYNTAX
 
 ```powershell
-New-AMExecuteAction [-Title] <String> [-Verb] <String> [-Url <String>] [-Body <String>] [-Data <Object>] [-Id <String>] [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
+New-AMExecuteAction [-Title] <String> [-Verb] <String> [-Url <String>] [-Body <String>] [-Data <Object>] [-Id <String>] [-IsPrimary <Object>] [-Verbose <SwitchParameter>] [-Debug <SwitchParameter>] [-ErrorAction <ActionPreference>] [-WarningAction <ActionPreference>] [-InformationAction <ActionPreference>] [-ProgressAction <ActionPreference>] [-ErrorVariable <String>] [-WarningVariable <String>] [-InformationVariable <String>] [-OutVariable <String>] [-OutBuffer <Int32>] [-PipelineVariable <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -142,6 +142,19 @@ Aliases: None
 
 Required: False
 Position: 5
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IsPrimary
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: 6
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

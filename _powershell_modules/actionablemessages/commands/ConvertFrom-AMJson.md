@@ -53,16 +53,6 @@ $response = Invoke-RestMethod -Uri "https://myapi.example.com/cards/template"
 $response.cardJson | ConvertFrom-AMJson
 ```
 
-
-### EXAMPLE 4
-```powershell
-# Convert and immediately execute the generated script
-$json = '{"type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"Hello World"}]}'
-$script = ConvertFrom-AMJson -Json $json
-Invoke-Expression $script
-$cardJson # Access the card created by the script
-```
-
 ## PARAMETERS
 
 ### -GenerateId
