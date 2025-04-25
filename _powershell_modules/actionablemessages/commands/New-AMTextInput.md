@@ -16,7 +16,7 @@ New-AMTextInput [-Id] <String> [-Label <String>] [-Placeholder <String>] [-Value
 ```
 
 ## DESCRIPTION
-Creates an Input.Text element that allows users to enter text in an Adaptive Card.
+The `New-AMTextInput` function creates an Input.Text element that allows users to enter text in an Adaptive Card.
 Text inputs can be single-line or multi-line and support various configuration options
 like placeholders, default values, maximum length, and validation requirements.
 
@@ -120,8 +120,8 @@ Accept wildcard characters: False
 ```
 
 ### -IsMultiline
-When set to $true, creates a text area that allows for multiple lines of text.
-When set to $false (default), creates a single-line text input field.
+When set to `$true`, creates a text area that allows for multiple lines of text.
+When set to `$false` (default), creates a single-line text input field.
 
 ```yaml
 Type: Boolean
@@ -136,8 +136,8 @@ Accept wildcard characters: False
 ```
 
 ### -IsRequired
-When set to $true, the field must contain text when submitted.
-When set to $false (default), the field is optional.
+When set to `$true`, the field must contain text when submitted.
+When set to `$false` (default), the field is optional.
 
 ```yaml
 Type: Boolean
@@ -167,7 +167,7 @@ Accept wildcard characters: False
 ```
 
 ### -Separator
-When set to $true, adds a visible separator line above the input field.
+When set to `$true`, adds a visible separator line above the input field.
 
 ```yaml
 Type: Boolean
@@ -185,7 +185,7 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
-### None. You cannot pipe input to New-AMTextInput.
+### None. You cannot pipe input to `New-AMTextInput`.
 
 ## OUTPUTS
 ### System.Collections.Hashtable
@@ -193,12 +193,11 @@ Returns a hashtable representing the Input.Text element.
 
 ## NOTES
 Text inputs are versatile elements for gathering user feedback. Some best practices:
-
-- Always use clear labels to identify what information is being requested
-- Use placeholder text to provide examples or formatting guidance
-- For longer text entries, set IsMultiline to $true
-- Consider using MaxLength to prevent excessive text entry
-- Set IsRequired for fields that must be filled
+- Always use clear labels to identify what information is being requested.
+- Use placeholder text to provide examples or formatting guidance.
+- For longer text entries, set `IsMultiline` to `$true`.
+- Consider using `MaxLength` to prevent excessive text entry.
+- Set `IsRequired` for fields that must be filled.
 
 ## RELATED LINKS
 - [https://adaptivecards.io/explorer/Input.Text.html](https://adaptivecards.io/explorer/Input.Text.html)

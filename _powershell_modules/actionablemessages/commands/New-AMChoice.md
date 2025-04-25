@@ -16,12 +16,13 @@ New-AMChoice [-Title] <String> [-Value] <String> [-Verbose <SwitchParameter>] [-
 ```
 
 ## DESCRIPTION
-Creates a choice option to be used in a ChoiceSetInput element. Each choice represents
-an individual option that can be selected by users in dropdown lists, radio buttons,
-or checkbox groups within an Adaptive Card.
+The `New-AMChoice` function creates a choice option to be used in a `ChoiceSetInput` element. Each choice represents
+an individual option that can be selected by users in dropdown lists, radio buttons, or checkbox groups within an Adaptive Card.
 
-Choice objects must be created using this function before being passed to the
-New-AMChoiceSetInput function as the -Choices parameter.
+Choice objects must be created using this function before being passed to the `New-AMChoiceSetInput` function as the `-Choices` parameter.
+
+The `Title` parameter specifies the text displayed to the user, while the `Value` parameter specifies the data submitted when the choice is selected.
+This separation allows you to display user-friendly text while submitting more compact or standardized values in your form data.
 
 ## EXAMPLES
 
@@ -75,7 +76,7 @@ Accept wildcard characters: False
 
 ### -Value
 The value to be submitted when this choice is selected.
-This is the data that will be sent back when the card is submitted, and may
+This is the data that will be sent back when the card is submitted and may
 be different from the displayed title.
 
 ```yaml
@@ -94,16 +95,16 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
-### None. You cannot pipe input to New-AMChoice.
+### None. You cannot pipe input to `New-AMChoice`.
 
 ## OUTPUTS
 ### System.Collections.Hashtable
-Returns a hashtable with 'title' and 'value' properties that can be used in a choice set.
+Returns a hashtable with `title` and `value` properties that can be used in a choice set.
 
 ## NOTES
-The Title is what appears in the UI, while the Value is what gets submitted with the form data.
-This separation allows you to display user-friendly text while submitting more compact
-or standardized values in your form data.
+- The `Title` is what appears in the UI, while the `Value` is what gets submitted with the form data.
+- This separation allows you to display user-friendly text while submitting more compact or standardized values in your form data.
+- This function is typically used in conjunction with `New-AMChoiceSetInput` to create dropdowns, radio buttons, or checkbox groups.
 
 ## RELATED LINKS
 - [https://adaptivecards.io/explorer/Input.ChoiceSet.html](https://adaptivecards.io/explorer/Input.ChoiceSet.html)

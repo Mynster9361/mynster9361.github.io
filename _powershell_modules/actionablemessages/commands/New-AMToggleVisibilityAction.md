@@ -16,10 +16,13 @@ New-AMToggleVisibilityAction [-Title] <String> [-TargetElements] <String[]> [-Id
 ```
 
 ## DESCRIPTION
-Creates an Action.ToggleVisibility element that toggles the visibility of one or more elements.
-This action allows you to show or hide elements in your card when the user clicks the action button.
-It's commonly used for creating expandable/collapsible sections, showing additional details on demand,
-or implementing tabbed interfaces within a card.
+The `New-AMToggleVisibilityAction` function generates an `Action.ToggleVisibility` element for an Adaptive Card.
+This action allows you to toggle the visibility of one or more elements in the card when the button is clicked.
+It is commonly used for creating interactive cards with expandable/collapsible sections, "Read more" functionality,
+tabbed interfaces, or multi-step forms.
+
+This action is client-side only and does not require server communication, making it ideal for lightweight
+interactivity within Adaptive Cards.
 
 ## EXAMPLES
 
@@ -67,7 +70,7 @@ Add-AMElement -Card $card -Element $tabActionSet
 ## PARAMETERS
 
 ### -Title
-The title of the action button that will trigger the visibility toggle.
+The text to display on the action button that will trigger the visibility toggle.
 
 ```yaml
 Type: String
@@ -82,8 +85,8 @@ Accept wildcard characters: False
 ```
 
 ### -TargetElements
-An array of element IDs to toggle visibility. When the action is triggered,
-these elements will switch between visible and hidden states.
+An array of element IDs to toggle visibility. When the action is triggered, these elements will switch
+between visible and hidden states. The elements must have valid IDs defined in the card.
 
 ```yaml
 Type: String[]
@@ -98,9 +101,8 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Optional unique identifier for the action. If not specified, a new GUID will be
-generated automatically. Having an ID can be useful when you need to reference
-this action from other parts of your card.
+(Optional) A unique identifier for the action. If not specified, a new GUID will be generated automatically.
+The ID can be useful when referencing this action programmatically or from other parts of your card.
 
 ```yaml
 Type: String
@@ -118,23 +120,21 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
-### None. You cannot pipe input to New-AMToggleVisibilityAction.
+### None. You cannot pipe input to `New-AMToggleVisibilityAction`.
 
 ## OUTPUTS
 ### System.Collections.Hashtable
-Returns a hashtable representing the Action.ToggleVisibility element.
+Returns a hashtable representing the `Action.ToggleVisibility` element.
 
 ## NOTES
-Action.ToggleVisibility is extremely useful for creating interactive cards without requiring
-server communication. It works well for:
-
-- Creating expandable/collapsible sections
-- Implementing "Read more" functionality
-- Building simple wizards or multi-step forms
-- Showing and hiding form fields based on previous selections
-- Creating tab-like interfaces within cards
-
-Note that elements referenced in targetElements must have proper IDs defined.
+- `Action.ToggleVisibility` is extremely useful for creating interactive cards without requiring
+  server communication. It works well for:
+    - Creating expandable/collapsible sections
+    - Implementing "Read more" functionality
+    - Building simple wizards or multi-step forms
+    - Showing and hiding form fields based on previous selections
+    - Creating tab-like interfaces within cards
+- Elements referenced in `TargetElements` must have valid IDs defined in the card.
 
 ## RELATED LINKS
 - [https://adaptivecards.io/explorer/Action.ToggleVisibility.html](https://adaptivecards.io/explorer/Action.ToggleVisibility.html)

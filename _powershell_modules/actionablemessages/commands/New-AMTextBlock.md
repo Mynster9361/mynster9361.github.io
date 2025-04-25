@@ -16,9 +16,12 @@ New-AMTextBlock [-Text <String>] [-Size <String>] [-Weight <String>] [-Color <St
 ```
 
 ## DESCRIPTION
-Creates a TextBlock element that displays formatted text within an Adaptive Card.
-TextBlocks are the primary way to display text content and can be styled with
-different sizes, weights, and colors. They can also support simple markdown formatting.
+The `New-AMTextBlock` function creates a TextBlock element that displays formatted text within an Adaptive Card.
+TextBlocks are the primary way to display text content and can be styled with different sizes, weights, and colors.
+They also support simple markdown formatting for basic text styling.
+
+TextBlocks are highly versatile and can be used for headings, body text, or labels. They can be configured
+to wrap text, truncate long text, or display inline with other elements.
 
 ## EXAMPLES
 
@@ -41,6 +44,13 @@ $heading = New-AMTextBlock -Text "Important Notification" -Size "Large" -Weight 
 ```powershell
 # Create text with markdown formatting
 $markdownText = New-AMTextBlock -Text "Please **review** the [documentation](https://docs.example.com) before continuing."
+```
+
+
+### EXAMPLE 4
+```powershell
+# Create a text block with wrapping disabled
+$noWrapText = New-AMTextBlock -Text "This is a long line of text that will be truncated if it doesn't fit." -Wrap $false
 ```
 
 ## PARAMETERS
@@ -114,8 +124,8 @@ Accept wildcard characters: False
 
 ### -Wrap
 Specifies whether the text should wrap to multiple lines when it doesn't fit on a single line.
-When set to $false, text that doesn't fit will be truncated.
-Default: $true
+When set to `$false`, text that doesn't fit will be truncated.
+Default: `$true`
 
 ```yaml
 Type: String
@@ -133,7 +143,7 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
-### None. You cannot pipe input to New-AMTextBlock.
+### None. You cannot pipe input to `New-AMTextBlock`.
 
 ## OUTPUTS
 ### System.Collections.Hashtable
@@ -141,11 +151,11 @@ Returns a hashtable representing the TextBlock element.
 
 ## NOTES
 TextBlocks are the most common element in Adaptive Cards. Some best practices:
-
-- Use different sizes and weights to create visual hierarchy
-- Set Wrap to $true for longer text to ensure readability
-- Use markdown sparingly for emphasis, but avoid complex formatting
-- Consider using different colors to highlight important information
+- Use different sizes and weights to create a visual hierarchy.
+- Set `Wrap` to `$true` for longer text to ensure readability.
+- Use markdown sparingly for emphasis, but avoid complex formatting.
+- Consider using different colors to highlight important information.
+- Test your cards in the target environment to ensure proper rendering.
 
 ## RELATED LINKS
 - [https://adaptivecards.io/explorer/TextBlock.html](https://adaptivecards.io/explorer/TextBlock.html)

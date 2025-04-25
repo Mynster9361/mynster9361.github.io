@@ -16,10 +16,11 @@ New-AMNumberInput [-Id] <String> [-Max <String>] [-Min <String>] [-Placeholder <
 ```
 
 ## DESCRIPTION
-Creates an Input.Number element that allows users to enter or select a numeric value.
-Number inputs are useful when you need to collect quantities, ratings, scores, or any
-other numeric data from users. The input can be configured with minimum and maximum
-values.
+The `New-AMNumberInput` function creates an Input.Number element that allows users to enter or select a numeric value.
+Number inputs are useful when you need to collect quantities, ratings, scores, or any other numeric data from users.
+The input can be configured with optional minimum and maximum values, a default value, and placeholder text.
+
+This element ensures that only numeric values are accepted, providing a structured way to collect numeric input.
 
 ## EXAMPLES
 
@@ -44,6 +45,13 @@ $ratingInput = New-AMNumberInput -Id "rating" `
 # Create a quantity selector with default value
 $quantityInput = New-AMNumberInput -Id "quantity" `
     -Min "1" -Max "100" -Value "1" -Placeholder "Enter quantity"
+```
+
+
+### EXAMPLE 4
+```powershell
+# Create a number input without constraints
+$freeInput = New-AMNumberInput -Id "freeInput" -Placeholder "Enter any number"
 ```
 
 ## PARAMETERS
@@ -95,7 +103,7 @@ Accept wildcard characters: False
 ```
 
 ### -Placeholder
-Optional text to display when no value has been entered.
+Optional text to display when no value has been entered. This helps guide users on what to input.
 
 ```yaml
 Type: String
@@ -128,19 +136,17 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
-### None. You cannot pipe input to New-AMNumberInput.
+### None. You cannot pipe input to `New-AMNumberInput`.
 
 ## OUTPUTS
 ### System.Collections.Hashtable
 Returns a hashtable representing the Input.Number element.
 
 ## NOTES
-Number inputs in Adaptive Cards will typically render as a text field that only accepts
-numeric values. Some clients may show increment/decrement buttons depending on the
-min and max values provided.
-
-Values are submitted as strings, so you'll need to convert them to numeric types
-when processing the card data.
+- Number inputs in Adaptive Cards will typically render as a text field that only accepts numeric values.
+- Some clients may show increment/decrement buttons depending on the `Min` and `Max` values provided.
+- Values are submitted as strings, so you'll need to convert them to numeric types when processing the card data.
+- Ensure that the `Min` and `Max` values are valid numbers and that `Min` is less than or equal to `Max`.
 
 ## RELATED LINKS
 - [https://adaptivecards.io/explorer/Input.Number.html](https://adaptivecards.io/explorer/Input.Number.html)

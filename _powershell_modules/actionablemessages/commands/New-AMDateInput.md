@@ -16,9 +16,12 @@ New-AMDateInput [-Id] <String> [-Label] <String> [-Value <String>] [-Placeholder
 ```
 
 ## DESCRIPTION
-Creates an Input.Date element that allows users to select a date from a calendar interface.
-Date inputs are used when you need to collect a specific date from users, such as
-for scheduling events, setting deadlines, or specifying birthdates.
+The `New-AMDateInput` function creates an Input.Date element that allows users to select a date from a calendar interface.
+Date inputs are used when you need to collect a specific date from users, such as for scheduling events, setting deadlines,
+or specifying birthdates.
+
+The date input supports optional default values, placeholder text, and restrictions on the selectable date range
+using minimum and maximum date parameters.
 
 ## EXAMPLES
 
@@ -43,6 +46,13 @@ $eventDateInput = New-AMDateInput -Id "eventDate" -Label "Event Date:" -Value "2
 $birthDateInput = New-AMDateInput -Id "birthDate" -Label "Birth Date:" `
     -Placeholder "Enter your date of birth" `
     -Min "1900-01-01" -Max "2020-12-31"
+```
+
+
+### EXAMPLE 4
+```powershell
+# Create a date input with no default value
+$customDateInput = New-AMDateInput -Id "customDate" -Label "Custom Date:" -Value ""
 ```
 
 ## PARAMETERS
@@ -146,17 +156,18 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
-### None. You cannot pipe input to New-AMDateInput.
+### None. You cannot pipe input to `New-AMDateInput`.
 
 ## OUTPUTS
 ### System.Collections.Hashtable
 Returns a hashtable representing the Input.Date element.
 
 ## NOTES
-Date inputs in Adaptive Cards will render differently depending on the client:
-- In most clients, they appear as a text field with a calendar picker
-- The format of the displayed date may vary by client or user locale
-- The value submitted will always be in ISO 8601 format (YYYY-MM-DD)
+- Date inputs in Adaptive Cards will render differently depending on the client:
+  - In most clients, they appear as a text field with a calendar picker.
+  - The format of the displayed date may vary by client or user locale.
+  - The value submitted will always be in ISO 8601 format (YYYY-MM-DD).
+- Ensure that the `Min` and `Max` values are valid ISO 8601 dates and that `Min` is earlier than `Max`.
 
 ## RELATED LINKS
 - [https://adaptivecards.io/explorer/Input.Date.html](https://adaptivecards.io/explorer/Input.Date.html)

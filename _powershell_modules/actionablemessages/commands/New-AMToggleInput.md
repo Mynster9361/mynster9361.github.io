@@ -16,7 +16,7 @@ New-AMToggleInput [-id <String>] [-title <String>] [-value <String>] [-valueOn <
 ```
 
 ## DESCRIPTION
-Creates an Input.Toggle element that allows users to switch between two states: on or off.
+The `New-AMToggleInput` function creates an Input.Toggle element that allows users to switch between two states: on or off.
 Toggle inputs are useful for boolean choices, preferences, or any yes/no decision.
 
 The element typically renders as a checkbox or toggle switch depending on the host
@@ -95,9 +95,9 @@ Accept wildcard characters: False
 
 ### -value
 The initial state of the toggle.
-- $true or "true": The toggle is initially on/checked
-- $false or "false": The toggle is initially off/unchecked
-Default: $false
+- `$true` or `"true"`: The toggle is initially on/checked.
+- `$false` or `"false"`: The toggle is initially off/unchecked.
+Default: `$false`
 
 ```yaml
 Type: String
@@ -113,7 +113,7 @@ Accept wildcard characters: False
 
 ### -valueOn
 Optional text value to submit when the toggle is in the "on" state.
-Default: "true"
+Default: `"true"`
 
 ```yaml
 Type: String
@@ -129,7 +129,7 @@ Accept wildcard characters: False
 
 ### -valueOff
 Optional text value to submit when the toggle is in the "off" state.
-Default: "false"
+Default: `"false"`
 
 ```yaml
 Type: String
@@ -145,8 +145,8 @@ Accept wildcard characters: False
 
 ### -style
 Optional visual style for the toggle input.
-Valid values: "default", "expanded", "compact"
-Default: "default"
+Valid values: `"default"`, `"expanded"`, `"compact"`
+Default: `"default"`
 
 ```yaml
 Type: String
@@ -164,7 +164,7 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
-### None. You cannot pipe input to New-AMToggleInput.
+### None. You cannot pipe input to `New-AMToggleInput`.
 
 ## OUTPUTS
 ### System.Collections.Hashtable
@@ -174,9 +174,9 @@ Returns a hashtable representing the Input.Toggle element.
 Toggle inputs are ideal for binary choices where the user must select one of two options.
 
 When designing forms with toggles:
-- Use clear, concise labels that indicate the "on" state
-- Consider grouping related toggles together
-- For more complex choices with multiple options, consider using ChoiceSet instead
+- Use clear, concise labels that indicate the "on" state.
+- Consider grouping related toggles together.
+- For more complex choices with multiple options, consider using `ChoiceSet` instead.
 
 ## RELATED LINKS
 - [https://adaptivecards.io/explorer/Input.Toggle.html](https://adaptivecards.io/explorer/Input.Toggle.html)

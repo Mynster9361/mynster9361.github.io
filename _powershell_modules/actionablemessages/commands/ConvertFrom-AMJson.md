@@ -16,17 +16,19 @@ ConvertFrom-AMJson [-Json] <String> [-OutputPath <String>] [-GenerateId <SwitchP
 ```
 
 ## DESCRIPTION
-Takes an Adaptive Card JSON string and generates the equivalent PowerShell commands
-that would create the same card using the ActionableMessages module functions.
+The `ConvertFrom-AMJson` function takes an Adaptive Card JSON string and generates equivalent PowerShell
+commands that would create the same card using the ActionableMessages module functions.
 
 This function is useful for:
 - Converting existing Adaptive Cards to PowerShell code
 - Learning by example how to create complex cards
 - Migrating from other platforms that export Adaptive Cards as JSON
-- Generating scripts from designer-created cards
+- Generating reusable scripts from designer-created cards
 
-The generated code follows best practices for the ActionableMessages module
-and maintains proper nesting of elements within containers and column sets.
+The generated code follows best practices for the ActionableMessages module and maintains proper nesting
+of elements within containers, column sets, and other structures.
+
+If the JSON contains unsupported element types, they will be commented in the output script for manual review.
 
 ## EXAMPLES
 
@@ -53,11 +55,19 @@ $response = Invoke-RestMethod -Uri "https://myapi.example.com/cards/template"
 $response.cardJson | ConvertFrom-AMJson
 ```
 
+
+### EXAMPLE 4
+```powershell
+# Convert JSON and generate new IDs for elements
+$jsonContent = Get-Content -Path ".\card.json" -Raw
+ConvertFrom-AMJson -Json $jsonContent -GenerateId
+```
+
 ## PARAMETERS
 
 ### -GenerateId
-Optional switch. When specified, generates new IDs for elements that don't have them,
-which can be useful when you need to reference elements later in your code.
+(Optional) When specified, generates new IDs for elements that don't have them. This can be useful when
+you need to reference elements later in your code.
 
 ```yaml
 Type: Management.Automation.SwitchParameter
@@ -88,8 +98,8 @@ Accept wildcard characters: False
 ```
 
 ### -OutputPath
-Optional. If specified, writes the generated PowerShell script to this file path
-instead of returning it as a string.
+(Optional) If specified, writes the generated PowerShell script to this file path instead of returning it
+as a string.
 
 ```yaml
 Type: String
@@ -108,20 +118,19 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 ### System.String
+Accepts a JSON string representing an Adaptive Card.
 
 ## OUTPUTS
 ### System.String or None
-Returns the generated PowerShell script as a string if no OutputPath is specified.
-If OutputPath is specified, writes to the file and returns a confirmation message.
+- Returns the generated PowerShell script as a string if no `OutputPath` is specified.
+- If `OutputPath` is specified, writes the script to the file and returns a confirmation message.
 
 ## NOTES
-This function will attempt to handle all standard Adaptive Card elements and actions,
-including TextBlocks, Images, ImageSets, Containers, ColumnSets, FactSets, Input elements,
-and various action types.
-
-If the JSON contains unsupported element types, they will be commented in the output script.
-
-Variable names in the generated script are based on element types and IDs when available.
+- This function supports all standard Adaptive Card elements and actions, including:
+  TextBlocks, Images, ImageSets, Containers, ColumnSets, FactSets, Input elements, and various action types.
+- Unsupported element types will be commented in the output script for manual review.
+- Variable names in the generated script are based on element types and IDs when available.
+- The function ensures proper nesting of elements and maintains the structure of the original card.
 
 ## RELATED LINKS
 - [https://adaptivecards.io/explorer/](https://adaptivecards.io/explorer/)

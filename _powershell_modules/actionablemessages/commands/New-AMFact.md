@@ -16,12 +16,16 @@ New-AMFact [-Title] <String> [-Value] <String> [-Verbose <SwitchParameter>] [-De
 ```
 
 ## DESCRIPTION
-Creates a key-value pair (fact) to be displayed in a FactSet element.
-Facts are used to display information in a structured, two-column format
-with labels on the left and values on the right.
+The `New-AMFact` function creates a key-value pair (fact) to be displayed in a FactSet element.
+Facts are used to display information in a structured, two-column format with labels on the left
+and values on the right.
 
-Multiple Fact objects are typically grouped together in a FactSet element
-created with New-AMFactSet to create a list of related information.
+Multiple Fact objects are typically grouped together in a FactSet element created with `New-AMFactSet`
+to create a list of related information.
+
+The `Title` parameter specifies the label or name of the fact, while the `Value` parameter specifies
+the content or data associated with the fact. This separation allows you to display structured information
+in a clear and organized manner.
 
 ## EXAMPLES
 
@@ -61,6 +65,12 @@ $orderFacts = @(
 )
 ```
 
+#### Example explanation
+```powershell
+# Add these facts to a FactSet
+$factSet = New-AMFactSet -Facts $orderFacts
+Add-AMElement -Card $card -Element $factSet
+```
 ## PARAMETERS
 
 ### -Title
@@ -81,7 +91,7 @@ Accept wildcard characters: False
 
 ### -Value
 The value or content of the fact. This appears in the right column of the FactSet,
-paired with the Title.
+paired with the Title. Values can include simple Markdown formatting (e.g., bold, italics).
 
 ```yaml
 Type: String
@@ -99,18 +109,18 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
-### None. You cannot pipe input to New-AMFact.
+### None. You cannot pipe input to `New-AMFact`.
 
 ## OUTPUTS
 ### System.Collections.Hashtable
-Returns a hashtable with 'title' and 'value' properties.
+Returns a hashtable with `title` and `value` properties.
 
 ## NOTES
-Facts are designed to display in a two-column format and work best for structured
-data like properties, specifications, or details about an item or person.
-
-While Values can contain simple Markdown formatting (bold, italics, etc.),
-complex formatting may not render consistently across all Adaptive Card hosts.
+- Facts are designed to display in a two-column format and work best for structured
+  data like properties, specifications, or details about an item or person.
+- While `Value` can contain simple Markdown formatting (e.g., bold, italics),
+  complex formatting may not render consistently across all Adaptive Card hosts.
+- Facts are typically grouped together in a FactSet using the `New-AMFactSet` function.
 
 ## RELATED LINKS
 - [https://adaptivecards.io/explorer/FactSet.html](https://adaptivecards.io/explorer/FactSet.html)

@@ -16,12 +16,14 @@ New-AMColumnSet [-Id] <String> [-Columns] <Array> [-Verbose <SwitchParameter>] [
 ```
 
 ## DESCRIPTION
-Creates a ColumnSet element that allows you to arrange content in multiple columns.
-ColumnSets are one of the primary layout elements in Adaptive Cards and enable
-side-by-side content arrangement.
+The `New-AMColumnSet` function creates a ColumnSet element that allows you to arrange content in multiple columns.
+ColumnSets are one of the primary layout elements in Adaptive Cards and enable side-by-side content arrangement.
 
-A ColumnSet contains one or more Column objects, each created with the New-AMColumn
-function. Each column can contain its own set of elements (text, images, etc.).
+A ColumnSet contains one or more Column objects, each created with the `New-AMColumn` function. Each column can
+contain its own set of elements (text, images, etc.). ColumnSets are highly flexible and can be used to create
+responsive layouts by combining columns with different widths and alignments.
+
+The resulting ColumnSet can be added directly to a card body or to another container element using `Add-AMElement`.
 
 ## EXAMPLES
 
@@ -103,7 +105,7 @@ Accept wildcard characters: False
 ```
 
 ### -Columns
-An array of Column objects created using the New-AMColumn function. These columns
+An array of Column objects created using the `New-AMColumn` function. These columns
 will be displayed side-by-side within the ColumnSet.
 
 ```yaml
@@ -122,22 +124,19 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters).
 
 ## INPUTS
-### None. You cannot pipe input to New-AMColumnSet.
+### None. You cannot pipe input to `New-AMColumnSet`.
 
 ## OUTPUTS
 ### System.Collections.Hashtable
 Returns a hashtable representing the ColumnSet element.
 
 ## NOTES
-ColumnSets are powerful layout tools in Adaptive Cards. Some key points:
-
-- You can create responsive layouts by using proportional widths ("1", "2", etc.)
-- Use "auto" width for columns that should be sized to their content
-- Use "stretch" width for columns that should fill remaining space
-- Each column can have its own vertical alignment
-
-The resulting ColumnSet can be added directly to a card body or to another
-container element using Add-AMElement.
+- ColumnSets are powerful layout tools in Adaptive Cards. Some key points:
+  - You can create responsive layouts by using proportional widths ("1", "2", etc.).
+  - Use "auto" width for columns that should be sized to their content.
+  - Use "stretch" width for columns that should fill remaining space.
+  - Each column can have its own vertical alignment.
+- The resulting ColumnSet can be added directly to a card body or to another container element using `Add-AMElement`.
 
 ## RELATED LINKS
 - [https://adaptivecards.io/explorer/ColumnSet.html](https://adaptivecards.io/explorer/ColumnSet.html)
