@@ -1,13 +1,14 @@
 ---
 title: Getting Started with Terraform for PowerShell People - Part 2
 author: mynster
-date: 2025-07-11 10:30:00 +0100
+date: 2025-07-22 10:30:00 +0100
 categories: [Infrastructure, Terraform]
 tags: [terraform, powershell, infrastructure as code, iac, azure, variables]
 description: Learn about Terraform resources, variables, and state management from a PowerShell perspective, with practical examples.
 ---
 
 > **📚 Series Navigation:**
+>
 > - [Part 1: Getting Started with Terraform for PowerShell People](/posts/GettingStartedWithTerraformForPowerShellPeople/)
 > - **Part 2: Resources, Variables, and State in Terraform** ← *You are here*
 > - Part 3: Advanced Terraform and PowerShell Integration *(July 29)*
@@ -81,7 +82,7 @@ You can also create explicit dependencies which can be handy when some resources
 ```hcl
 resource "azurerm_subnet" "example" {
   # Properties...
-  
+
   depends_on = [
     azurerm_virtual_network.example
   ]
@@ -146,7 +147,7 @@ provider "azurerm" {
 resource "azurerm_resource_group" "example" {
   name     = "${var.resource_group_name}-${var.environment}"
   location = var.location
-  
+
   tags = {
     Environment = var.environment
   }
@@ -191,6 +192,7 @@ output "vnet_address_space" {
 ```
 
 After running `terraform apply`, the output will be printed like so:
+
 ```hcl
 azurerm_resource_group.example: Creating...
 azurerm_resource_group.example: Still creating... [00m10s elapsed]
@@ -207,6 +209,7 @@ vnet_address_space = toset([
   "10.0.0.0/16",
 ])
 ```
+
 you can see outputs with:
 
 ```powershell
@@ -263,6 +266,7 @@ $deploymentState | ConvertTo-Json -Depth 10 | Set-Content -Path ".\deployment-st
 ```
 
 And then you will end up with a long json file like this example *truncated*
+
 ```json
 {
   "Resources": [
@@ -347,13 +351,13 @@ Here's a PowerShell script to set up the remote state infrastructure:
 param(
     [Parameter(Mandatory=$true)]
     [string]$SubscriptionId,
-    
+
     [Parameter(Mandatory=$true)]
     [string]$ResourceGroupName = "terraform-state-rg",
-    
+
     [Parameter(Mandatory=$true)]
     [string]$StorageAccountName,
-    
+
     [string]$Location = "East US",
     [string]$ContainerName = "tfstate"
 )
@@ -527,6 +531,19 @@ resource "azurerm_mssql_server" "example" {
 Here's a complete example deploying an Azure Web App with reusable variables:
 
 ```hcl
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 4.30.0"
+    }
+  }
+}
+provider "azurerm" {
+  features {}
+  subscription_id = "your-subscription-id" # Replace with your Azure subscription ID
+}
+
 # variables.tf
 variable "base_name" {
   type        = string
@@ -551,27 +568,27 @@ resource "azurerm_resource_group" "example" {
   location = var.location
 }
 
-resource "azurerm_app_service_plan" "example" {
+resource "azurerm_service_plan" "example" {
   name                = "${var.base_name}-plan"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
 
-  sku {
-    tier = var.environment == "prod" ? "Standard" : "Basic"
-    size = var.environment == "prod" ? "S1" : "B1"
-  }
+  os_type  = "Linux"
+  sku_name = "P1v2"
 }
 
-resource "azurerm_app_service" "example" {
-  name                = "${var.base_name}-${var.environment}-app"
-  location            = azurerm_resource_group.example.location
+resource "azurerm_linux_web_app" "example" {
+  name                = "examplemortenkr"
   resource_group_name = azurerm_resource_group.example.name
-  app_service_plan_id = azurerm_app_service_plan.example.id
+  location            = azurerm_service_plan.example.location
+  service_plan_id     = azurerm_service_plan.example.id
+
+  site_config {}
 }
 
 # outputs.tf
 output "website_url" {
-  value = "https://${azurerm_app_service.example.default_site_hostname}"
+  value = "https://${azurerm_linux_web_app.example.default_hostname}"
 }
 ```
 
@@ -588,27 +605,29 @@ terraform apply -var "base_name=mywebapp" -var "environment=dev"
 PowerShell has rich parameter validation otherwise refered to as a ValidateSet which is just a set of options that can be chosen for a given parameter. Terraform provides similar capabilities:
 
 **PowerShell Parameter Validation:**
+
 ```powershell
 param(
     [Parameter(Mandatory=$true)]
     [ValidateSet("dev", "test", "prod")]
     [string]$Environment,
-    
+
     [Parameter(Mandatory=$true)]
     [ValidateRange(1, 100)]
     [int]$InstanceCount,
-    
+
     [ValidatePattern("^[a-z0-9-]+$")]
     [string]$ResourceName
 )
 ```
 
 **Terraform Variable Validation:**
+
 ```hcl
 variable "environment" {
   type        = string
   description = "Environment name"
-  
+
   validation {
     condition     = contains(["dev", "test", "prod"], var.environment)
     error_message = "Environment must be dev, test, or prod."
@@ -618,7 +637,7 @@ variable "environment" {
 variable "instance_count" {
   type        = number
   description = "Number of instances to create"
-  
+
   validation {
     condition     = var.instance_count >= 1 && var.instance_count <= 100
     error_message = "Instance count must be between 1 and 100."
@@ -628,7 +647,7 @@ variable "instance_count" {
 variable "resource_name" {
   type        = string
   description = "Name for the resource"
-  
+
   validation {
     condition     = can(regex("^[a-z0-9-]+$", var.resource_name))
     error_message = "Resource name must contain only lowercase letters, numbers, and hyphens."
@@ -641,6 +660,7 @@ variable "resource_name" {
 Terraform supports complex data types similar to PowerShell objects and hashtables:
 
 **PowerShell Objects and Hashtables:**
+
 ```powershell
 # PowerShell hashtable
 $appSettings = @{
@@ -657,6 +677,7 @@ $vmConfig = [PSCustomObject]@{
 ```
 
 **Terraform Object and Map Types:**
+
 ```hcl
 # Terraform map variable (like PowerShell hashtable)
 variable "app_settings" {
@@ -704,22 +725,23 @@ variable "subnets" {
 
 ```hcl
 # Using the complex variables in resources
-resource "azurerm_app_service" "example" {
+resource "azurerm_linux_web_app" "example" {
   name                = var.vm_config.name
   # ...other configuration...
-  
+
   app_settings = var.app_settings
 }
 
 resource "azurerm_subnet" "example" {
   count = length(var.subnets)
-  
+
   name                 = var.subnets[count.index].name
   address_prefixes     = [var.subnets[count.index].address_prefix]
   virtual_network_name = azurerm_virtual_network.example.name
   resource_group_name  = azurerm_resource_group.example.name
 }
 ```
+
 ## Local Values: Terraform's Equivalent to PowerShell Local Variables
 
 In PowerShell functions, we often compute values locally:
@@ -727,7 +749,7 @@ In PowerShell functions, we often compute values locally:
 ```powershell
 function Deploy-WebApp {
     param($BaseName, $Environment, $Location)
-    
+
     # Local computed values
     $resourceGroupName = "$BaseName-$Environment-rg"
     $appServiceName = "$BaseName-$Environment-app"
@@ -738,7 +760,7 @@ function Deploy-WebApp {
         ManagedBy = "Terraform"
         CreatedDate = (Get-Date).ToString("yyyy-MM-dd")
     }
-    
+
     # Use the computed values
     New-AzResourceGroup -Name $resourceGroupName -Location $Location -Tag $commonTags
 }
@@ -752,7 +774,7 @@ locals {
   resource_group_name  = "${var.base_name}-${var.environment}-rg"
   app_service_name     = "${var.base_name}-${var.environment}-app"
   storage_account_name = lower(replace("${var.base_name}${var.environment}", "/[^a-z0-9]/", ""))
-  
+
   # Common tags applied to all resources
   common_tags = {
     Environment = var.environment
@@ -760,8 +782,8 @@ locals {
     ManagedBy   = "Terraform"
     CreatedDate = formatdate("YYYY-MM-DD", timestamp())
   }
-  
-  # Conditional logic. 
+
+  # Conditional logic.
   # The two below examples basicly says if the variable environment is set to "prod" the app_service_pla_tier is PremiumV2
   # And the same goes for backuup_retention_days if environment is set to "prod" then the retention is set to 30
   app_service_plan_tier = var.environment == "prod" ? "PremiumV2" : "Standard"
@@ -780,7 +802,7 @@ resource "azurerm_storage_account" "example" {
   resource_group_name = azurerm_resource_group.example.name
   location           = azurerm_resource_group.example.location
   tags               = local.common_tags
-  
+
   # Use conditional local
   backup_retention_policy {
     days = local.backup_retention_days
@@ -822,6 +844,7 @@ $prodParams = @{
 Terraform uses `.tfvars` files for environment-specific values:
 
 **dev.tfvars:**
+
 ```hcl
 base_name = "myapp"
 environment = "dev"
@@ -837,6 +860,7 @@ enable_monitoring = false
 ```
 
 **prod.tfvars:**
+
 ```hcl
 base_name = "myapp"
 environment = "prod"
@@ -853,6 +877,7 @@ backup_retention_days = 30
 ```
 
 **Using variable files:**
+
 ```powershell
 # Deploy to dev environment
 terraform plan -var-file="dev.tfvars"
@@ -873,7 +898,7 @@ param(
     [Parameter(Mandatory=$true)]
     [ValidateSet("dev", "test", "prod")]
     [string]$Environment,
-    
+
     [switch]$PlanOnly
 )
 
@@ -895,7 +920,7 @@ if ($PlanOnly) {
 } else {
     # Apply the changes
     terraform plan -var-file=$varFile -out="$Environment.tfplan"
-    
+
     $confirmation = Read-Host "Apply these changes to $Environment? (yes/no)"
     if ($confirmation -eq "yes") {
         terraform apply "$Environment.tfplan"
@@ -912,6 +937,7 @@ if ($PlanOnly) {
 In this second part of our PowerShell-to-Terraform series, you've learned to build flexible, maintainable infrastructure code using familiar concepts adapted to Terraform's declarative approach:
 
 **What We've Mastered:**
+
 1. **Resource Dependencies**: Terraform's automatic dependency resolution vs PowerShell's explicit ordering
 2. **Variables & Validation**: Type-safe infrastructure parameters with built-in validation rules
 3. **Data Sources**: Terraform's approach to querying existing infrastructure (like PowerShell's `Get-*` cmdlets)
@@ -921,6 +947,7 @@ In this second part of our PowerShell-to-Terraform series, you've learned to bui
 7. **State Deep Dive**: Understanding Terraform's comprehensive state tracking vs PowerShell's stateless operations
 
 **PowerShell Developer Key Insights:**
+
 - Variables in Terraform are more powerful than PowerShell parameters with runtime validation
 - Data sources eliminate the need for custom `Get-*` cmdlet equivalent scripts
 - Local values provide the same benefits as local variables in PowerShell functions
