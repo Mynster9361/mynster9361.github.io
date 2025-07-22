@@ -1,7 +1,7 @@
 ---
 title: Getting Started with Terraform for PowerShell People - Part 2
 author: mynster
-date: 2025-07-22 07:30:00 +0100
+date: 2025-07-22 06:30:00 +0100
 categories: [Infrastructure, Terraform]
 tags: [terraform, powershell, infrastructure as code, iac, azure, variables]
 description: Learn about Terraform resources, variables, and state management from a PowerShell perspective, with practical examples.
