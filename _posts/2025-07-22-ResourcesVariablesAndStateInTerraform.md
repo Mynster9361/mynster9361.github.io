@@ -957,6 +957,6 @@ In this second part of our PowerShell-to-Terraform series, you've learned to bui
 ✅ Foundation → ✅ Variables & State → Integration → Collaboration → Testing → Modules → CI/CD
 
 **Coming Next:**
-In [Part 3](/posts/AdvancedTerraformAndPowerShellIntegration/), we'll explore advanced concepts like modules (Terraform's equivalent to PowerShell modules), loops and conditionals, and how to integrate Terraform with your existing PowerShell automation workflows for hybrid infrastructure solutions.
+Part 3 (releasing July 29), we'll explore advanced concepts like modules (Terraform's equivalent to PowerShell modules), loops and conditionals, and how to integrate Terraform with your existing PowerShell automation workflows for hybrid infrastructure solutions.
 
 *You're now ready to build production-ready, parameterized infrastructure!*
