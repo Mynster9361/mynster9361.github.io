@@ -8,7 +8,9 @@ description: Learn how Terraform works from a PowerShell person's perspective, i
 ---
 
 > **📚 Series Navigation:**
+>
 > - **Part 1: Getting Started with Terraform for PowerShell People** ← *You are here*
+> - [Part 2: Resources, Variables, and State in Terraform (July 22)](/posts/ResourcesVariablesAndStateInTerraform/)
 > - Part 2: Resources, Variables, and State in Terraform *(July 22)*
 > - Part 3: Advanced Terraform and PowerShell Integration *(July 29)*
 > - Part 4: Advanced State Management and Collaboration *(August 5)*
@@ -27,6 +29,7 @@ Throughout this 7-part series, we'll help you transition from PowerShell scripti
 Let's start with a simple comparison:
 
 **PowerShell (Imperative):**
+
 ```powershell
 # Note you should login with `Connect-AzAccount` before running this script
 # define variables
@@ -55,6 +58,7 @@ if (-not (Get-AzStorageAccount -ResourceGroupName $rgName -Name $stName -ErrorAc
 ```
 
 **Terraform (Declarative):**
+
 ```hcl
 # note you will need to run `terraform init` and login with `az login` before running terraform plan/apply
 terraform {
@@ -93,10 +97,12 @@ Notice how PowerShell requires you to check if resources exist and handle that l
 Installing Terraform is straightforward. There are several methods available:
 
 ### Windows (using Chocolatey)
+
 Chocolatey can be downloaded from here
 [Chocolatey download](https://chocolatey.org/install#generic){:target="_blank"}
 
 Once installed the easiest way to install terraform is running the following in an elevated PowerShell terminal
+
 ```powershell
 # Install Chocolatey if you don't have it
 choco install terraform
@@ -125,6 +131,7 @@ code --install-extension ms-azuretools.vscode-azureresourcegroups
 ```
 
 These extensions provide:
+
 - Syntax highlighting and IntelliSense for Terraform
 - Terraform plan/apply integration
 - Azure resource browsing - Optional
@@ -188,7 +195,7 @@ provider "azurerm" {
 resource "azurerm_resource_group" "example" {
   name     = "my-first-terraform-rg"
   location = "West Europe"
-  
+
   tags = {
     environment = "Development"
     created_by  = "Terraform"
@@ -218,6 +225,7 @@ terraform plan
 ```
 
 With this we will get this output:
+
 ```hcl
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
   + create
@@ -360,6 +368,7 @@ When prompted, type `yes` to confirm.
 
 We will see something similar to the above plan and then additionally see the following:
 *Note that due to storage accounts having to be globally unique you might run into an error like:*
+
 ```hcl
 azurerm_resource_group.example: Creating...
 azurerm_resource_group.example: Still creating... [00m10s elapsed]
@@ -375,6 +384,7 @@ azurerm_storage_account.example: Creating...
 │   26: resource "azurerm_storage_account" "example" {
 │
 ```
+
 - Just change the name of the sotrage account untill something sticks
 
 ```hcl
@@ -435,9 +445,11 @@ git add terraform.tfstate  # BAD: Contains secrets
 echo "*.tfstate" >> .gitignore
 echo "*.tfstate.backup" >> .gitignore
 ```
+
 ## Cleanup the deployment again
 
 To cleanup the resources we just deployed we can just run
+
 ```powershell
 terraform destroy
 ```
@@ -445,6 +457,7 @@ terraform destroy
 When prompted, type `yes` to confirm.
 
 Which would give you the plan again this time with red - in it to display what it is destroying and the following
+
 ```hcl
 Plan: 0 to add, 0 to change, 2 to destroy.
 
@@ -463,7 +476,6 @@ azurerm_resource_group.example: Destruction complete after 17s
 Destroy complete! Resources: 2 destroyed.
 ```
 
-
 ## Understanding the Terraform Workflow
 
 The Terraform workflow can be understood by comparing it to familiar PowerShell concepts:
@@ -480,16 +492,18 @@ The Terraform workflow can be understood by comparing it to familiar PowerShell 
 One fundamental difference is how state is managed:
 
 **PowerShell:**
+
 - Stateless by default
 - You query current state each time
 - You write logic to handle differences
 
 **Terraform:**
+
 - Stores state in a state file
 - Compares desired state to current state
 - Automatically determines required changes
-> **Security Note:** Terraform state files can contain sensitive information. Never commit them to version control. For production environments, consider using remote state with appropriate access controls.
 
+> **Security Note:** Terraform state files can contain sensitive information. Never commit them to version control. For production environments, consider using remote state with appropriate access controls.
 
 ## Conclusion and Next Steps
 
@@ -502,6 +516,7 @@ In this first part of our PowerShell-to-Terraform series, we've established the 
 5. **Security Foundations**: Best practices for handling sensitive data in state files
 
 **What We've Achieved:**
+
 - Installed and configured Terraform with proper tooling
 - Understood the fundamental workflow differences between PowerShell and Terraform
 - Successfully deployed and managed Azure resources declaratively
@@ -517,6 +532,7 @@ Part 2 (releasing July 22) will build on this foundation by exploring how to mak
 This series is designed to take you from PowerShell scripter to Terraform expert through a carefully planned progression:
 
 **🎯 Learning Path Overview:**
+
 - **Parts 1-2**: Foundation and core concepts (where you are now)
 - **Parts 3-4**: Integration with PowerShell and team collaboration
 - **Parts 5-6**: Testing strategies and production-ready modules
@@ -526,6 +542,7 @@ This series is designed to take you from PowerShell scripter to Terraform expert
 Unlike general Terraform tutorials, every concept is explained through PowerShell parallels, making your existing knowledge an advantage rather than something to forget. You'll learn not just *what* to do, but *why* it matters from a PowerShell professional's perspective.
 
 **🚀 By the End, You'll Have:**
+
 - A complete enterprise infrastructure automation platform
 - Skills that combine PowerShell flexibility with Terraform's declarative power
 - Practical experience with testing, modules, and CI/CD for infrastructure
@@ -536,6 +553,7 @@ Unlike general Terraform tutorials, every concept is explained through PowerShel
 When transitioning from PowerShell to Terraform, watch out for these common issues:
 
 ### 1. String Interpolation Differences
+
 ```powershell
 # PowerShell
 $resourceName = "rg-$environment-$location"
@@ -549,6 +567,7 @@ locals {
 ```
 
 ### 2. Error Handling Philosophy
+
 ```powershell
 # PowerShell - explicit error handling
 try {
@@ -568,21 +587,24 @@ try {
 resource "azurerm_resource_group" "example" {
   name     = var.resource_group_name
   location = var.location
-  
+
   # Terraform handles errors automatically
   # You define what you want, not how to handle failures
 }
 ```
 
 ### 3. Case Sensitivity
+
 PowerShell is generally case-insensitive, but Terraform is case-sensitive:
+
 - Resource names: `azurerm_resource_group` (not `azurerm_Resource_Group`)
 - Variable references: `var.location` (not `var.Location`)
 
 ### 4. Comments Syntax
+
 ```powershell
 # PowerShell comment
-<# 
+<#
 PowerShell
 multi-line
 comment
@@ -591,8 +613,8 @@ comment
 
 ```hcl
 # Terraform comment (only single-line supported)
-/* 
-Multi-line 
-comments 
+/*
+Multi-line
+comments
 */
 ```
