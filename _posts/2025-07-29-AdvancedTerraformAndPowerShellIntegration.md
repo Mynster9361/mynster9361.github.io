@@ -1,7 +1,7 @@
 ---
 title: Getting Started with Terraform for PowerShell Scripters - Part 3
 author: mynster
-date: 2025-07-11 10:30:00 +0100
+date: 2025-07-29 10:30:00 +0100
 categories: [Infrastructure, Terraform]
 tags: [terraform, powershell, infrastructure as code, iac, azure, modules, automation]
 description: Advanced Terraform concepts and how to integrate Terraform with your existing PowerShell automation workflows.
@@ -59,26 +59,27 @@ variable "resource_group_name" {
   type        = string
 }
 
-resource "azurerm_app_service_plan" "plan" {
+resource "azurerm_service_plan" "example" {
   name                = "${var.name}-plan"
   location            = var.location
   resource_group_name = var.resource_group_name
-  
-  sku {
-    tier = "Basic"
-    size = "B1"
-  }
+
+  os_type  = "Linux"
+  sku_name = "P1v2"
 }
 
-resource "azurerm_app_service" "app" {
-  name                = var.name
-  location            = var.location
+resource "azurerm_linux_web_app" "example" {
+  name                = "examplemortenkr"
   resource_group_name = var.resource_group_name
-  app_service_plan_id = azurerm_app_service_plan.plan.id
+  location            = azurerm_service_plan.example.location
+  service_plan_id     = azurerm_service_plan.example.id
+
+  site_config {}
 }
 
-output "app_url" {
-  value = "https://${azurerm_app_service.app.default_site_hostname}"
+# outputs.tf
+output "website_url" {
+  value = "https://${azurerm_linux_web_app.example.default_hostname}"
 }
 ```
 
@@ -86,15 +87,38 @@ Using the module:
 
 ```hcl
 # main.tf
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 4.30.0"
+    }
+  }
+}
+
+provider "azurerm" {
+  features {}
+}
+
+locals {
+  location = "West Europe"
+}
+# Create a resource group for the web application
+resource "azurerm_resource_group" "example" {
+  name     = "OurWebApp-rg"
+  location = local.location
+}
+
+# Create the web application using the module
 module "webapp" {
   source              = "./modules/simple-webapp"
   name                = "my-webapp"
-  location            = "West Europe"
+  location            = local.location
   resource_group_name = azurerm_resource_group.example.name
 }
 
 output "website_url" {
-  value = module.webapp.app_url
+  value = module.webapp.website_url
 }
 ```
 
@@ -107,27 +131,25 @@ output "website_url" {
 In PowerShell:
 
 ```powershell
-$vmNames = @("web1", "web2", "web3")
-$vmNames | ForEach-Object {
-    New-AzVM -Name $_ -ResourceGroupName "web-rg" # Simplified
+$rgNames = @("rg1", "rg2", "rg3")
+$rgNames | ForEach-Object {
+    New-AzResourceGroup -Name $_ -Location "West Europe"
 }
 ```
 
 In Terraform:
 
 ```hcl
-variable "vm_names" {
+# main.tf
+variable "resource_group_names" {
   type    = list(string)
-  default = ["web1", "web2", "web3"]
+  default = ["rg1", "rg2", "rg3"]
 }
 
-resource "azurerm_linux_virtual_machine" "web" {
-  for_each            = toset(var.vm_names)
-  name                = each.value
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
-
-  # Other VM properties...
+resource "azurerm_resource_group" "example" {
+  for_each = toset(var.resource_group_names)
+  name     = each.value
+  location = "West Europe"
 }
 ```
 
@@ -175,6 +197,63 @@ resource "azurerm_app_service_plan" "example" {
 }
 ```
 
+### Switch
+
+If you wanted to do a similar example to above with a switch instead you could take advantage of the locals variables like shown here
+
+```powershell
+param(
+    [string]$environment = "dev"
+)
+
+switch ($environment) {
+    "prod" {
+        $tier = "Standard"
+        $size = "S1"
+    }
+    "staging" {
+        $tier = "Standard"
+        $size = "S1"
+    }
+    "dev" {
+        $tier = "Basic"
+        $size = "B1"
+    }
+    default {
+        throw "Unknown environment: $environment"
+    }
+}
+Write-Output "App Service Plan Tier: $tier"
+Write-Output "App Service Plan Size: $size"
+```
+
+```hcl
+variable "environment" {
+  type    = string
+  default = "dev"
+}
+
+locals {
+  tiers = {
+    prod    = "Standard"
+    staging = "Standard"
+    dev     = "Basic"
+  }
+  sizes = {
+    prod    = "S1"
+    staging = "S1"
+    dev     = "B1"
+  }
+}
+
+resource "azurerm_app_service_plan" "example" {
+  sku {
+    tier = local.tiers[var.environment]
+    size = local.sizes[var.environment]
+  }
+}
+```
+
 ## Integrating Terraform with PowerShell
 
 ### Running PowerShell Before/After Terraform
@@ -187,10 +266,6 @@ param(
     [string]$Environment = "dev",
     [string]$Region = "westus"
 )
-
-# Pre-deployment tasks
-Write-Host "Preparing for deployment to $Environment environment..."
-$configs = Get-Content .\config.json | ConvertFrom-Json
 
 # Run Terraform
 Write-Host "Running Terraform deployment..."
@@ -213,7 +288,7 @@ Invoke-RestMethod -Uri "$websiteUrl/api/warmup" -Method Post
 ### Using Terraform Output in PowerShell
 
 ```powershell
-# Get all outputs as JSON
+# Get all outputs as JSON usefull for larger datasets in the output that you need to work with
 $outputs = terraform output -json | ConvertFrom-Json
 
 # Use specific outputs
@@ -229,6 +304,7 @@ $container = New-AzStorageContainer -Name "data" -Context $context
 
 Terraform can run PowerShell commands directly note that when doing this it is no longer following the state of terraform and you will have to implement this your self in the scripts you are running:
 
+**Note that this will be run each time you run terraform apply/destroy since it does not follow the state like terraform does**
 ```hcl
 resource "azurerm_storage_account" "example" {
   # Storage account configuration...
@@ -375,7 +451,7 @@ terraform {
 }
 ```
 
-> **Note:** This is a basic introduction to remote state. For comprehensive coverage of enterprise state management, workspaces, team collaboration patterns, and security considerations, see [Part 4: Advanced State Management and Collaboration](/posts/AdvancedStateManagementAndCollaboration/).
+> **Note:** This is a basic introduction to remote state. For comprehensive coverage of enterprise state management, workspaces, team collaboration patterns, and security considerations, see Part 4: Advanced State Management and Collaboration.
 
 ### PowerShell Script to Set Up Remote State
 
@@ -456,6 +532,6 @@ Now you can leverage your existing PowerShell skills while gaining Terraform's d
 ✅ Foundation → ✅ Variables & State → ✅ Advanced Integration → Collaboration → Testing → Modules → CI/CD
 
 **Coming Next:**
-In [Part 4](/posts/AdvancedStateManagementAndCollaboration/), we'll tackle the enterprise challenges of state management and team collaboration - learning how to work with Terraform in team environments, implement proper state backends, and manage infrastructure at scale with multiple contributors.
+In Part 4, we'll tackle the enterprise challenges of state management and team collaboration - learning how to work with Terraform in team environments, implement proper state backends, and manage infrastructure at scale with multiple contributors.
 
 *You're now equipped to build complex, modular infrastructure with PowerShell integration!*
