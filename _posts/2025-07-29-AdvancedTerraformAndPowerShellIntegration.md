@@ -123,7 +123,7 @@ output "website_url" {
 }
 ```
 
-> **Note:** This is a basic introduction to modules. We'll explore advanced module patterns, testing, versioning, and enterprise strategies in [Part 6](/posts/TerraformModulesDeepDive/) of this series.
+> **Note:** This is a basic introduction to modules. We'll explore advanced module patterns, testing, versioning, and enterprise strategies in Part 6 of this series.
 
 ## Loops and Conditionals
 
