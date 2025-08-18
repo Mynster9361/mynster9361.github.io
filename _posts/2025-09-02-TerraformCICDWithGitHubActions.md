@@ -1,13 +1,14 @@
 ---
 title: Terraform CI/CD with GitHub Actions - Part 7
 author: mynster
-date: 2025-07-11 10:30:00 +0100
+date: 2025-09-02 10:30:00 +0100
 categories: [Infrastructure, Terraform]
 tags: [terraform, powershell, ci/cd, github actions, devops]
 description: Learn how to implement comprehensive CI/CD pipelines for Terraform using GitHub Actions, with testing, automated plans, and deployment workflows.
 ---
 
 > **📚 Series Navigation:**
+>
 > - [Part 1: Getting Started with Terraform for PowerShell People](/posts/GettingStartedWithTerraformForPowerShellPeople/)
 > - [Part 2: Resources, Variables, and State in Terraform](/posts/ResourcesVariablesAndStateInTerraform/)
 > - [Part 3: Advanced Terraform and PowerShell Integration](/posts/AdvancedTerraformAndPowerShellIntegration/)
@@ -116,7 +117,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Detect Changes
         uses: dorny/paths-filter@v2
         id: changes
@@ -193,22 +194,22 @@ jobs:
         with:
           script: |
             const output = `#### Terraform Static Analysis Results 📋
-            
+
             | Check              | Status                                                |
             | ------------------ | ----------------------------------------------------- |
             | Format             | ${{ steps.fmt.outcome == 'success' && '✅ Passed'      |  | '❌ Failed' }}       |
             | Validate           | ${{ steps.validate.outcome == 'success' && '✅ Passed' |  | '❌ Failed' }}       |
             | TFLint             | ${{ job.status == 'success' && '✅ Passed'             |  | '❌ Failed' }}       |
             | Security (Checkov) | ${{ steps.checkov.outcome == 'success' && '✅ Passed'  |  | '⚠️ Issues Found' }} |
-            
+
             ${{ steps.fmt.outcome != 'success' && '\n**Format Issues Found:**\nRun `terraform fmt -recursive` to fix formatting issues.\n' || '' }}
-            
+
             <details><summary>View detailed security scan results</summary>
-            
+
             Security scan completed. Check the Security tab for detailed findings.
-            
+
             </details>`;
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -340,22 +341,22 @@ jobs:
           echo "PLAN_SUMMARY<<EOF" >> $GITHUB_OUTPUT
           echo "## Terraform Plan Summary" >> $GITHUB_OUTPUT
           echo "" >> $GITHUB_OUTPUT
-          
+
           # Extract resource changes
           if grep -q "Plan:" plan_output.txt; then
             grep "Plan:" plan_output.txt >> $GITHUB_OUTPUT
           else
             echo "No changes detected" >> $GITHUB_OUTPUT
           fi
-          
+
           echo "" >> $GITHUB_OUTPUT
           echo "### Resource Changes:" >> $GITHUB_OUTPUT
-          
+
           # Count changes by type
           to_add=$(grep -c "will be created" plan_output.txt || echo "0")
-          to_change=$(grep -c "will be updated" plan_output.txt || echo "0")  
+          to_change=$(grep -c "will be updated" plan_output.txt || echo "0")
           to_destroy=$(grep -c "will be destroyed" plan_output.txt || echo "0")
-          
+
           echo "- 🟢 **To Add:** $to_add" >> $GITHUB_OUTPUT
           echo "- 🟡 **To Change:** $to_change" >> $GITHUB_OUTPUT
           echo "- 🔴 **To Destroy:** $to_destroy" >> $GITHUB_OUTPUT
@@ -371,32 +372,32 @@ jobs:
           script: |
             const fs = require('fs');
             const planOutput = fs.readFileSync('plan_output.txt', 'utf8');
-            
+
             const output = `#### Terraform Plan 📝 \`${{ steps.plan.outcome }}\`
-            
+
             ${{ steps.plan-summary.outputs.PLAN_SUMMARY }}
-            
+
             <details><summary>Show Full Plan</summary>
-            
+
             \`\`\`terraform
             ${planOutput}
             \`\`\`
-            
+
             </details>
-            
+
             *Plan generated for PR #${{ github.event.number }} at commit ${{ github.sha }}*`;
-            
+
             // Find existing plan comment
             const comments = await github.rest.issues.listComments({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
             });
-            
-            const existingComment = comments.data.find(comment => 
+
+            const existingComment = comments.data.find(comment =>
               comment.body.includes('#### Terraform Plan 📝')
             );
-            
+
             if (existingComment) {
               await github.rest.issues.updateComment({
                 comment_id: existingComment.id,
@@ -448,6 +449,7 @@ jobs:
 ## Release Drafter Workflow
 
 Next, let's implement a release drafter that creates and updates release notes based on merged PRs:
+
 ```yml
 # filepath: .github/workflows/release-drafter.yml
 name: Release Drafter
@@ -472,7 +474,7 @@ jobs:
           config-name: release-drafter-config.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
+
   terraform-validate:
     name: "Terraform Validate"
     runs-on: ubuntu-latest
@@ -498,7 +500,7 @@ jobs:
         run: terraform plan -no-color
 ```
 
-## Add a release drafter configuration file:
+## Add a release drafter configuration file
 
 ```yml
 # filepath: .github/release-drafter-config.yml
@@ -518,7 +520,7 @@ categories:
     labels:
       - 'chore'
       - 'documentation'
-      
+
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 
 version-resolver:
@@ -532,18 +534,19 @@ version-resolver:
     labels:
       - 'patch'
   default: patch
-  
+
 template: |
   ## Changes
 
   $CHANGES
-  
+
   ## Contributors
-  
+
   $CONTRIBUTORS
 ```
 
 ## Deployment Workflow
+
 Finally, let's create a workflow that applies Terraform changes when a new release is published:
 
 ```yml
@@ -569,7 +572,7 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
-      
+
       - name: Run Tests
         run: |
           cd tests
@@ -905,7 +908,7 @@ jobs:
         with:
           script: |
             const environments = ${{ needs.determine-environments.outputs.environments }};
-            
+
             for (const env of environments) {
               await github.rest.repos.createDeployment({
                 owner: context.repo.owner,
@@ -997,12 +1000,12 @@ jobs:
         run: |
           # Custom PowerShell validation script
           $ErrorActionPreference = "Stop"
-          
+
           Write-Host "Running PowerShell pre-deployment validation..." -ForegroundColor Cyan
-          
+
           # Example: Validate Azure connectivity
           Connect-AzAccount -ServicePrincipal -Credential (Import-Clixml creds.xml)
-          
+
           # Example: Check resource quotas
           $subscriptionQuotas = Get-AzVMUsage -Location "East US"
           foreach ($quota in $subscriptionQuotas) {
@@ -1010,7 +1013,7 @@ jobs:
               Write-Warning "Quota warning: $($quota.Name) is at $($quota.CurrentValue)/$($quota.Limit)"
             }
           }
-          
+
           # Example: Validate naming conventions
           $resourceNames = Get-Content terraform.tfvars | Where-Object { $_ -match "name.*=" }
           foreach ($name in $resourceNames) {
@@ -1035,7 +1038,7 @@ jobs:
               [int]$MaxRetries = 3,
               [int]$DelaySeconds = 30
             )
-            
+
             $attempt = 0
             do {
               $attempt++
@@ -1057,7 +1060,7 @@ jobs:
               }
             } while ($attempt -lt $MaxRetries)
           }
-          
+
           # Execute Terraform with retry logic
           Invoke-TerraformWithRetry -Command "terraform init"
           Invoke-TerraformWithRetry -Command "terraform plan -out=tfplan"
@@ -1068,15 +1071,15 @@ jobs:
         run: |
           # Custom post-deployment validation
           Write-Host "Running post-deployment validation..." -ForegroundColor Cyan
-          
+
           # Parse Terraform outputs
           $outputs = terraform output -json | ConvertFrom-Json
-          
+
           # Validate each deployed resource
           foreach ($output in $outputs.PSObject.Properties) {
             $resourceId = $output.Value.value
             Write-Host "Validating resource: $($output.Name) = $resourceId" -ForegroundColor Gray
-            
+
             # Add specific validation logic based on resource type
             if ($resourceId -match "/resourceGroups/") {
               $rg = Get-AzResourceGroup -Id $resourceId -ErrorAction SilentlyContinue
@@ -1098,18 +1101,18 @@ function Set-GitHubRepositorySecrets {
     param(
         [Parameter(Mandatory)]
         [string]$Repository,
-        
+
         [Parameter(Mandatory)]
         [string]$GitHubToken
     )
-    
+
     $secrets = @{
         "AZURE_CREDENTIALS" = @{
             Description = "Service Principal credentials for Azure authentication"
             Value = @"
 {
   "clientId": "$env:ARM_CLIENT_ID",
-  "clientSecret": "$env:ARM_CLIENT_SECRET", 
+  "clientSecret": "$env:ARM_CLIENT_SECRET",
   "subscriptionId": "$env:ARM_SUBSCRIPTION_ID",
   "tenantId": "$env:ARM_TENANT_ID"
 }
@@ -1136,26 +1139,26 @@ function Set-GitHubRepositorySecrets {
             Value = "https://outlook.office.com/webhook/..."
         }
     }
-    
+
     foreach ($secret in $secrets.GetEnumerator()) {
         Write-Host "Setting secret: $($secret.Key)" -ForegroundColor Cyan
-        
+
         $body = @{
             encrypted_value = $secret.Value.Value
         } | ConvertTo-Json
-        
+
         $headers = @{
             Authorization = "token $GitHubToken"
             Accept = "application/vnd.github.v3+json"
         }
-        
+
         try {
             Invoke-RestMethod -Uri "https://api.github.com/repos/$Repository/actions/secrets/$($secret.Key)" `
                               -Method PUT `
                               -Body $body `
                               -Headers $headers `
                               -ContentType "application/json"
-            
+
             Write-Host "✅ Secret $($secret.Key) set successfully" -ForegroundColor Green
         } catch {
             Write-Error "❌ Failed to set secret $($secret.Key): $_"
@@ -1174,13 +1177,13 @@ function Set-GitHubBranchProtection {
     param(
         [Parameter(Mandatory)]
         [string]$Repository,
-        
+
         [Parameter(Mandatory)]
         [string]$GitHubToken,
-        
+
         [string]$Branch = "main"
     )
-    
+
     $protectionRules = @{
         required_status_checks = @{
             strict = $true
@@ -1201,21 +1204,21 @@ function Set-GitHubBranchProtection {
         allow_force_pushes = $false
         allow_deletions = $false
     }
-    
+
     $body = $protectionRules | ConvertTo-Json -Depth 10
-    
+
     $headers = @{
         Authorization = "token $GitHubToken"
         Accept = "application/vnd.github.v3+json"
     }
-    
+
     try {
         Invoke-RestMethod -Uri "https://api.github.com/repos/$Repository/branches/$Branch/protection" `
                           -Method PUT `
                           -Body $body `
                           -Headers $headers `
                           -ContentType "application/json"
-        
+
         Write-Host "✅ Branch protection rules set for $Branch" -ForegroundColor Green
     } catch {
         Write-Error "❌ Failed to set branch protection: $_"
@@ -1233,12 +1236,12 @@ function Test-GitHubWorkflowLocally {
     param(
         [Parameter(Mandatory)]
         [string]$WorkflowFile,
-        
+
         [string]$Event = "push",
         [string]$Job = "",
         [switch]$DryRun
     )
-    
+
     # Install act if not present
     if (-not (Get-Command act -ErrorAction SilentlyContinue)) {
         Write-Host "Installing act..." -ForegroundColor Yellow
@@ -1249,27 +1252,27 @@ function Test-GitHubWorkflowLocally {
             return
         }
     }
-    
+
     # Prepare act command
     $actArgs = @($Event)
-    
+
     if ($Job) {
         $actArgs += "--job", $Job
     }
-    
+
     if ($WorkflowFile) {
         $actArgs += "--workflows", $WorkflowFile
     }
-    
+
     if ($DryRun) {
         $actArgs += "--dryrun"
     }
-    
+
     # Add secrets file if it exists
     if (Test-Path ".secrets") {
         $actArgs += "--secret-file", ".secrets"
     }
-    
+
     Write-Host "Running: act $($actArgs -join ' ')" -ForegroundColor Cyan
     & act @actArgs
 }
@@ -1309,6 +1312,7 @@ Congratulations! 🎉 You've completed our comprehensive journey from PowerShell
 ### What You've Mastered
 
 **Technical Skills:**
+
 - ✅ Terraform syntax, concepts, and best practices
 - ✅ Native testing framework (v1.6+) with `.tftest.hcl` files
 - ✅ Advanced module design and composition patterns
@@ -1318,6 +1322,7 @@ Congratulations! 🎉 You've completed our comprehensive journey from PowerShell
 - ✅ Multi-environment deployment strategies with proper gates
 
 **Mindset Shifts:**
+
 - ✅ From imperative to declarative thinking
 - ✅ From scripts to infrastructure as code
 - ✅ From manual testing to automated validation
@@ -1331,6 +1336,7 @@ By combining everything from this series, you now have the knowledge to build a 
 ### Real-World Implementation Roadmap
 
 **Phase 1: Foundation (Weeks 1-2)**
+
 ```powershell
 $phase1Tasks = @(
     "Set up Terraform with remote state backend",
@@ -1341,6 +1347,7 @@ $phase1Tasks = @(
 ```
 
 **Phase 2: Testing & Quality (Weeks 3-4)**
+
 ```powershell
 $phase2Tasks = @(
     "Implement native Terraform testing (.tftest.hcl)",
@@ -1351,10 +1358,11 @@ $phase2Tasks = @(
 ```
 
 **Phase 3: Advanced Automation (Weeks 5-6)**
+
 ```powershell
 $phase3Tasks = @(
     "Implement multi-environment deployment pipelines",
-    "Add automated rollback capabilities", 
+    "Add automated rollback capabilities",
     "Set up monitoring and alerting integration",
     "Create self-service infrastructure platform"
 )
@@ -1363,12 +1371,14 @@ $phase3Tasks = @(
 ### Continuing Your Journey
 
 **Next Steps:**
+
 1. **Practice**: Apply these concepts to real projects
 2. **Contribute**: Share modules and workflows with the community
 3. **Evolve**: Stay updated with Terraform releases and new features
 4. **Teach**: Help other PowerShell developers getting started
 
 **Advanced Topics to Explore:**
+
 - Terraform Cloud/Enterprise features
 - Multi-cloud strategies and abstraction
 - GitOps with ArgoCD or Flux
@@ -1380,7 +1390,7 @@ $phase3Tasks = @(
 You've successfully bridged two powerful worlds - the flexibility and familiarity of PowerShell with the declarative power and ecosystem of Terraform. This combination gives you:
 
 - **Best of Both Worlds**: Leverage PowerShell for complex logic while using Terraform for infrastructure management
-- **Career Growth**: Infrastructure as Code skills are increasingly valuable in modern IT organizations  
+- **Career Growth**: Infrastructure as Code skills are increasingly valuable in modern IT organizations
 - **Team Collaboration**: Enable your teams to work together on infrastructure using proven software development practices
 - **Future-Proofing**: Position yourself and your organization for cloud-native infrastructure management
 
@@ -1391,6 +1401,7 @@ Thank you for joining me on this comprehensive journey. Now go forth and build a
 ---
 
 > **Series Navigation:**
+>
 > - [Part 1: Getting Started with Terraform for PowerShell People](/posts/GettingStartedWithTerraformForPowerShellPeople/)
 > - [Part 2: Resources, Variables, and State in Terraform](/posts/ResourcesVariablesAndStateInTerraform/)
 > - [Part 3: Advanced Terraform and PowerShell Integration](/posts/AdvancedTerraformAndPowerShellIntegration/)

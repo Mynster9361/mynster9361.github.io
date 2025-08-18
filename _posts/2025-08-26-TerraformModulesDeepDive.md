@@ -1,20 +1,21 @@
 ---
 title: Terraform Modules Deep Dive for PowerShell Developers - Part 6
 author: mynster
-date: 2025-07-11 10:30:00 +0100
+date: 2025-08-26 10:30:00 +0100
 categories: [Infrastructure, Terraform]
 tags: [terraform, powershell, modules, infrastructure as code, iac, azure]
 description: Master Terraform modules from a PowerShell perspective - learn best practices for creating, structuring, and maintaining reusable infrastructure components.
 ---
 
 > **📚 Series Navigation:**
+>
 > - [Part 1: Getting Started with Terraform for PowerShell People](/posts/GettingStartedWithTerraformForPowerShellPeople/)
 > - [Part 2: Resources, Variables, and State in Terraform](/posts/ResourcesVariablesAndStateInTerraform/)
 > - [Part 3: Advanced Terraform and PowerShell Integration](/posts/AdvancedTerraformAndPowerShellIntegration/)
 > - [Part 4: Advanced State Management and Collaboration](/posts/AdvancedStateManagementAndCollaboration/)
 > - [Part 5: Testing Terraform Code](/posts/TestingTerraformCode/)
 > - **Part 6: Terraform Modules Deep Dive** ← *You are here*
-> - Part 7: CI/CD with GitHub Actions *(August 26)*
+> - Part 7: CI/CD with GitHub Actions *(September 2)*
 
 ## Mastering Terraform Modules for PowerShell Users
 
@@ -114,7 +115,7 @@ resource "azurerm_app_service_plan" "plan" {
   name                = "${var.name}-plan"
   location            = var.location
   resource_group_name = var.resource_group_name
-  
+
   sku {
     tier = var.app_service_plan_tier
     size = var.app_service_plan_size
@@ -126,13 +127,13 @@ resource "azurerm_app_service" "app" {
   location            = var.location
   resource_group_name = var.resource_group_name
   app_service_plan_id = azurerm_app_service_plan.plan.id
-  
+
   site_config {
     dotnet_framework_version = "v5.0"
     min_tls_version          = "1.2"
     ftps_state               = "Disabled"
   }
-  
+
   app_settings = var.app_settings
 }
 ```
@@ -186,7 +187,7 @@ module "web_app" {
   name                = "my-web-app"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
-  
+
   app_settings = {
     "WEBSITE_NODE_DEFAULT_VERSION" = "~14"
     "ENVIRONMENT"                  = "production"
@@ -210,15 +211,15 @@ function New-WebApp {
     param (
         [Parameter(Mandatory=$true)]
         [string]$Name,
-        
+
         [Parameter(Mandatory=$true)]
         [ValidateSet("westus", "eastus", "northeurope")]
         [string]$Location,
-        
+
         [ValidateSet("Basic", "Standard", "Premium")]
         [string]$Tier = "Basic"
     )
-    
+
     # Function logic here
 }
 ```
@@ -229,7 +230,7 @@ In Terraform, we use input variables with validation:
 variable "name" {
   description = "Name of the web application"
   type        = string
-  
+
   validation {
     condition     = length(var.name) > 3 && length(var.name) <= 24
     error_message = "Web app name must be between 4 and 24 characters."
@@ -239,7 +240,7 @@ variable "name" {
 variable "location" {
   description = "Azure region where resources will be created"
   type        = string
-  
+
   validation {
     condition     = contains(["westus", "eastus", "northeurope"], var.location)
     error_message = "Allowed values are: westus, eastus, northeurope."
@@ -250,7 +251,7 @@ variable "tier" {
   description = "Tier for App Service Plan"
   type        = string
   default     = "Basic"
-  
+
   validation {
     condition     = contains(["Basic", "Standard", "Premium"], var.tier)
     error_message = "Allowed values are: Basic, Standard, Premium."
@@ -268,11 +269,11 @@ function New-WebInfrastructure {
         [string]$Name,
         [string]$Location
     )
-    
+
     $resourceGroup = New-AzResourceGroup -Name "$Name-rg" -Location $Location
     $storageAccount = New-StorageAccount -Name $Name -ResourceGroup $resourceGroup.ResourceGroupName
     $webApp = New-WebApp -Name $Name -Location $Location -ResourceGroup $resourceGroup.ResourceGroupName
-    
+
     return @{
         ResourceGroup = $resourceGroup
         StorageAccount = $storageAccount
@@ -355,10 +356,10 @@ In PowerShell:
 ```powershell
 function Deploy-Resources {
     param ($baseName, $env)
-    
+
     $resourceGroupName = "$baseName-$env-rg"
     $storageAccountName = ($baseName + $env).ToLower() -replace "[^a-z0-9]", ""
-    
+
     # Use the local variables
 }
 ```
@@ -467,21 +468,21 @@ function Get-TerraformModuleLatestVersion {
     param (
         [Parameter(Mandatory=$true)]
         [string]$ModuleName,
-        
+
         [string]$RepositoryUrl = "https://github.com/myorg/terraform-modules.git"
     )
-    
+
     # Get the latest tag from git
-    $latestTag = git ls-remote --tags $RepositoryUrl | 
-                 Select-String -Pattern "refs/tags/v" | 
+    $latestTag = git ls-remote --tags $RepositoryUrl |
+                 Select-String -Pattern "refs/tags/v" |
                  ForEach-Object { $_.ToString().Split('/')[-1] } |
                  Sort-Object -Descending |
                  Select-Object -First 1
-    
+
     if (-not $latestTag) {
         throw "No version tag found for module"
     }
-    
+
     return @{
         Module = $ModuleName
         Version = $latestTag
@@ -493,15 +494,15 @@ function New-TerraformModuleFile {
     param (
         [Parameter(Mandatory=$true)]
         [string]$ModuleName,
-        
+
         [Parameter(Mandatory=$true)]
         [hashtable]$Variables,
-        
+
         [string]$OutputPath = ".\main.tf"
     )
-    
+
     $moduleInfo = Get-TerraformModuleLatestVersion -ModuleName $ModuleName
-    
+
     $moduleContent = @"
 module "$ModuleName" {
   source  = "$($moduleInfo.Source)"
@@ -516,9 +517,9 @@ module "$ModuleName" {
             $moduleContent += "  $key = $value`n"
         }
     }
-    
+
     $moduleContent += "}`n"
-    
+
     Add-Content -Path $OutputPath -Value $moduleContent
     Write-Host "Added module '$ModuleName' version $($moduleInfo.Version) to $OutputPath"
 }
@@ -687,17 +688,17 @@ function Test-TerraformModule {
     param(
         [Parameter(Mandatory)]
         [string]$ModulePath,
-        
+
         [ValidateSet("unit", "integration", "all")]
         [string]$TestType = "all",
-        
+
         [switch]$Verbose
     )
-    
+
     Push-Location $ModulePath
     try {
         Write-Host "Testing Terraform module: $ModulePath" -ForegroundColor Cyan
-        
+
         switch ($TestType) {
             "unit" {
                 Write-Host "Running unit tests..." -ForegroundColor Yellow
@@ -718,9 +719,9 @@ function Test-TerraformModule {
                 Test-TerraformModule -ModulePath $ModulePath -TestType "integration" -Verbose:$Verbose
             }
         }
-        
+
         Write-Host "✓ All tests passed for module: $ModulePath" -ForegroundColor Green
-        
+
     } catch {
         Write-Error "Module testing failed: $_"
         throw
@@ -735,10 +736,10 @@ function Test-AllTerraformModules {
         [string]$ModulesPath = "./modules",
         [string]$TestType = "unit"
     )
-    
+
     $modules = Get-ChildItem -Path $ModulesPath -Directory
     $results = @()
-    
+
     foreach ($module in $modules) {
         try {
             Test-TerraformModule -ModulePath $module.FullName -TestType $TestType
@@ -747,7 +748,7 @@ function Test-AllTerraformModules {
             $results += @{ Module = $module.Name; Status = "Failed"; Error = $_.Exception.Message }
         }
     }
-    
+
     # Summary
     Write-Host "`nTest Results Summary:" -ForegroundColor Blue
     foreach ($result in $results) {
@@ -757,11 +758,11 @@ function Test-AllTerraformModules {
             Write-Host "    Error: $($result.Error)" -ForegroundColor Red
         }
     }
-    
+
     $passed = ($results | Where-Object { $_.Status -eq "Passed" }).Count
     $total = $results.Count
     Write-Host "`nOverall: $passed/$total modules passed" -ForegroundColor $(if ($passed -eq $total) { "Green" } else { "Red" })
-    
+
     return $results
 }
 ```
@@ -778,19 +779,19 @@ function New-TerraformModule {
     param(
         [Parameter(Mandatory)]
         [string]$ModuleName,
-        
+
         [Parameter(Mandatory)]
         [string]$ModuleType,
-        
+
         [string]$OutputPath = "./modules",
-        
+
         [hashtable]$CustomVariables = @{},
         [hashtable]$CustomResources = @{}
     )
-    
+
     $modulePath = Join-Path $OutputPath $ModuleName
     New-Item -ItemType Directory -Path $modulePath -Force | Out-Null
-    
+
     # Generate variables.tf based on module type
     $variablesContent = switch ($ModuleType) {
         "webapp" {
@@ -806,9 +807,9 @@ function New-TerraformModule {
             throw "Unknown module type: $ModuleType"
         }
     }
-    
+
     Set-Content -Path (Join-Path $modulePath "variables.tf") -Value $variablesContent
-    
+
     # Generate main.tf
     $mainContent = switch ($ModuleType) {
         "webapp" {
@@ -821,13 +822,13 @@ function New-TerraformModule {
             Get-NetworkModuleMain -CustomResources $CustomResources
         }
     }
-    
+
     Set-Content -Path (Join-Path $modulePath "main.tf") -Value $mainContent
-    
+
     # Generate outputs.tf
     $outputsContent = Get-ModuleOutputs -ModuleType $ModuleType
     Set-Content -Path (Join-Path $modulePath "outputs.tf") -Value $outputsContent
-    
+
     # Generate versions.tf
     $versionsContent = @"
 terraform {
@@ -841,23 +842,23 @@ terraform {
 }
 "@
     Set-Content -Path (Join-Path $modulePath "versions.tf") -Value $versionsContent
-    
+
     # Generate basic test file
     $testContent = Get-BasicTestTemplate -ModuleName $ModuleName -ModuleType $ModuleType
     New-Item -ItemType Directory -Path (Join-Path $modulePath "tests") -Force | Out-Null
     Set-Content -Path (Join-Path $modulePath "tests/unit.tftest.hcl") -Value $testContent
-    
+
     # Generate README
     $readmeContent = Get-ModuleReadme -ModuleName $ModuleName -ModuleType $ModuleType
     Set-Content -Path (Join-Path $modulePath "README.md") -Value $readmeContent
-    
+
     Write-Host "✓ Generated Terraform module '$ModuleName' of type '$ModuleType' at $modulePath" -ForegroundColor Green
     return $modulePath
 }
 
 function Get-WebAppModuleVariables {
     param([hashtable]$CustomVariables)
-    
+
     $standardVariables = @"
 variable "name" {
   description = "Name of the web application"
@@ -909,7 +910,7 @@ variable "tags" {
         }
         $standardVariables += "}`n"
     }
-    
+
     return $standardVariables
 }
 ```
@@ -924,7 +925,7 @@ variable "cloud_provider" {
   description = "Cloud provider (azure, aws, gcp)"
   type        = string
   default     = "azure"
-  
+
   validation {
     condition     = contains(["azure", "aws", "gcp"], var.cloud_provider)
     error_message = "Cloud provider must be azure, aws, or gcp."
@@ -959,7 +960,7 @@ resource "azurerm_storage_account" "this" {
   location                 = var.location
   account_tier             = var.storage_class == "premium" ? "Premium" : "Standard"
   account_replication_type = var.storage_class == "premium" ? "LRS" : "GRS"
-  
+
   tags = var.tags
 }
 
@@ -990,7 +991,7 @@ resource "google_storage_bucket" "this" {
   name          = var.name
   location      = var.location
   storage_class = upper(var.storage_class)
-  
+
   labels = var.tags
 }
 ```
@@ -1003,67 +1004,67 @@ resource "google_storage_bucket" "this" {
 
 module "network" {
   source = "../network"
-  
+
   name     = var.application_name
   location = var.location
-  
+
   address_space = var.network_config.address_space
   subnets      = var.network_config.subnets
-  
+
   tags = local.common_tags
 }
 
 module "database" {
   source = "../database"
-  
+
   name                = "${var.application_name}-db"
   resource_group_name = module.network.resource_group_name
   location           = var.location
-  
+
   # Database is deployed to private subnet
   subnet_id = module.network.subnet_ids["database"]
-  
+
   # Database depends on network being ready
   depends_on = [module.network]
-  
+
   tags = local.common_tags
 }
 
 module "webapp" {
   source = "../webapp"
-  
+
   name                = var.application_name
   resource_group_name = module.network.resource_group_name
   location           = var.location
-  
+
   # Web app is deployed to app subnet
   subnet_id = module.network.subnet_ids["application"]
-  
+
   # Connection string references database
   app_settings = merge(var.app_settings, {
     "ConnectionStrings__DefaultConnection" = module.database.connection_string
   })
-  
+
   # Web app depends on both network and database
   depends_on = [module.network, module.database]
-  
+
   tags = local.common_tags
 }
 
 module "monitoring" {
   source = "../monitoring"
-  
+
   name                = "${var.application_name}-monitoring"
   resource_group_name = module.network.resource_group_name
   location           = var.location
-  
+
   # Monitor the web app
   app_service_id = module.webapp.app_service_id
   database_id    = module.database.database_id
-  
+
   # Monitoring is set up after all core components
   depends_on = [module.webapp, module.database]
-  
+
   tags = local.common_tags
 }
 
@@ -1085,14 +1086,14 @@ function Update-ModuleVersion {
     param(
         [Parameter(Mandatory)]
         [string]$ModulePath,
-        
+
         [Parameter(Mandatory)]
         [ValidateSet("major", "minor", "patch")]
         [string]$VersionType,
-        
+
         [string]$ChangeLog = ""
     )
-    
+
     # Read current version from versions.tf or a VERSION file
     $versionFile = Join-Path $ModulePath "VERSION"
     if (Test-Path $versionFile) {
@@ -1100,7 +1101,7 @@ function Update-ModuleVersion {
     } else {
         $currentVersion = "0.1.0"
     }
-    
+
     # Parse semantic version
     if ($currentVersion -match "^(\d+)\.(\d+)\.(\d+)$") {
         $major = [int]$matches[1]
@@ -1109,19 +1110,19 @@ function Update-ModuleVersion {
     } else {
         throw "Invalid version format: $currentVersion"
     }
-    
+
     # Increment version
     switch ($VersionType) {
         "major" { $major++; $minor = 0; $patch = 0 }
         "minor" { $minor++; $patch = 0 }
         "patch" { $patch++ }
     }
-    
+
     $newVersion = "$major.$minor.$patch"
-    
+
     # Update VERSION file
     Set-Content -Path $versionFile -Value $newVersion
-    
+
     # Update CHANGELOG.md
     $changelogPath = Join-Path $ModulePath "CHANGELOG.md"
     $changelogEntry = @"
@@ -1131,30 +1132,30 @@ function Update-ModuleVersion {
 - $ChangeLog
 
 "@
-    
+
     if (Test-Path $changelogPath) {
         $existingChangelog = Get-Content $changelogPath -Raw
         $newChangelog = $changelogEntry + "`n" + $existingChangelog
     } else {
         $newChangelog = "# Changelog`n`n" + $changelogEntry
     }
-    
+
     Set-Content -Path $changelogPath -Value $newChangelog
-    
+
     # Create git tag
     Push-Location $ModulePath
     try {
         git add .
         git commit -m "Release version $newVersion"
         git tag -a "v$newVersion" -m "Version $newVersion: $ChangeLog"
-        
+
         Write-Host "✓ Module version updated to $newVersion" -ForegroundColor Green
         Write-Host "  Remember to push the tag: git push origin v$newVersion" -ForegroundColor Yellow
-        
+
     } finally {
         Pop-Location
     }
-    
+
     return $newVersion
 }
 
@@ -1162,39 +1163,39 @@ function Test-ModuleBackwardCompatibility {
     param(
         [Parameter(Mandatory)]
         [string]$ModulePath,
-        
+
         [Parameter(Mandatory)]
         [string]$PreviousVersion
     )
-    
+
     # This would implement compatibility testing between versions
     # For example, ensuring that outputs haven't changed in breaking ways
     Write-Host "Testing backward compatibility from $PreviousVersion..." -ForegroundColor Cyan
-    
+
     # Check out previous version
     Push-Location $ModulePath
     try {
         git stash
         git checkout "v$PreviousVersion"
-        
+
         # Run tests on previous version
         terraform test tests/unit.tftest.hcl
         if ($LASTEXITCODE -ne 0) {
             throw "Previous version tests failed"
         }
-        
+
         # Switch back to current version
         git checkout -
         git stash pop
-        
+
         # Run compatibility tests
         terraform test tests/compatibility.tftest.hcl
         if ($LASTEXITCODE -ne 0) {
             throw "Compatibility tests failed"
         }
-        
+
         Write-Host "✓ Backward compatibility verified" -ForegroundColor Green
-        
+
     } finally {
         Pop-Location
     }
@@ -1206,6 +1207,7 @@ function Test-ModuleBackwardCompatibility {
 In this sixth part of our PowerShell-to-Terraform series, you've mastered the art of creating enterprise-grade, reusable infrastructure modules:
 
 **What We've Accomplished:**
+
 1. **Module Architecture**: Structured, testable modules following PowerShell development patterns
 2. **Advanced Patterns**: Factory patterns, multi-cloud modules, and complex composition strategies
 3. **Testing Integration**: Comprehensive module testing using the native testing framework from Part 5
@@ -1214,6 +1216,7 @@ In this sixth part of our PowerShell-to-Terraform series, you've mastered the ar
 
 **PowerShell Developer Advantages:**
 Your PowerShell module development expertise translates perfectly to Terraform modules:
+
 - Similar project structure and organization principles
 - Familiar parameter validation and input/output patterns
 - Testing approaches that build on your Pester experience
@@ -1231,6 +1234,7 @@ Your PowerShell module development expertise translates perfectly to Terraform m
 | **Documentation**        | Comment-based help     | README + examples      | Self-documenting infrastructure   |
 
 **Advanced Patterns Mastered:**
+
 - **Module Factories**: Dynamic infrastructure generation based on configuration
 - **Multi-Cloud Abstractions**: Provider-agnostic infrastructure components
 - **Composition Strategies**: Building complex systems from simple, tested modules
