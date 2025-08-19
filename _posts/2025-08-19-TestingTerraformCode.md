@@ -1,7 +1,7 @@
 ---
 title: Testing Terraform Code for PowerShell Developers - Part 5
 author: mynster
-date: 2025-08-19 10:30:00 +0100
+date: 2025-08-19 08:30:00 +0100
 categories: [Infrastructure, Terraform]
 tags: [terraform, powershell, testing, native-testing, pester]
 description: Master Terraform's native testing framework from a PowerShell perspective - write reliable infrastructure tests with familiar patterns.
