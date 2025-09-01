@@ -12,9 +12,9 @@ description: Master advanced Terraform state management techniques, workspaces, 
 > - [Part 2: Resources, Variables, and State in Terraform](/posts/ResourcesVariablesAndStateInTerraform/)
 > - [Part 3: Advanced Terraform and PowerShell Integration](/posts/AdvancedTerraformAndPowerShellIntegration/)
 > - **Part 4: Advanced State Management and Collaboration** ← *You are here*
-> - Part 5: Testing Terraform Code *(August 12)*
-> - Part 6: Terraform Modules Deep Dive *(August 19)*
-> - Part 7: CI/CD with GitHub Actions *(August 26)*
+> - [Part 5: Testing Terraform Code](/posts/TestingTerraformCode/)
+> - [Part 6: Terraform Modules Deep Dive](/posts/TerraformModulesDeepDive/)
+> - Part 7: CI/CD with GitHub Actions *(September 9)*
 
 
 ## Enterprise State Management and Team Collaboration

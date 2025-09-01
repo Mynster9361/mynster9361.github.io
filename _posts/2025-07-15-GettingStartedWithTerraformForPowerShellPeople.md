@@ -11,12 +11,11 @@ description: Learn how Terraform works from a PowerShell person's perspective, i
 >
 > - **Part 1: Getting Started with Terraform for PowerShell People** ← *You are here*
 > - [Part 2: Resources, Variables, and State in Terraform (July 22)](/posts/ResourcesVariablesAndStateInTerraform/)
-> - Part 2: Resources, Variables, and State in Terraform *(July 22)*
-> - Part 3: Advanced Terraform and PowerShell Integration *(July 29)*
-> - Part 4: Advanced State Management and Collaboration *(August 5)*
-> - Part 5: Testing Terraform Code *(August 12)*
-> - Part 6: Terraform Modules Deep Dive *(August 19)*
-> - Part 7: CI/CD with GitHub Actions *(August 26)*
+> - [Part 3: Advanced Terraform and PowerShell Integration](/posts/AdvancedTerraformAndPowerShellIntegration/)
+> - [Part 4: Advanced State Management and Collaboration](/posts/AdvancedStateManagementAndCollaboration/)
+> - [Part 5: Testing Terraform Code](/posts/TestingTerraformCode/)
+> - [Part 6: Terraform Modules Deep Dive](/posts/TerraformModulesDeepDive/)
+> - Part 7: CI/CD with GitHub Actions *(September 9)*
 
 ## Introduction to Terraform for PowerShell Users
 

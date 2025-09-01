@@ -15,7 +15,7 @@ description: Master Terraform modules from a PowerShell perspective - learn best
 > - [Part 4: Advanced State Management and Collaboration](/posts/AdvancedStateManagementAndCollaboration/)
 > - [Part 5: Testing Terraform Code](/posts/TestingTerraformCode/)
 > - **Part 6: Terraform Modules Deep Dive** ← *You are here*
-> - Part 7: CI/CD with GitHub Actions *(September 2)*
+> - Part 7: CI/CD with GitHub Actions *(September 9)*
 
 ## Mastering Terraform Modules for PowerShell Users
 

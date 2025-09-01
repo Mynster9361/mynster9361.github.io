@@ -14,8 +14,8 @@ description: Master Terraform's native testing framework from a PowerShell persp
 > - [Part 3: Advanced Terraform and PowerShell Integration](/posts/AdvancedTerraformAndPowerShellIntegration/)
 > - [Part 4: Advanced State Management and Collaboration](/posts/AdvancedStateManagementAndCollaboration/)
 > - **Part 5: Testing Terraform Code** ← *You are here*
-> - Part 6: Terraform Modules Deep Dive *(August 26)*
-> - Part 7: CI/CD with GitHub Actions *(September 2)*
+> - [Part 6: Terraform Modules Deep Dive](/posts/TerraformModulesDeepDive/)
+> - Part 7: CI/CD with GitHub Actions *(September 9)*
 
 ## The Critical Need for Infrastructure Testing
 
