@@ -1,7 +1,7 @@
 ---
 title: Security Disclosure - Secrets Exposure in Microsoft Actionable Messages Admin Portal
 author: mynster
-date: 2025-12-26 10:00:00 +0100
+date: 2025-12-26 11:00:00 +0100
 categories: [Security]
 tags: [security, disclosure, adaptive cards, actionable messages]
 description: Secrets exposure vulnerability in the Microsoft Actionable Messages admin portal
