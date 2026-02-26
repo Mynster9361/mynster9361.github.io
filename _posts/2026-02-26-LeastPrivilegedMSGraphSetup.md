@@ -100,7 +100,7 @@ Initialize-LogAnalyticsApi
 
 Connect-EntraService -Service "LogAnalytics", "GraphBeta" -ClientID $clientId -TenantID $tenantId -ClientSecret $clientSecret
 
-$msGraphReport = Get-AppRoleAssignment -Verbose
+$msGraphReport = Get-AppRoleAssignment
 $msGraphReport | Get-AppActivityData -WorkspaceId $logAnalyticsWorkspaceId -Days $daysToQuery # Defaults to 100k entries per app use -MaxActivityEntries to increase max is 500k entries per app
 $msGraphReport | Get-AppThrottlingData -WorkspaceId $logAnalyticsWorkspaceId -Days $daysToQuery
 $msGraphReport | Get-PermissionAnalysis
