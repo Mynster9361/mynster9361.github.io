@@ -85,6 +85,9 @@ Create some credentials to use for authentication
 Now give the role "Log Analytics Reader" to the service principal on the log analytics workspace
 ![Setup App registration 3](/assets/img/posts/2026-02-26-LeastPrivilegedMSGraphSetup-appreg-3.png)
 
+And give the app Application.Read.All permissions
+![Setup App registration 4](/assets/img/posts/2026-02-26-LeastPrivilegedMSGraphSetup-appreg-4.png)
+
 Once that is done you can use the following code to create a report:
 
 ```powershell
