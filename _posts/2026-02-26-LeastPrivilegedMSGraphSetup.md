@@ -86,6 +86,8 @@ Now give the role "Log Analytics Reader" to the service principal on the log ana
 ![Setup App registration 3](/assets/img/posts/2026-02-26-LeastPrivilegedMSGraphSetup-appreg-3.png)
 
 And give the app Application.Read.All permissions
+>NOTE: if you want to audit Delegated permissions you also need to add "Directory.Read.All" as that is the least privileged role that can send requests to the endpoint "/oauth2permissiongrants"
+
 ![Setup App registration 4](/assets/img/posts/2026-02-26-LeastPrivilegedMSGraphSetup-appreg-4.png)
 
 Once that is done you can use the following code to create a report:
