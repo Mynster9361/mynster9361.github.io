@@ -101,15 +101,15 @@ $logAnalyticsWorkspaceId = "Workspace id from the log analytics can be found on 
 
 Import-Module LeastPrivilegedMSGraph
 
-Initialize-LogAnalyticsApi
+Initialize-LPMSLogAnalyticsApi
 
 Connect-EntraService -Service "LogAnalytics", "GraphBeta" -ClientID $clientId -TenantID $tenantId -ClientSecret $clientSecret
 
-$msGraphReport = Get-AppRoleAssignment
-$msGraphReport | Get-AppActivityData -WorkspaceId $logAnalyticsWorkspaceId -Days $daysToQuery # Defaults to 100k entries per app use -MaxActivityEntries to increase max is 500k entries per app
-$msGraphReport | Get-AppThrottlingData -WorkspaceId $logAnalyticsWorkspaceId -Days $daysToQuery
-$msGraphReport | Get-PermissionAnalysis
-Export-PermissionAnalysisReport -AppData $msGraphReport -OutputPath ".\report.html"
+$msGraphReport = Get-LPMSAppRoleAssignment
+$msGraphReport | Get-LPMSAppActivityData -WorkspaceId $logAnalyticsWorkspaceId -Days $daysToQuery # Defaults to 100k entries per app use -MaxActivityEntries to increase max is 500k entries per app
+$msGraphReport | Get-LPMSAppThrottlingData -WorkspaceId $logAnalyticsWorkspaceId -Days $daysToQuery
+$msGraphReport | Get-LPMSPermissionAnalysis
+Export-LPMSPermissionAnalysisReport -AppData $msGraphReport -OutputPath ".\report.html"
 ```
 
 That's it now you have a report that you can utilize to better limit your applications to only the needed permissions.
