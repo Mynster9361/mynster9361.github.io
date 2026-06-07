@@ -157,6 +157,7 @@ TotalMilliseconds : 135,9807
 ```
 
 This works, but as you can see there is quite a bit of boilerplate: manual pagination, manually detecting which link type came back on the last page, and manually persisting the cursor.
+Also note that i had 0 changes between these two but instead of having to gather all the data again and basicly wasting 44 seconds we were just told no changes since last request so in this instance it is the very least amount of time to execute.
 
 ---
 
