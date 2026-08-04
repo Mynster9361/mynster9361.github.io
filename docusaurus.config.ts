@@ -118,8 +118,8 @@ const config: Config = {
         {
           title: 'Feeds',
           items: [
-            { label: 'RSS', href: '/rss.xml' },
-            { label: 'Atom', href: '/atom.xml' },
+            { label: 'RSS', href: '/static/rss.xml' },
+            { label: 'Atom', href: '/static/atom.xml' },
           ],
         },
       ],
