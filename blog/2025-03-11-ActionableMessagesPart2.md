@@ -12,6 +12,8 @@ description: Demonstrating how to send an approval adaptive card (Actionable mes
 - Permissions on the endpoint you are using
 - Read the previous article [https://mynster-it.dk/2025/03/04/ActionableMessages](/2025/03/04/ActionableMessages)
 
+<!-- truncate -->
+
 
 ## Use Cases / Examples
 

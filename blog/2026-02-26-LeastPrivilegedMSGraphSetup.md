@@ -10,6 +10,8 @@ description: A step by step guide for getting up and running with least privileg
 
 So you are ready to begin seeing how many permissions you can remove from your applications, Great!
 
+<!-- truncate -->
+
 This step-by-step guide that i believe some people need in order to get started with my module but to be honest i have no clue is this is the issue for the low adoption rate that i am seeing.
 So if you are brave and have an opinion or feedback that you think is would help more people adopt my module please reach out to me i am on discord or linkedin and my messages are open.
 

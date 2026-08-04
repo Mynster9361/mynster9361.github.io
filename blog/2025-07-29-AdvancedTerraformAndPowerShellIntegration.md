@@ -16,6 +16,8 @@ description: Advanced Terraform concepts and how to integrate Terraform with you
 > - [Part 6: Terraform Modules Deep Dive](/2025/08/26/TerraformModulesDeepDive)
 > - Part 7: CI/CD with GitHub Actions *(September 9)*
 
+<!-- truncate -->
+
 ## Advanced Terraform for PowerShell Professionals
 
 With the fundamentals of variables, state management, and data sources from [Part 2](/2025/07/22/ResourcesVariablesAndStateInTerraform) now mastered, it's time to explore the advanced concepts that will make you truly productive with Terraform. In this part, we'll cover modules (Terraform's equivalent to PowerShell modules), loops and conditionals, and most importantly, how to integrate Terraform with your existing PowerShell automation workflows.

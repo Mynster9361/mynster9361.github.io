@@ -10,6 +10,8 @@ description: Introducing the ActionableMessages PowerShell module - a powerful w
 
 Creating interactive Adaptive Cards for email using Microsoft's Actionable Messages has never been easier.
 
+<!-- truncate -->
+
 In my [previous post](/2025/03/04/ActionableMessages), we explored the raw JSON approach to creating these cards.
 
 Today, I'm excited to introduce my PowerShell module that simplifies the entire process.

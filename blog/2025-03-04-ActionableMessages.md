@@ -11,6 +11,8 @@ description: Demonstrating how to send an approval adaptive card (Actionable mes
 - Token for MS Graph
 - Permissions on the endpoint you are using
 
+<!-- truncate -->
+
 
 For all the below examples, the variable `$baseUrl` will always be "https://graph.microsoft.com/v1.0"
 

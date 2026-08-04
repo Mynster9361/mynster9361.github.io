@@ -12,6 +12,8 @@ If you have ever written a script that fetches all users, all groups, or all dev
 Delta endpoints are the answer to that problem.
 They let you do one full sync to get a baseline, and from that point forward only receive the objects that were **added, updated, or deleted** since your last call.
 
+<!-- truncate -->
+
 >NOTE: the below result is of a tenant with 25k users
 
 LinkedIn:

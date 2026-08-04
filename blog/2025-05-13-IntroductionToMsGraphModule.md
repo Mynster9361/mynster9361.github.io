@@ -10,6 +10,8 @@ description: Learn how to get started with Microsoft Graph PowerShell SDK, inclu
 
 I recently hosted a talk on the [PDQ Discord for a PowerShell Wednesday](https://discord.gg/pdq)
 
+<!-- truncate -->
+
 You can watch the session here if you prefer to watch rather than read.
 
 <div class="youtube-embed"><iframe src="https://www.youtube.com/embed/hyuEvG_LNvw" title="YouTube video" allowfullscreen></iframe></div>

@@ -11,6 +11,8 @@ description: Demonstrating how to use advanced filters in MS Graph
 - Permissions on the endpoint you are using
 - If you have not already seen the post and have trouble with filtering look at my previous post [https://mynster-it.dk/2025/02/09/Filtering](/2025/02/09/Filtering)
 
+<!-- truncate -->
+
 For all the below examples the variable $baseUrl will always be "https://graph.microsoft.com/v1.0"
 
 Further than that for all advanced queries you will need to include the following in your headers

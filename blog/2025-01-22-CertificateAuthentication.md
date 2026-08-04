@@ -12,6 +12,8 @@ description: Demonstrating Client ID and Certificate Authentication to Microsoft
 In this post, I'll demonstrate how to authenticate to the Microsoft Graph API using Client ID and Certificate in PowerShell.
 The certificate-based authentication method is more secure than using a client secret and is suitable for scenarios where enhanced security is required. This method is demonstrated in the script below:
 
+<!-- truncate -->
+
 ## First off we need to create the app registration in Azure/Entra
 
 Go to App Registrations page and click create "New registration"

@@ -10,6 +10,8 @@ description: Secrets exposure vulnerability in the Microsoft Actionable Messages
 
 While developing a PowerShell module to enable sending Actionable Messages from PowerShell to Outlook, I discovered a significant information exposure issue in the Microsoft Actionable Messages admin portal. This post details the journey from initial discovery through disclosure to resolution.
 
+<!-- truncate -->
+
 ## The Discovery
 
 To send Actionable Messages, developers must register on the [Actionable Email Developer Dashboard](https://outlook.office.com/connectors/oam/publish). Organizations can choose between two approval scopes:

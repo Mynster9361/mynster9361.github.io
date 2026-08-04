@@ -16,6 +16,8 @@ description: Learn about Terraform resources, variables, and state management fr
 > - [Part 6: Terraform Modules Deep Dive](/2025/08/26/TerraformModulesDeepDive)
 > - Part 7: CI/CD with GitHub Actions *(September 9)*
 
+<!-- truncate -->
+
 ## Building Flexible Infrastructure with PowerShell Parallels
 
 Now that you've got your [Terraform foundation in place](/2025/07/15/GettingStartedWithTerraformForPowerShellPeople) and successfully deployed your first resources, it's time to make your infrastructure code more flexible and maintainable. In this part, we'll explore concepts that will feel familiar from PowerShell development: making code reusable with parameters (variables), returning useful information (outputs), and querying existing resources (data sources).

@@ -16,6 +16,8 @@ description: Learn how Terraform works from a PowerShell person's perspective, i
 > - [Part 6: Terraform Modules Deep Dive](/2025/08/26/TerraformModulesDeepDive)
 > - Part 7: CI/CD with GitHub Actions *(September 9)*
 
+<!-- truncate -->
+
 ## Introduction to Terraform for PowerShell Users
 
 Welcome to the first part of our comprehensive series designed specifically for PowerShell developers transitioning to Terraform. As PowerShell professionals, we're accustomed to writing imperative code that tells a system exactly *how* to do something. Terraform introduces a different paradigm - infrastructure as code (IaC) that is *declarative*, where you define *what* you want the end state to be.

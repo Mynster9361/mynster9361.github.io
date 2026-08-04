@@ -16,6 +16,8 @@ description: Master Terraform's native testing framework from a PowerShell persp
 > - [Part 6: Terraform Modules Deep Dive](/2025/08/26/TerraformModulesDeepDive)
 > - Part 7: CI/CD with GitHub Actions *(September 9)*
 
+<!-- truncate -->
+
 ## The Critical Need for Infrastructure Testing
 
 With enterprise-grade state management and team collaboration from [Part 4](/2025/08/05/AdvancedStateManagementAndCollaboration) now in place, it's time to address one of the most crucial aspects of professional infrastructure management: comprehensive testing.

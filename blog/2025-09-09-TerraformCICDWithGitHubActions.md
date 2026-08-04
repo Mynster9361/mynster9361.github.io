@@ -16,6 +16,8 @@ description: Learn how to implement comprehensive CI/CD pipelines for Terraform 
 > - [Part 6: Terraform Modules Deep Dive](/2025/08/26/TerraformModulesDeepDive)
 > - **Part 7: CI/CD with GitHub Actions** ← *You are here*
 
+<!-- truncate -->
+
 ## Building Enterprise-Grade CI/CD Pipelines for Terraform
 
 Welcome to the final of our comprehensive 7-part series on Terraform for PowerShell developers! Throughout this series, we have gone from basic concepts to enterprise-grade infrastructure management. Now, we'll bring everything together by implementing CI/CD pipelines using GitHub Actions.

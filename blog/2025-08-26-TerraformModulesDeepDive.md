@@ -16,6 +16,8 @@ description: Master Terraform modules from a PowerShell perspective - learn best
 > - **Part 6: Terraform Modules Deep Dive** ← *You are here*
 > - Part 7: CI/CD with GitHub Actions *(September 9)*
 
+<!-- truncate -->
+
 ## Mastering Terraform Modules for PowerShell Users
 
 With comprehensive testing strategies from [Part 5](/2025/08/19/TestingTerraformCode) now mastered, it's time to focus on creating reusable, production-ready infrastructure components. In this part, we'll dive deep into Terraform modules - the equivalent of PowerShell modules for infrastructure code.

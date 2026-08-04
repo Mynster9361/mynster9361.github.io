@@ -50,7 +50,6 @@ const config: Config = {
             copyright: `Copyright © ${new Date().getFullYear()} Morten Mynster`,
           },
           showReadingTime: true,
-          onUntruncatedBlogPosts: 'ignore',
         },
         theme: {
           customCss: './src/css/custom.css',

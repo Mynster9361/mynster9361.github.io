@@ -11,6 +11,8 @@ description: Demonstrating how to use batch requests in MS Graph
 - Token for msgraph
 - Permissions on the endpoint you are using
 
+<!-- truncate -->
+
 For all the below examples the variable $baseUrl will always be "https://graph.microsoft.com/v1.0"
 
 ## Introduction to Batch Requests

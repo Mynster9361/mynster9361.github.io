@@ -15,6 +15,8 @@ description: Master advanced Terraform state management techniques, workspaces, 
 > - [Part 6: Terraform Modules Deep Dive](/2025/08/26/TerraformModulesDeepDive)
 > - Part 7: CI/CD with GitHub Actions *(September 9)*
 
+<!-- truncate -->
+
 
 ## Enterprise State Management and Team Collaboration
 
