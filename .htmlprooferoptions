@@ -1,4 +1,0 @@
-directory_index_file: "index.html"
-assume_extension: true
-ignore_urls:
-  - "http://go.microsoft.com/fwlink/?LinkID=113216"
