@@ -6,6 +6,10 @@ tags: [terraform, powershell, modules, infrastructure as code, iac, azure]
 description: Master Terraform modules from a PowerShell perspective - learn best practices for creating, structuring, and maintaining reusable infrastructure components.
 ---
 
+Master Terraform modules from a PowerShell perspective - learn best practices for creating, structuring, and maintaining reusable infrastructure components.
+
+<!-- truncate -->
+
 > **📚 Series Navigation:**
 >
 > - [Part 1: Getting Started with Terraform for PowerShell People](/2025/07/15/GettingStartedWithTerraformForPowerShellPeople)
@@ -16,7 +20,6 @@ description: Master Terraform modules from a PowerShell perspective - learn best
 > - **Part 6: Terraform Modules Deep Dive** ← *You are here*
 > - Part 7: CI/CD with GitHub Actions *(September 9)*
 
-<!-- truncate -->
 
 ## Mastering Terraform Modules for PowerShell Users
 

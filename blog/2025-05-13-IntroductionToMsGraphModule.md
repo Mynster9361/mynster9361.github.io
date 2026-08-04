@@ -6,11 +6,14 @@ tags: [powershell, msgraph, microsoft graph, authentication, api]
 description: Learn how to get started with Microsoft Graph PowerShell SDK, including authentication, finding commands, permissions, and practical examples.
 ---
 
+Learn how to get started with Microsoft Graph PowerShell SDK, including authentication, finding commands, permissions, and practical examples.
+
+<!-- truncate -->
+
 ## Introduction to Microsoft Graph PowerShell SDK
 
 I recently hosted a talk on the [PDQ Discord for a PowerShell Wednesday](https://discord.gg/pdq)
 
-<!-- truncate -->
 
 You can watch the session here if you prefer to watch rather than read.
 

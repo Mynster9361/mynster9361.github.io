@@ -6,11 +6,14 @@ tags: [powershell, msgraph, speaker]
 description: Demonstrating how to use $filter and advanced filters
 ---
 
+Demonstrating how to use $filter and advanced filters
+
+<!-- truncate -->
+
 # Prerequisites
 - Token for msgraph
 - Permissions on the endpoint you are using
 
-<!-- truncate -->
 
 ## Understanding the options for filtering
 

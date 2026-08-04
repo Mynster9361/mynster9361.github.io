@@ -6,6 +6,10 @@ tags: [terraform, powershell, infrastructure as code, iac, azure]
 description: Learn how Terraform works from a PowerShell person's perspective, including installation, basic concepts, and your first configuration.
 ---
 
+Learn how Terraform works from a PowerShell person's perspective, including installation, basic concepts, and your first configuration.
+
+<!-- truncate -->
+
 > **📚 Series Navigation:**
 >
 > - **Part 1: Getting Started with Terraform for PowerShell People** ← *You are here*
@@ -16,7 +20,6 @@ description: Learn how Terraform works from a PowerShell person's perspective, i
 > - [Part 6: Terraform Modules Deep Dive](/2025/08/26/TerraformModulesDeepDive)
 > - Part 7: CI/CD with GitHub Actions *(September 9)*
 
-<!-- truncate -->
 
 ## Introduction to Terraform for PowerShell Users
 

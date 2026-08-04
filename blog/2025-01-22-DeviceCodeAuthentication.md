@@ -6,13 +6,15 @@ tags: [powershell, msgraph]
 description: Demonstrating Device Code Authentication to Microsoft Graph
 ---
 
+Demonstrating Device Code Authentication to Microsoft Graph
+
+<!-- truncate -->
 
 # Authenticating to Microsoft Graph API
 
 In this post, I'll demonstrate how to authenticate to the Microsoft Graph API using Client ID and your own user.
 The device code method is suitable for client-to-server communication where a interactive user is used to authenticate the application.
 
-<!-- truncate -->
 
 
 ## First off we need to create the app registration in Azure/Entra

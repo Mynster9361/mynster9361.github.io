@@ -6,13 +6,15 @@ tags: [powershell, msgraph]
 description: Demonstrating Client ID and Secret Authentication to Microsoft Graph
 ---
 
+Demonstrating Client ID and Secret Authentication to Microsoft Graph
+
+<!-- truncate -->
 
 # Authenticating to Microsoft Graph API
 
 In this post, I'll demonstrate how to authenticate to the Microsoft Graph API using Client ID and Secret in PowerShell.
 The client secret method is suitable for server-to-server communication where a client secret is used to authenticate the application.
 
-<!-- truncate -->
 
 
 ## First off we need to create the app registration in Azure/Entra

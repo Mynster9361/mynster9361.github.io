@@ -6,6 +6,10 @@ tags: [terraform, powershell, testing, native-testing, pester]
 description: Master Terraform's native testing framework from a PowerShell perspective - write reliable infrastructure tests with familiar patterns.
 ---
 
+Master Terraform's native testing framework from a PowerShell perspective - write reliable infrastructure tests with familiar patterns.
+
+<!-- truncate -->
+
 > **📚 Series Navigation:**
 >
 > - [Part 1: Getting Started with Terraform for PowerShell People](/2025/07/15/GettingStartedWithTerraformForPowerShellPeople)
@@ -16,7 +20,6 @@ description: Master Terraform's native testing framework from a PowerShell persp
 > - [Part 6: Terraform Modules Deep Dive](/2025/08/26/TerraformModulesDeepDive)
 > - Part 7: CI/CD with GitHub Actions *(September 9)*
 
-<!-- truncate -->
 
 ## The Critical Need for Infrastructure Testing
 

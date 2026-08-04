@@ -6,6 +6,10 @@ tags: [terraform, powershell, infrastructure as code, iac, azure, modules, autom
 description: Advanced Terraform concepts and how to integrate Terraform with your existing PowerShell automation workflows.
 ---
 
+Advanced Terraform concepts and how to integrate Terraform with your existing PowerShell automation workflows.
+
+<!-- truncate -->
+
 > **📚 Series Navigation:**
 >
 > - [Part 1: Getting Started with Terraform for PowerShell People](/2025/07/15/GettingStartedWithTerraformForPowerShellPeople)
@@ -16,7 +20,6 @@ description: Advanced Terraform concepts and how to integrate Terraform with you
 > - [Part 6: Terraform Modules Deep Dive](/2025/08/26/TerraformModulesDeepDive)
 > - Part 7: CI/CD with GitHub Actions *(September 9)*
 
-<!-- truncate -->
 
 ## Advanced Terraform for PowerShell Professionals
 

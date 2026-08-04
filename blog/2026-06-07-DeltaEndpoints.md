@@ -6,13 +6,16 @@ tags: [powershell, msgraph]
 description: Delta endpoints can be used to gather a complete set of data first and then subsequiently all changes over time
 ---
 
+Delta endpoints can be used to gather a complete set of data first and then subsequiently all changes over time
+
+<!-- truncate -->
+
 ## Intro
 
 If you have ever written a script that fetches all users, all groups, or all devices from Microsoft Graph on a schedule, you already know the pain: even with `$select` trimming down the properties and `$filter` narrowing the result set along with ´batching´, you are still re-downloading data that has not changed since the last run.
 Delta endpoints are the answer to that problem.
 They let you do one full sync to get a baseline, and from that point forward only receive the objects that were **added, updated, or deleted** since your last call.
 
-<!-- truncate -->
 
 >NOTE: the below result is of a tenant with 25k users
 

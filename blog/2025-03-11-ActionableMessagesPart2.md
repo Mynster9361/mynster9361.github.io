@@ -5,6 +5,11 @@ date: 2025-03-10
 tags: [powershell, msgraph, mail, adaptive cards]
 description: Demonstrating how to send an approval adaptive card (Actionable messages) through MS Graph
 ---
+
+Demonstrating how to send an approval adaptive card (Actionable messages) through MS Graph
+
+<!-- truncate -->
+
 # Prerequisites
 
 - App registration/service principal with correct permissions
@@ -12,7 +17,6 @@ description: Demonstrating how to send an approval adaptive card (Actionable mes
 - Permissions on the endpoint you are using
 - Read the previous article [https://mynster-it.dk/2025/03/04/ActionableMessages](/2025/03/04/ActionableMessages)
 
-<!-- truncate -->
 
 
 ## Use Cases / Examples

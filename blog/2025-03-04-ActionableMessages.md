@@ -5,13 +5,17 @@ date: 2025-03-03
 tags: [powershell, msgraph, mail, adaptive cards]
 description: Demonstrating how to send an approval adaptive card (Actionable messages) through MS Graph
 ---
+
+Demonstrating how to send an approval adaptive card (Actionable messages) through MS Graph
+
+<!-- truncate -->
+
 # Prerequisites
 
 - App registration/service principal with correct permissions
 - Token for MS Graph
 - Permissions on the endpoint you are using
 
-<!-- truncate -->
 
 
 For all the below examples, the variable `$baseUrl` will always be "https://graph.microsoft.com/v1.0"

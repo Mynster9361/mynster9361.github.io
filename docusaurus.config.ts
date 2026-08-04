@@ -43,6 +43,7 @@ const config: Config = {
           blogSidebarTitle: 'Recent Posts',
           blogSidebarCount: 10,
           postsPerPage: 10,
+          archiveBasePath: '/archives',
           feedOptions: {
             type: ['rss', 'atom'],
             title: 'Mynster Blog',
@@ -69,6 +70,7 @@ const config: Config = {
       },
       items: [
         { to: '/', label: 'Blog', position: 'left' },
+        { to: '/archives', label: 'Archives', position: 'left' },
         {
           type: 'docSidebar',
           sidebarId: 'modulesSidebar',
@@ -95,6 +97,7 @@ const config: Config = {
           title: 'Content',
           items: [
             { label: 'Blog', to: '/' },
+            { label: 'Archives', to: '/archives' },
             { label: 'PowerShell Modules', to: '/docs/modules/actionablemessages' },
             { label: 'About', to: '/about' },
           ],

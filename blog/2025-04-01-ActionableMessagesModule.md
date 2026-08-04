@@ -6,11 +6,14 @@ tags: [powershell, msgraph, mail, adaptive cards, actionable messages]
 description: Introducing the ActionableMessages PowerShell module - a powerful way to create interactive Adaptive Cards for email
 ---
 
+Introducing the ActionableMessages PowerShell module - a powerful way to create interactive Adaptive Cards for email
+
+<!-- truncate -->
+
 # ActionableMessages PowerShell Module
 
 Creating interactive Adaptive Cards for email using Microsoft's Actionable Messages has never been easier.
 
-<!-- truncate -->
 
 In my [previous post](/2025/03/04/ActionableMessages), we explored the raw JSON approach to creating these cards.
 

@@ -6,11 +6,14 @@ tags: [powershell, msgraph, mail, adaptive cards, actionable messages]
 description: Explore the new prebuilt Adaptive Cards introduced in version 1.0.4 of the ActionableMessages PowerShell module.
 ---
 
+Explore the new prebuilt Adaptive Cards introduced in version 1.0.4 of the ActionableMessages PowerShell module.
+
+<!-- truncate -->
+
 ## ActionableMessages PowerShell Module - New Prebuilt Cards in v1.0.4
 
 Version 1.0.4 of the ActionableMessages PowerShell module introduces **8 new prebuilt Adaptive Cards** to simplify common workflows. These cards are designed to address frequent use cases like notifications, approvals, surveys, and monitoring, making it easier than ever to create interactive emails.
 
-<!-- truncate -->
 
 ## What’s New?
 

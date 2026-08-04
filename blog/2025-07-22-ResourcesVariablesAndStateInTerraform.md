@@ -6,6 +6,10 @@ tags: [terraform, powershell, infrastructure as code, iac, azure, variables]
 description: Learn about Terraform resources, variables, and state management from a PowerShell perspective, with practical examples.
 ---
 
+Learn about Terraform resources, variables, and state management from a PowerShell perspective, with practical examples.
+
+<!-- truncate -->
+
 > **📚 Series Navigation:**
 >
 > - [Part 1: Getting Started with Terraform for PowerShell People](/2025/07/15/GettingStartedWithTerraformForPowerShellPeople)
@@ -16,7 +20,6 @@ description: Learn about Terraform resources, variables, and state management fr
 > - [Part 6: Terraform Modules Deep Dive](/2025/08/26/TerraformModulesDeepDive)
 > - Part 7: CI/CD with GitHub Actions *(September 9)*
 
-<!-- truncate -->
 
 ## Building Flexible Infrastructure with PowerShell Parallels
 

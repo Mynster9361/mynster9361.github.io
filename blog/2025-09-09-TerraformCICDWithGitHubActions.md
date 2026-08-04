@@ -6,6 +6,10 @@ tags: [terraform, powershell, ci/cd, github actions, devops]
 description: Learn how to implement comprehensive CI/CD pipelines for Terraform using GitHub Actions, with testing, automated plans, and deployment workflows.
 ---
 
+Learn how to implement comprehensive CI/CD pipelines for Terraform using GitHub Actions, with testing, automated plans, and deployment workflows.
+
+<!-- truncate -->
+
 > **📚 Series Navigation:**
 >
 > - [Part 1: Getting Started with Terraform for PowerShell People](/2025/07/15/GettingStartedWithTerraformForPowerShellPeople)
@@ -16,7 +20,6 @@ description: Learn how to implement comprehensive CI/CD pipelines for Terraform 
 > - [Part 6: Terraform Modules Deep Dive](/2025/08/26/TerraformModulesDeepDive)
 > - **Part 7: CI/CD with GitHub Actions** ← *You are here*
 
-<!-- truncate -->
 
 ## Building Enterprise-Grade CI/CD Pipelines for Terraform
 

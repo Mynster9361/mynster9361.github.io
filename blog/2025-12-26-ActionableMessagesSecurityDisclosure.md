@@ -6,11 +6,14 @@ tags: [security, disclosure, adaptive cards, actionable messages]
 description: Secrets exposure vulnerability in the Microsoft Actionable Messages admin portal
 ---
 
+Secrets exposure vulnerability in the Microsoft Actionable Messages admin portal
+
+<!-- truncate -->
+
 ## Background
 
 While developing a PowerShell module to enable sending Actionable Messages from PowerShell to Outlook, I discovered a significant information exposure issue in the Microsoft Actionable Messages admin portal. This post details the journey from initial discovery through disclosure to resolution.
 
-<!-- truncate -->
 
 ## The Discovery
 

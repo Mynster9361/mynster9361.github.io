@@ -6,6 +6,10 @@ tags: [terraform, powershell, state management, remote state, collaboration]
 description: Master advanced Terraform state management techniques, workspaces, and team collaboration workflows from a PowerShell perspective.
 ---
 
+Master advanced Terraform state management techniques, workspaces, and team collaboration workflows from a PowerShell perspective.
+
+<!-- truncate -->
+
 > **📚 Series Navigation:**
 > - [Part 1: Getting Started with Terraform for PowerShell People](/2025/07/15/GettingStartedWithTerraformForPowerShellPeople)
 > - [Part 2: Resources, Variables, and State in Terraform](/2025/07/22/ResourcesVariablesAndStateInTerraform)
@@ -15,7 +19,6 @@ description: Master advanced Terraform state management techniques, workspaces, 
 > - [Part 6: Terraform Modules Deep Dive](/2025/08/26/TerraformModulesDeepDive)
 > - Part 7: CI/CD with GitHub Actions *(September 9)*
 
-<!-- truncate -->
 
 
 ## Enterprise State Management and Team Collaboration
