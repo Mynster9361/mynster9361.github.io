@@ -26,11 +26,6 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/* Blog post list improvements */
-.blog-list-page .container {
-  max-width: 900px;
-}
-
 /* Ensure images in posts don't overflow */
 .markdown img {
   max-width: 100%;
@@ -54,4 +49,66 @@
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+/* ============================================================
+   Blog layout: sidebar (Recent Posts) on the LEFT, more room for posts
+   ============================================================ */
+
+/* The row DOM order is already [aside (col--3), main (col--7)],
+   so the sidebar is naturally on the left with flex-direction: row.
+   We shrink the sidebar and expand the content area. */
+.blog-wrapper aside.col.col--3 {
+  flex: 0 0 16.67%;   /* 2/12 cols */
+  max-width: 16.67%;
+}
+
+.blog-wrapper main.col.col--7 {
+  flex: 0 0 83.33%;   /* 10/12 cols */
+  max-width: 83.33%;
+}
+
+/* Individual post page: sidebar col--2 */
+.blog-post-page aside.col.col--2 {
+  flex: 0 0 16.67%;
+  max-width: 16.67%;
+}
+
+.blog-post-page main.col.col--7 {
+  flex: 0 0 83.33%;
+  max-width: 83.33%;
+}
+
+/* ============================================================
+   Blog listing cards: compact style
+   ============================================================ */
+
+/* Smaller post title on the listing page */
+.blog-list-page article h2 a,
+.blog-list-page article h2 {
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+/* Hide author block (avatar + name) on listing cards */
+.blog-list-page .avatar {
+  display: none;
+}
+
+/* Tighten up card spacing */
+.blog-list-page article.margin-bottom--xl {
+  margin-bottom: 1.5rem !important;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+
+/* Reduce date/reading time line size */
+.blog-list-page article header > div {
+  font-size: 0.85rem;
+}
+
+/* Description text compact */
+.blog-list-page article > p {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
 }
