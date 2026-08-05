@@ -79,13 +79,17 @@ foreach ($module in $manifest.modules) {
     $folderExists = Test-Path (Join-Path $RepoRoot $module.docsPath)
 
     if (-not $folderExists -or [string]::IsNullOrEmpty($lastVersion)) {
-        # Brand new module, or an existing-but-never-versioned folder (this is
-        # LeastPrivilegedMSGraph's state as of this writing): generate first, then
-        # cut - there's nothing on disk yet worth freezing under the old label.
+        # Brand new module, or an existing-but-never-versioned folder: generate the
+        # live release and leave it as the unversioned "current" bucket - same as
+        # every later release does. Nothing to cut yet; there's no OLDER version on
+        # disk worth freezing, and explicitly cutting the live version here too would
+        # just duplicate it under both a numbered URL and the current one. The
+        # "current" bucket gets its real version number as a label via
+        # docusaurus.config.ts's per-module `versions.current.label`, driven by
+        # lastVersionedRelease below, instead of Docusaurus's default "Next".
         $bootstrapped = New-ModuleScaffold -Module $module -Info $info -RepoRoot $RepoRoot -DryRun:$DryRun
         if ($bootstrapped) { $bootstrappedModules += $module.displayName }
         Invoke-PlatyPSGeneration -Module $module -Version $liveVersion -RepoRoot $RepoRoot -DryRun:$DryRun
-        Invoke-DocsVersionCut -Id $module.id -Version $liveVersion -RepoRoot $RepoRoot -DryRun:$DryRun
         $summaryRows += "| $($module.displayName) | (bootstrap) | $liveVersion |"
         $module.lastVersionedRelease = $liveVersion
         continue

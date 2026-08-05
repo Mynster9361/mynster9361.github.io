@@ -30,6 +30,12 @@ const moduleDocsPlugins: Config['plugins'] = modulesManifest.modules.map((m) => 
     sidebarPath: './sidebars.modules.ts',
     includeCurrentVersion: true,
     lastVersion: 'current',
+    // The unversioned "current" bucket always holds the live release's content,
+    // but Docusaurus labels it "Next" by default (implying an unreleased preview).
+    // Show the real version number instead, once we know it.
+    ...(m.lastVersionedRelease
+      ? { versions: { current: { label: m.lastVersionedRelease } } }
+      : {}),
   },
 ]);
 

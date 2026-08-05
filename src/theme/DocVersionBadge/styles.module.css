@@ -1,0 +1,52 @@
+.versionBadgeContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.versionBadgeClickable {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  user-select: none;
+}
+
+.versionBadgeCaret {
+  font-size: 0.65rem;
+}
+
+.versionDropdownMenu {
+  position: absolute;
+  top: calc(100% + 0.3rem);
+  left: 0;
+  z-index: 10;
+  min-width: 8rem;
+  max-height: 16rem;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0.3rem;
+  list-style: none;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-global-radius);
+  box-shadow: var(--ifm-global-shadow-md);
+}
+
+.versionDropdownLink {
+  display: block;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--ifm-global-radius);
+  font-size: 0.85rem;
+  color: var(--ifm-font-color-base) !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.versionDropdownLink:hover {
+  background: var(--ifm-color-emphasis-200);
+}
+
+.versionDropdownLinkActive {
+  font-weight: 600;
+  color: var(--ifm-color-primary) !important;
+}
