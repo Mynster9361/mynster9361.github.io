@@ -175,15 +175,25 @@ foreach ($name in (Get-GalleryModuleNames)) {
     $id = Get-ModuleIdSlug -Name $name
     if (-not ($manifest.modules | Where-Object { $_.id -eq $id })) {
         Write-Host "New module discovered on PSGallery: $name (id: $id)"
+        $docsPath = "docs-modules/$id"
         $manifest.modules = @($manifest.modules) + [pscustomobject]@{
             id                   = $id
             psGalleryId          = $name
             displayName          = $name
-            docsPath             = "docs-modules/$id"
+            docsPath             = $docsPath
             lastVersionedRelease = $null
             firstSeen            = (Get-Date -Format 'yyyy-MM-dd')
         }
         $discoveredNewModule = $true
+        if (-not $DryRun) {
+            # Docusaurus initializes every registered docs plugin instance - including
+            # ones just added to the manifest this run - before running ANY
+            # `docs:version:*` command, and errors if an instance's folder doesn't
+            # physically exist yet. Create the (empty, for now) folder immediately so a
+            # version cut for an unrelated, already-existing module doesn't fail because
+            # of a brand-new module that hasn't been scaffolded yet.
+            New-Item -ItemType Directory -Force -Path (Join-Path $RepoRoot $docsPath 'commands') | Out-Null
+        }
     }
 }
 
