@@ -1,5 +1,6 @@
 ﻿---
 title: ActionableMessages PowerShell Module
+sidebar_position: 1
 ---
 
 # ActionableMessages PowerShell Module
