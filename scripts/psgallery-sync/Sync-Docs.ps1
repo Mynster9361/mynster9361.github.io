@@ -10,6 +10,10 @@ per-module docs plugin instances. This script only ever appends/updates entries 
 that JSON file plus each module's commands/ folder and versioned-docs snapshots -
 it never touches index.md or any other hand-written content once a module's folder
 already exists.
+
+Only ever processes the CURRENT live release per module. For historical releases
+published before this automation existed (or missed by a prior failed run), use
+Backfill-Docs.ps1 instead.
 #>
 [CmdletBinding()]
 param(
@@ -22,148 +26,10 @@ param(
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 
+. (Join-Path $PSScriptRoot 'Common.ps1')
+
 $manifestPath = Join-Path $RepoRoot 'modules-manifest.json'
-$script:BootstrappedModules = @()
-
-function Get-ModuleIdSlug {
-    param([Parameter(Mandatory)][string]$Name)
-    ($Name.ToLowerInvariant() -replace '[^a-z0-9]+', '-').Trim('-')
-}
-
-function Get-GalleryModuleNames {
-    Write-Host "Discovering modules from $GalleryProfile"
-    $response = Invoke-WebRequest -Uri $GalleryProfile -UseBasicParsing
-    $names = [regex]::Matches($response.Content, 'href="/packages/([^"/]+)/?"') |
-        ForEach-Object { $_.Groups[1].Value } |
-        Sort-Object -Unique
-    if (-not $names -or $names.Count -eq 0) {
-        throw "No modules discovered on $GalleryProfile - refusing to proceed (PSGallery page layout may have changed)."
-    }
-    Write-Host "Discovered modules: $($names -join ', ')"
-    return $names
-}
-
-function Get-GalleryModuleInfo {
-    param([Parameter(Mandatory)][string]$PsGalleryId)
-    $result = Find-PSResource -Name $PsGalleryId -Repository PSGallery -ErrorAction Stop
-    if ($result -is [array]) { $result = $result[0] }
-    [pscustomobject]@{
-        Version     = $result.Version.ToString()
-        Description = $result.Description
-    }
-}
-
-function Compare-ModuleVersion {
-    param([Parameter(Mandatory)][string]$Live, [Parameter(Mandatory)][string]$Recorded)
-    # Strip any prerelease suffix (e.g. "1.2.0-beta1") - [version] throws on those.
-    $liveClean = ($Live -split '-')[0]
-    $recordedClean = ($Recorded -split '-')[0]
-    try {
-        return ([version]$liveClean).CompareTo([version]$recordedClean)
-    } catch {
-        return [string]::Compare($Live, $Recorded, [System.StringComparison]::OrdinalIgnoreCase)
-    }
-}
-
-function New-ModuleScaffold {
-    param([Parameter(Mandatory)]$Module, [Parameter(Mandatory)]$Info)
-    $indexPath = Join-Path $RepoRoot $Module.docsPath 'index.md'
-    if (Test-Path $indexPath) { return } # existing content - never touched by automation
-    Write-Host "Bootstrapping new module doc: $($Module.displayName)"
-    if ($DryRun) { return }
-    New-Item -ItemType Directory -Force -Path (Join-Path $RepoRoot $Module.docsPath 'commands') | Out-Null
-    $content = @"
----
-title: $($Module.displayName) PowerShell Module
----
-
-# $($Module.displayName) PowerShell Module
-
-$($Info.Description)
-
-## Installation
-
-``````powershell
-Install-Module -Name $($Module.psGalleryId) -Scope CurrentUser
-``````
-
-*(Auto-generated placeholder from PowerShell Gallery metadata. Replace freely - this file is never touched by automation again once it exists.)*
-"@
-    Set-Content -Path $indexPath -Value $content -Encoding utf8
-    $script:BootstrappedModules += $Module.displayName
-}
-
-function Invoke-PlatyPSGeneration {
-    param([Parameter(Mandatory)]$Module, [Parameter(Mandatory)][string]$Version)
-    Write-Host "Generating command docs for $($Module.psGalleryId) $Version"
-    if ($DryRun) { return }
-
-    Install-Module -Name $Module.psGalleryId -RequiredVersion $Version -Force -SkipPublisherCheck -Scope CurrentUser -AllowClobber
-    Import-Module -Name $Module.psGalleryId -RequiredVersion $Version -Force
-
-    $tempDir = Join-Path ([System.IO.Path]::GetTempPath()) "platyps-$($Module.id)-$([guid]::NewGuid())"
-    New-Item -ItemType Directory -Path $tempDir -Force | Out-Null
-
-    # The site's existing command pages use minimal `title`-only frontmatter, not
-    # PlatyPS's default metadata block - try -NoMetadata first, fall back to
-    # generate-then-strip if the installed platyPS version doesn't support it.
-    $usedNoMetadata = $true
-    try {
-        New-MarkdownHelp -Module $Module.psGalleryId -OutputFolder $tempDir -Force -NoMetadata -ErrorAction Stop | Out-Null
-    } catch {
-        Write-Warning "New-MarkdownHelp -NoMetadata failed ($($_.Exception.Message)); falling back to default metadata + strip."
-        $usedNoMetadata = $false
-        Get-ChildItem -Path $tempDir -Filter '*.md' -ErrorAction SilentlyContinue | Remove-Item -Force
-        New-MarkdownHelp -Module $Module.psGalleryId -OutputFolder $tempDir -Force | Out-Null
-    }
-
-    $commandsDir = Join-Path $RepoRoot $Module.docsPath 'commands'
-    New-Item -ItemType Directory -Force -Path $commandsDir | Out-Null
-    Get-ChildItem -Path $commandsDir -Filter '*.md' -ErrorAction SilentlyContinue | Remove-Item -Force
-
-    $commandNames = @()
-    Get-ChildItem -Path $tempDir -Filter '*.md' | ForEach-Object {
-        $commandName = $_.BaseName
-        $commandNames += $commandName
-        $body = Get-Content -Raw -Path $_.FullName
-        if (-not $usedNoMetadata) {
-            # Strip whatever frontmatter platyPS emitted between the first two '---' lines.
-            $body = $body -replace '(?s)^---.*?---\r?\n', ''
-        }
-        $frontmatter = "---`ntitle: $commandName`n---`n`n"
-        Set-Content -Path (Join-Path $commandsDir "$commandName.md") -Value ($frontmatter + $body.TrimStart()) -Encoding utf8
-    }
-    Remove-Item $tempDir -Recurse -Force -ErrorAction SilentlyContinue
-
-    $indexLines = @('---', "title: $($Module.displayName) Commands", '---', '', "# $($Module.displayName) Commands", '')
-    $indexLines += ($commandNames | Sort-Object | ForEach-Object {
-        "* [``$_``](/docs/modules/$($Module.id)/commands/$_)"
-    })
-    Set-Content -Path (Join-Path $commandsDir 'index.md') -Value ($indexLines -join "`n") -Encoding utf8
-
-    Remove-Module -Name $Module.psGalleryId -Force -ErrorAction SilentlyContinue
-}
-
-function Save-Manifest {
-    param([Parameter(Mandatory)]$Manifest)
-    if ($DryRun) { return }
-    $Manifest | ConvertTo-Json -Depth 10 | Set-Content -Path $manifestPath -Encoding utf8
-}
-
-function Invoke-DocsVersionCut {
-    param([Parameter(Mandatory)][string]$Id, [Parameter(Mandatory)][string]$Version)
-    Write-Host "Cutting Docusaurus version '$Version' for plugin '$Id'"
-    if ($DryRun) { return }
-    Push-Location $RepoRoot
-    try {
-        & npm run docusaurus -- "docs:version:$Id" $Version
-        if ($LASTEXITCODE -ne 0) {
-            throw "docs:version:$Id $Version failed with exit code $LASTEXITCODE"
-        }
-    } finally {
-        Pop-Location
-    }
-}
+$bootstrappedModules = @()
 
 # --- main ---
 
@@ -171,7 +37,7 @@ $manifest = Get-Content -Raw -Path $manifestPath | ConvertFrom-Json
 $summaryRows = @()
 
 $discoveredNewModule = $false
-foreach ($name in (Get-GalleryModuleNames)) {
+foreach ($name in (Get-GalleryModuleNames -GalleryProfile $GalleryProfile)) {
     $id = Get-ModuleIdSlug -Name $name
     if (-not ($manifest.modules | Where-Object { $_.id -eq $id })) {
         Write-Host "New module discovered on PSGallery: $name (id: $id)"
@@ -202,7 +68,7 @@ if ($discoveredNewModule) {
     # CLI spawns, and its plugins array (and thus the `docs:version:<id>` script) only
     # exists for modules already on disk - persist newly-discovered entries now, before
     # any docs:version cut is attempted for them below.
-    Save-Manifest -Manifest $manifest
+    Save-Manifest -Manifest $manifest -ManifestPath $manifestPath -DryRun:$DryRun
 }
 
 foreach ($module in $manifest.modules) {
@@ -216,9 +82,10 @@ foreach ($module in $manifest.modules) {
         # Brand new module, or an existing-but-never-versioned folder (this is
         # LeastPrivilegedMSGraph's state as of this writing): generate first, then
         # cut - there's nothing on disk yet worth freezing under the old label.
-        New-ModuleScaffold -Module $module -Info $info
-        Invoke-PlatyPSGeneration -Module $module -Version $liveVersion
-        Invoke-DocsVersionCut -Id $module.id -Version $liveVersion
+        $bootstrapped = New-ModuleScaffold -Module $module -Info $info -RepoRoot $RepoRoot -DryRun:$DryRun
+        if ($bootstrapped) { $bootstrappedModules += $module.displayName }
+        Invoke-PlatyPSGeneration -Module $module -Version $liveVersion -RepoRoot $RepoRoot -DryRun:$DryRun
+        Invoke-DocsVersionCut -Id $module.id -Version $liveVersion -RepoRoot $RepoRoot -DryRun:$DryRun
         $summaryRows += "| $($module.displayName) | (bootstrap) | $liveVersion |"
         $module.lastVersionedRelease = $liveVersion
         continue
@@ -227,7 +94,7 @@ foreach ($module in $manifest.modules) {
     $cmp = Compare-ModuleVersion -Live $liveVersion -Recorded $lastVersion
     if ($cmp -eq 0) {
         Write-Host "No new release ($liveVersion) - refreshing command docs only."
-        Invoke-PlatyPSGeneration -Module $module -Version $liveVersion
+        Invoke-PlatyPSGeneration -Module $module -Version $liveVersion -RepoRoot $RepoRoot -DryRun:$DryRun
         continue
     }
     if ($cmp -lt 0) {
@@ -237,13 +104,13 @@ foreach ($module in $manifest.modules) {
 
     # New release: freeze what's CURRENTLY on disk (still the old version) under the
     # old label BEFORE overwriting it with fresh output for the new version.
-    Invoke-DocsVersionCut -Id $module.id -Version $lastVersion
-    Invoke-PlatyPSGeneration -Module $module -Version $liveVersion
+    Invoke-DocsVersionCut -Id $module.id -Version $lastVersion -RepoRoot $RepoRoot -DryRun:$DryRun
+    Invoke-PlatyPSGeneration -Module $module -Version $liveVersion -RepoRoot $RepoRoot -DryRun:$DryRun
     $summaryRows += "| $($module.displayName) | $lastVersion | $liveVersion |"
     $module.lastVersionedRelease = $liveVersion
 }
 
-Save-Manifest -Manifest $manifest
+Save-Manifest -Manifest $manifest -ManifestPath $manifestPath -DryRun:$DryRun
 
 $body = @('## PowerShell Gallery docs sync', '')
 if ($summaryRows.Count -gt 0) {
@@ -253,10 +120,10 @@ if ($summaryRows.Count -gt 0) {
 } else {
     $body += 'No module releases detected - command reference docs refreshed in place where needed.'
 }
-if ($script:BootstrappedModules.Count -gt 0) {
+if ($bootstrappedModules.Count -gt 0) {
     $body += ''
     $body += '### New modules - follow-up needed'
-    foreach ($m in $script:BootstrappedModules) {
+    foreach ($m in $bootstrappedModules) {
         $body += "- [ ] Add ""$m"" to docs/modules/index.md"
     }
 }
