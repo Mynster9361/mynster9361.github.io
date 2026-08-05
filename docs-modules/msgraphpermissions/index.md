@@ -1,5 +1,6 @@
 ---
 title: MSGraphPermissions PowerShell Module
+sidebar_position: 1
 ---
 
 # MSGraphPermissions PowerShell Module

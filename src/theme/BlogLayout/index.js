@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
-import BlogSidebar from '@theme/BlogSidebar';
 import styles from './styles.module.css';
 
 const BLOG_TAGS = [
@@ -61,7 +60,6 @@ export default function BlogLayout(props) {
     <Layout {...layoutProps}>
       <div className="container margin-vert--lg blog-wrapper">
         <div className="blogGrid_ARw5">
-          <BlogSidebar sidebar={sidebar} />
           <main
             className={clsx('col', {
               'col--7': hasSidebar,

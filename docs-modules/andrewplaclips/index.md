@@ -1,5 +1,6 @@
 ---
 title: andrewplaclips PowerShell Module
+sidebar_position: 1
 ---
 
 # andrewplaclips PowerShell Module

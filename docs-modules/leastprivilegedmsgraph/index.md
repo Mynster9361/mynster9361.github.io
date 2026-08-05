@@ -1,5 +1,6 @@
 ---
 title: LeastPrivilegedMSGraph PowerShell Module
+sidebar_position: 1
 ---
 
 # LeastPrivilegedMSGraph PowerShell Module

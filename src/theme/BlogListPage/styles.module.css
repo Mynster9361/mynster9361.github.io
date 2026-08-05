@@ -1,6 +1,6 @@
 .blogGrid {
   display: grid;
-  grid-template-columns: minmax(190px, 16.67%) minmax(0, 1fr) minmax(180px, 220px);
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 220px);
   gap: 1.5rem;
   align-items: start;
 }

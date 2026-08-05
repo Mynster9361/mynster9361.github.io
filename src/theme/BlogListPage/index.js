@@ -4,7 +4,6 @@ import Link from '@docusaurus/Link';
 import {PageMetadata, HtmlClassNameProvider, ThemeClassNames} from '@docusaurus/theme-common';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import BlogSidebar from '@theme/BlogSidebar';
 import BlogPostItems from '@theme/BlogPostItems';
 import BlogListPaginator from '@theme/BlogListPaginator';
 import styles from './styles.module.css';
@@ -78,7 +77,6 @@ function BlogListPageContent({metadata, items, sidebar}) {
     <Layout>
       <div className="container margin-vert--lg blog-wrapper">
         <div className={styles.blogGrid}>
-          <BlogSidebar sidebar={sidebar} />
           <main className={styles.blogContent}>
             <BlogPostItems items={items} />
             <BlogListPaginator metadata={metadata} />

@@ -79,8 +79,6 @@ const config: Config = {
         },
         blog: {
           routeBasePath: '/',
-          blogSidebarTitle: 'Recent Posts',
-          blogSidebarCount: 10,
           postsPerPage: 10,
           archiveBasePath: '/archives',
           feedOptions: {
