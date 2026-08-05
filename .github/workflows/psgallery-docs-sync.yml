@@ -48,7 +48,7 @@ jobs:
         shell: pwsh
         run: |
           ./scripts/psgallery-sync/Sync-Docs.ps1 `
-            -DryRun:${{ inputs.dry_run == true }} `
+            -DryRun:$${{ inputs.dry_run == true }} `
             -PrBodyPath "$env:RUNNER_TEMP/pr-body.md"
 
       - name: Open pull request
