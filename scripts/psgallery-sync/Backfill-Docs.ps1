@@ -58,9 +58,9 @@ foreach ($module in $targets) {
 
     # Skip anything already cut, and skip the current release itself - that's the
     # working copy's live content already, not history to backfill.
-    $missing = $allVersions | Where-Object { $_ -notin $cutVersions -and $_ -ne $currentRelease }
+    $missing = @($allVersions | Where-Object { $_ -notin $cutVersions -and $_ -ne $currentRelease })
 
-    if (-not $missing -or $missing.Count -eq 0) {
+    if ($missing.Count -eq 0) {
         Write-Host 'No missing historical versions.'
         continue
     }

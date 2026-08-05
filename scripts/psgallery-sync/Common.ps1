@@ -19,10 +19,10 @@ function Get-GalleryModuleNames {
     param([Parameter(Mandatory)][string]$GalleryProfile)
     Write-Host "Discovering modules from $GalleryProfile"
     $response = Invoke-WebRequest -Uri $GalleryProfile -UseBasicParsing
-    $names = [regex]::Matches($response.Content, 'href="/packages/([^"/]+)/?"') |
+    $names = @([regex]::Matches($response.Content, 'href="/packages/([^"/]+)/?"') |
         ForEach-Object { $_.Groups[1].Value } |
-        Sort-Object -Unique
-    if (-not $names -or $names.Count -eq 0) {
+        Sort-Object -Unique)
+    if ($names.Count -eq 0) {
         throw "No modules discovered on $GalleryProfile - refusing to proceed (PSGallery page layout may have changed)."
     }
     Write-Host "Discovered modules: $($names -join ', ')"
@@ -43,9 +43,9 @@ function Get-GalleryModuleVersions {
     <# All published versions of a module, ascending. #>
     param([Parameter(Mandatory)][string]$PsGalleryId)
     $results = Find-PSResource -Name $PsGalleryId -Version '*' -Repository PSGallery -ErrorAction Stop
-    $results |
+    @($results |
         ForEach-Object { $_.Version.ToString() } |
-        Sort-Object -Unique -Property { [version](($_ -split '-')[0]) }
+        Sort-Object -Unique -Property { [version](($_ -split '-')[0]) })
 }
 
 function Get-CutVersions {
