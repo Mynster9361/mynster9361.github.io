@@ -144,6 +144,12 @@ function Invoke-PlatyPSGeneration {
     Remove-Module -Name $Module.psGalleryId -Force -ErrorAction SilentlyContinue
 }
 
+function Save-Manifest {
+    param([Parameter(Mandatory)]$Manifest)
+    if ($DryRun) { return }
+    $Manifest | ConvertTo-Json -Depth 10 | Set-Content -Path $manifestPath -Encoding utf8
+}
+
 function Invoke-DocsVersionCut {
     param([Parameter(Mandatory)][string]$Id, [Parameter(Mandatory)][string]$Version)
     Write-Host "Cutting Docusaurus version '$Version' for plugin '$Id'"
@@ -164,6 +170,7 @@ function Invoke-DocsVersionCut {
 $manifest = Get-Content -Raw -Path $manifestPath | ConvertFrom-Json
 $summaryRows = @()
 
+$discoveredNewModule = $false
 foreach ($name in (Get-GalleryModuleNames)) {
     $id = Get-ModuleIdSlug -Name $name
     if (-not ($manifest.modules | Where-Object { $_.id -eq $id })) {
@@ -176,7 +183,16 @@ foreach ($name in (Get-GalleryModuleNames)) {
             lastVersionedRelease = $null
             firstSeen            = (Get-Date -Format 'yyyy-MM-dd')
         }
+        $discoveredNewModule = $true
     }
+}
+
+if ($discoveredNewModule) {
+    # docusaurus.config.ts reads modules-manifest.json fresh from disk each time the
+    # CLI spawns, and its plugins array (and thus the `docs:version:<id>` script) only
+    # exists for modules already on disk - persist newly-discovered entries now, before
+    # any docs:version cut is attempted for them below.
+    Save-Manifest -Manifest $manifest
 }
 
 foreach ($module in $manifest.modules) {
@@ -217,11 +233,7 @@ foreach ($module in $manifest.modules) {
     $module.lastVersionedRelease = $liveVersion
 }
 
-if ($DryRun) {
-    Write-Host "[dry-run] would write $manifestPath"
-} else {
-    $manifest | ConvertTo-Json -Depth 10 | Set-Content -Path $manifestPath -Encoding utf8
-}
+Save-Manifest -Manifest $manifest
 
 $body = @('## PowerShell Gallery docs sync', '')
 if ($summaryRows.Count -gt 0) {
