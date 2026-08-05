@@ -1,0 +1,20 @@
+{
+  "modules": [
+    {
+      "id": "actionablemessages",
+      "psGalleryId": "ActionableMessages",
+      "displayName": "ActionableMessages",
+      "docsPath": "docs-modules/actionablemessages",
+      "lastVersionedRelease": null,
+      "firstSeen": "2026-08-05"
+    },
+    {
+      "id": "leastprivilegedmsgraph",
+      "psGalleryId": "LeastPrivilegedMSGraph",
+      "displayName": "LeastPrivilegedMSGraph",
+      "docsPath": "docs-modules/leastprivilegedmsgraph",
+      "lastVersionedRelease": null,
+      "firstSeen": "2026-08-05"
+    }
+  ]
+}

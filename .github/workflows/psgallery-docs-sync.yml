@@ -1,0 +1,61 @@
+name: Sync PowerShell Module Docs
+
+on:
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Run discovery + version comparison only, write no files"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: "psgallery-docs-sync"
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Install PowerShell dependencies
+        shell: pwsh
+        run: |
+          if (-not (Get-Module -ListAvailable -Name Microsoft.PowerShell.PSResourceGet)) {
+            Install-Module Microsoft.PowerShell.PSResourceGet -Force -Scope CurrentUser
+          }
+          Install-Module platyPS -Force -Scope CurrentUser -SkipPublisherCheck -AllowClobber
+
+      - name: Run PSGallery docs sync
+        shell: pwsh
+        run: |
+          ./scripts/psgallery-sync/Sync-Docs.ps1 `
+            -DryRun:${{ inputs.dry_run == true }} `
+            -PrBodyPath "$env:RUNNER_TEMP/pr-body.md"
+
+      - name: Open pull request
+        if: ${{ inputs.dry_run != true }}
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore(docs): sync PowerShell module docs from PSGallery"
+          title: "Sync PowerShell module docs from PSGallery"
+          branch: automation/psgallery-docs-sync
+          body-path: ${{ runner.temp }}/pr-body.md

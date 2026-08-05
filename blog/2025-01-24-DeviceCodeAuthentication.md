@@ -1,7 +1,7 @@
 ﻿---
 title: Device Code Authentication to Microsoft Graph API
 authors: mynster
-date: 2025-01-23
+date: 2025-01-24
 tags: [powershell, msgraph]
 description: Demonstrating Device Code Authentication to Microsoft Graph
 ---

@@ -1,7 +1,7 @@
 ﻿---
 title: Client ID and Certificate Authentication to Microsoft Graph API
 authors: mynster
-date: 2025-01-23
+date: 2025-01-22
 tags: [powershell, msgraph]
 description: Demonstrating Client ID and Certificate Authentication to Microsoft Graph
 ---

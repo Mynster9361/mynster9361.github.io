@@ -1,6 +1,37 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+interface ModuleManifestEntry {
+  id: string;
+  psGalleryId: string;
+  displayName: string;
+  docsPath: string;
+  lastVersionedRelease: string | null;
+  firstSeen: string;
+}
+
+const modulesManifest: { modules: ModuleManifestEntry[] } = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, 'modules-manifest.json'), 'utf-8'),
+);
+
+const moduleIds = modulesManifest.modules.map((m) => m.id);
+if (moduleIds.includes('default') || new Set(moduleIds).size !== moduleIds.length) {
+  throw new Error('modules-manifest.json: module ids must be unique and not "default"');
+}
+
+const moduleDocsPlugins: Config['plugins'] = modulesManifest.modules.map((m) => [
+  '@docusaurus/plugin-content-docs',
+  {
+    id: m.id,
+    path: m.docsPath,
+    routeBasePath: `docs/modules/${m.id}`,
+    sidebarPath: './sidebars.modules.ts',
+    includeCurrentVersion: true,
+    lastVersion: 'current',
+  },
+]);
 
 const config: Config = {
   title: 'Mynster',
@@ -28,6 +59,8 @@ const config: Config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+
+  plugins: [...moduleDocsPlugins],
 
   presets: [
     [
@@ -69,13 +102,19 @@ const config: Config = {
         style: { borderRadius: '50%' },
       },
       items: [
-        { to: '/', label: 'Blog', position: 'left' },
+        { to: '/', label: 'Blog', position: 'left', exact: true },
         { to: '/archives', label: 'Archives', position: 'left' },
         {
-          type: 'docSidebar',
-          sidebarId: 'modulesSidebar',
-          position: 'left',
+          type: 'dropdown',
           label: 'PowerShell Modules',
+          position: 'left',
+          items: [
+            { to: '/docs/modules', label: 'Overview' },
+            ...modulesManifest.modules.map((m) => ({
+              to: `/docs/modules/${m.id}`,
+              label: m.displayName,
+            })),
+          ],
         },
         { to: '/about', label: 'About', position: 'left' },
         {
@@ -98,7 +137,7 @@ const config: Config = {
           items: [
             { label: 'Blog', to: '/' },
             { label: 'Archives', to: '/archives' },
-            { label: 'PowerShell Modules', to: '/docs/modules/actionablemessages' },
+            { label: 'PowerShell Modules', to: '/docs/modules' },
             { label: 'About', to: '/about' },
           ],
         },

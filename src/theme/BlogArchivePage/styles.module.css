@@ -1,0 +1,112 @@
+.archiveHeader {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.archiveTitle {
+  margin-bottom: 0.35rem;
+}
+
+.archiveSubtitle {
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 0;
+}
+
+.archiveContent {
+  position: relative;
+  max-width: 720px;
+  padding-left: 1.75rem;
+}
+
+.archiveContent::before {
+  content: '';
+  position: absolute;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  left: 0.3rem;
+  width: 2px;
+  background: var(--ifm-color-emphasis-300);
+}
+
+.yearSection {
+  margin-bottom: 1.5rem;
+}
+
+.yearSection:last-child {
+  margin-bottom: 0;
+}
+
+.yearHeading {
+  position: relative;
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.yearHeading::before {
+  content: '';
+  position: absolute;
+  left: -1.7rem;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+  transform: translateY(-50%);
+}
+
+.postList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.postItem {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  padding: 0.35rem 0;
+}
+
+.postItem::before {
+  content: '';
+  position: absolute;
+  left: -1.575rem;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ifm-color-emphasis-500);
+  transform: translateY(-50%);
+}
+
+.postDay {
+  flex: 0 0 auto;
+  width: 1.75rem;
+  font-weight: 600;
+  color: var(--ifm-font-color-base);
+}
+
+.postMonth {
+  flex: 0 0 auto;
+  width: 2.75rem;
+  margin-right: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.postLink {
+  font-size: 1rem;
+}
+
+@media (max-width: 640px) {
+  .postDay {
+    width: 1.5rem;
+  }
+
+  .postMonth {
+    width: 2.5rem;
+  }
+}
