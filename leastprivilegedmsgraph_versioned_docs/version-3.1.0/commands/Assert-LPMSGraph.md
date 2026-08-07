@@ -97,6 +97,6 @@ It only performs read-only validation checks.
 
 ## RELATED LINKS
 
-[https://mynster-it.dk/docs/modules/leastprivilegedmsgraph/commands/Assert-LPMSGraph](https://mynster-it.dk/docs/modules/leastprivilegedmsgraph/commands/Assert-LPMSGraph)
+[https://mynster9361.github.io/Least_Privileged_MSGraph/commands/Assert-LPMSGraph.html](https://mynster9361.github.io/Least_Privileged_MSGraph/commands/Assert-LPMSGraph.html)
 
 

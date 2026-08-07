@@ -327,6 +327,6 @@ Best Practices:
 
 [https://learn.microsoft.com/en-us/graph/permissions-reference](https://learn.microsoft.com/en-us/graph/permissions-reference)
 
-[https://mynster-it.dk/docs/modules/leastprivilegedmsgraph/commands/Export-LPMSPermissionAnalysisReport](https://mynster-it.dk/docs/modules/leastprivilegedmsgraph/commands/Export-LPMSPermissionAnalysisReport)
+[https://mynster9361.github.io/Least_Privileged_MSGraph/commands/Export-LPMSPermissionAnalysisReport.html](https://mynster9361.github.io/Least_Privileged_MSGraph/commands/Export-LPMSPermissionAnalysisReport.html)
 
 

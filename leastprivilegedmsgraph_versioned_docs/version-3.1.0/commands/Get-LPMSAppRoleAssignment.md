@@ -336,6 +336,6 @@ Related Cmdlets:
 
 [https://learn.microsoft.com/en-us/graph/permissions-reference](https://learn.microsoft.com/en-us/graph/permissions-reference)
 
-[https://mynster-it.dk/docs/modules/leastprivilegedmsgraph/commands/Get-LPMSAppRoleAssignment](https://mynster-it.dk/docs/modules/leastprivilegedmsgraph/commands/Get-LPMSAppRoleAssignment)
+[https://mynster9361.github.io/Least_Privileged_MSGraph/commands/Get-LPMSAppRoleAssignment.html](https://mynster9361.github.io/Least_Privileged_MSGraph/commands/Get-LPMSAppRoleAssignment.html)
 
 

@@ -61,6 +61,7 @@ Requirements:
 
 ### EXAMPLE 1
 ```
+Initialize-LPMSLogAnalyticsApi
 Connect-EntraService -ClientID $clientId -TenantID $tenantId -ClientSecret $clientSecret -Service "GraphBeta", "LogAnalytics"
 Invoke-LPMSGraphScan -WorkspaceId "123456-workspace-id-456"
 ```
@@ -348,7 +349,4 @@ Error Handling:
 - Provides detailed error messages for troubleshooting
 
 ## RELATED LINKS
-
-[https://mynster-it.dk/docs/modules/leastprivilegedmsgraph/commands/Invoke-LPMSGraphScan](https://mynster-it.dk/docs/modules/leastprivilegedmsgraph/commands/Invoke-LPMSGraphScan)
-
 

@@ -441,6 +441,6 @@ Related Cmdlets:
 
 [https://learn.microsoft.com/en-us/graph/throttling](https://learn.microsoft.com/en-us/graph/throttling)
 
-[https://mynster-it.dk/docs/modules/leastprivilegedmsgraph/commands/Get-LPMSAppThrottlingData](https://mynster-it.dk/docs/modules/leastprivilegedmsgraph/commands/Get-LPMSAppThrottlingData)
+[https://mynster9361.github.io/Least_Privileged_MSGraph/commands/Get-LPMSAppThrottlingData.html](https://mynster9361.github.io/Least_Privileged_MSGraph/commands/Get-LPMSAppThrottlingData.html)
 
 
