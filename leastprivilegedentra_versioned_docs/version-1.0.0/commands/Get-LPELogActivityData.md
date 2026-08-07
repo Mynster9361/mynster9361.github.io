@@ -147,6 +147,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://mynster-it.dk/docs/modules/leastprivilegedentra/commands/Get-LPELogActivityData](https://mynster-it.dk/docs/modules/leastprivilegedentra/commands/Get-LPELogActivityData)
-
-
