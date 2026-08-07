@@ -5,8 +5,7 @@ title: Get-LPEPrivilegedUser
 # Get-LPEPrivilegedUser
 
 ## SYNOPSIS
-Credit to CISAgov & Maester365
-   Returns every user who holds any Microsoft Entra ID directory role, whether actively assigned or PIM-eligible.
+Returns every user who holds any Microsoft Entra ID directory role, whether actively assigned or PIM-eligible.
 
 ## SYNTAX
 
@@ -68,7 +67,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/aad.md#highly-privileged-roles](https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/aad.md#highly-privileged-roles)
-
-[https://mynster-it.dk/docs/modules/leastprivilegedentra/commands/Get-LPEPrivilegedUser](https://mynster-it.dk/docs/modules/leastprivilegedentra/commands/Get-LPEPrivilegedUser)
 
 
