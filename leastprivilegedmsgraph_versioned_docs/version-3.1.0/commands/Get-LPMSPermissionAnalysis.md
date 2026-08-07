@@ -178,8 +178,8 @@ Related Cmdlets:
 
 ## RELATED LINKS
 
-[https://mynster-it.dk/docs/modules/leastprivilegedmsgraph/commands/Get-LPMSPermissionAnalysis](https://mynster-it.dk/docs/modules/leastprivilegedmsgraph/commands/Get-LPMSPermissionAnalysis)
+[https://mynster9361.github.io/Least_Privileged_MSGraph/commands/Get-LPMSPermissionAnalysis.html](https://mynster9361.github.io/Least_Privileged_MSGraph/commands/Get-LPMSPermissionAnalysis.html)
 
-[https://github.com/microsoftgraph/microsoft-graph-devx-content/blob/master/permissions/new/permissions.json](https://github.com/microsoftgraph/microsoft-graph-devx-content/blob/master/permissions/new/permissions.json)
+[https://github.com/merill/MSGraphPermissions](https://github.com/merill/MSGraphPermissions)
 
 

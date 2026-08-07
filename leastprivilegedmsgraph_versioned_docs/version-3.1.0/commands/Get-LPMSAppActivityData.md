@@ -281,6 +281,6 @@ Prerequisites:
 
 ## RELATED LINKS
 
-[https://mynster-it.dk/docs/modules/leastprivilegedmsgraph/commands/Get-LPMSAppActivityData](https://mynster-it.dk/docs/modules/leastprivilegedmsgraph/commands/Get-LPMSAppActivityData)
+[https://mynster9361.github.io/Least_Privileged_MSGraph/commands/Get-LPMSAppActivityData.html](https://mynster9361.github.io/Least_Privileged_MSGraph/commands/Get-LPMSAppActivityData.html)
 
 

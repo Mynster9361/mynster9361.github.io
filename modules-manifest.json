@@ -13,7 +13,7 @@
       "psGalleryId": "LeastPrivilegedMSGraph",
       "displayName": "LeastPrivilegedMSGraph",
       "docsPath": "docs-modules/leastprivilegedmsgraph",
-      "lastVersionedRelease": "3.1.0",
+      "lastVersionedRelease": "3.3.0",
       "firstSeen": "2026-08-05"
     },
     {
@@ -31,6 +31,14 @@
       "docsPath": "docs-modules/msgraphpermissions",
       "lastVersionedRelease": "1.0.1",
       "firstSeen": "2026-08-05"
+    },
+    {
+      "id": "leastprivilegedentra",
+      "psGalleryId": "LeastPrivilegedEntra",
+      "displayName": "LeastPrivilegedEntra",
+      "docsPath": "docs-modules/leastprivilegedentra",
+      "lastVersionedRelease": "1.0.0",
+      "firstSeen": "2026-08-07"
     }
   ]
 }
