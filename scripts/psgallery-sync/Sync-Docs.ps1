@@ -92,6 +92,7 @@ foreach ($module in $manifest.modules) {
         Invoke-PlatyPSGeneration -Module $module -Version $liveVersion -RepoRoot $RepoRoot -DryRun:$DryRun
         $summaryRows += "| $($module.displayName) | (bootstrap) | $liveVersion |"
         $module.lastVersionedRelease = $liveVersion
+        Save-Manifest -Manifest $manifest -ManifestPath $manifestPath -DryRun:$DryRun
         continue
     }
 
@@ -110,11 +111,11 @@ foreach ($module in $manifest.modules) {
     # old label BEFORE overwriting it with fresh output for the new version.
     Invoke-DocsVersionCut -Id $module.id -Version $lastVersion -RepoRoot $RepoRoot -DryRun:$DryRun
     Invoke-PlatyPSGeneration -Module $module -Version $liveVersion -RepoRoot $RepoRoot -DryRun:$DryRun
+    New-ReleaseAnnouncementPost -Module $module -Version $liveVersion -ReleaseNotes $info.ReleaseNotes -RepoRoot $RepoRoot -DryRun:$DryRun
     $summaryRows += "| $($module.displayName) | $lastVersion | $liveVersion |"
     $module.lastVersionedRelease = $liveVersion
+    Save-Manifest -Manifest $manifest -ManifestPath $manifestPath -DryRun:$DryRun
 }
-
-Save-Manifest -Manifest $manifest -ManifestPath $manifestPath -DryRun:$DryRun
 
 $body = @('## PowerShell Gallery docs sync', '')
 if ($summaryRows.Count -gt 0) {

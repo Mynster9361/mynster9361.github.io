@@ -34,8 +34,9 @@ function Get-GalleryModuleInfo {
     $result = Find-PSResource -Name $PsGalleryId -Repository PSGallery -ErrorAction Stop
     if ($result -is [array]) { $result = $result[0] }
     [pscustomobject]@{
-        Version     = $result.Version.ToString()
-        Description = $result.Description
+        Version      = $result.Version.ToString()
+        Description  = $result.Description
+        ReleaseNotes = $result.ReleaseNotes
     }
 }
 
@@ -170,6 +171,13 @@ function Invoke-DocsVersionCut {
         [Parameter(Mandatory)][string]$RepoRoot,
         [switch]$DryRun
     )
+    if ($Version -in (Get-CutVersions -Id $Id -RepoRoot $RepoRoot)) {
+        # Can happen if a prior run cut this version but died (e.g. a later module in
+        # the same run threw) before its manifest update was saved - the version is
+        # already frozen on disk, so retrying the cut would just fail as a duplicate.
+        Write-Host "Version '$Version' already cut for plugin '$Id' - skipping."
+        return
+    }
     Write-Host "Cutting Docusaurus version '$Version' for plugin '$Id'"
     if ($DryRun) { return }
     Push-Location $RepoRoot
@@ -181,6 +189,57 @@ function Invoke-DocsVersionCut {
     } finally {
         Pop-Location
     }
+}
+
+function New-ReleaseAnnouncementPost {
+    <# Creates a short blog post announcing a module release, so it flows through the
+       existing blog -> RSS/Atom feed pipeline (blog list, archives, feeds) without any
+       custom feed-generation code. Idempotent by module+version, independent of the
+       date in the filename, since an unmerged PR can span several cron runs on
+       different days before the manifest update that would normally suppress re-detection
+       lands on main. #>
+    param(
+        [Parameter(Mandatory)]$Module,
+        [Parameter(Mandatory)][string]$Version,
+        [string]$ReleaseNotes,
+        [Parameter(Mandatory)][string]$RepoRoot,
+        [switch]$DryRun
+    )
+    $slug = "$($Module.id)-v$($Version -replace '\.', '-')-released"
+    $blogDir = Join-Path $RepoRoot 'blog'
+    $existing = Get-ChildItem -Path $blogDir -Filter "*-$slug.md" -ErrorAction SilentlyContinue
+    if ($existing) {
+        Write-Host "Release post for $($Module.displayName) $Version already exists ($($existing[0].Name)) - skipping."
+        return
+    }
+
+    $title = "$($Module.displayName) $Version released"
+    $description = "$($Module.displayName) $Version is now available on the PowerShell Gallery."
+    Write-Host "Creating release announcement post: $title"
+    if ($DryRun) { return }
+
+    $notesSection = if ($ReleaseNotes) { "`n## What's new`n`n$ReleaseNotes`n" } else { '' }
+    $content = @"
+---
+title: $title
+authors: mynster
+date: $(Get-Date -Format 'yyyy-MM-dd')
+tags: [powershell, release, $($Module.id)]
+description: $description
+---
+
+$description
+
+<!-- truncate -->
+$notesSection
+``````powershell
+Install-Module -Name $($Module.psGalleryId) -Scope CurrentUser -Force
+``````
+
+See the [module docs](/docs/modules/$($Module.id)) and [command reference](/docs/modules/$($Module.id)/commands) for details, or [view it on the PowerShell Gallery](https://www.powershellgallery.com/packages/$($Module.psGalleryId)/$Version).
+"@
+    New-Item -ItemType Directory -Force -Path $blogDir | Out-Null
+    Set-Content -Path (Join-Path $blogDir "$(Get-Date -Format 'yyyy-MM-dd')-$slug.md") -Value $content -Encoding utf8
 }
 
 function Save-Manifest {
