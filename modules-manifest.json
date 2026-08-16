@@ -39,6 +39,14 @@
       "docsPath": "docs-modules/leastprivilegedentra",
       "lastVersionedRelease": "1.0.1",
       "firstSeen": "2026-08-07"
+    },
+    {
+      "id": "msgraphproxy",
+      "psGalleryId": "msgraphProxy",
+      "displayName": "msgraphProxy",
+      "docsPath": "docs-modules/msgraphproxy",
+      "lastVersionedRelease": "1.0.0",
+      "firstSeen": "2026-08-16"
     }
   ]
 }
