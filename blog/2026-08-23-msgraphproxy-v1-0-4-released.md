@@ -12,6 +12,8 @@ msgraphProxy 1.0.4 is now available on the PowerShell Gallery.
 
 ## What's new
 
+Introducing 2 new parameters on Start-MsGraphProxy enabling you to only start it on a given process or process scope.
+
 https://github.com/Mynster9361/msgraphProxy/blob/main/changelog.md
 
 ```powershell
