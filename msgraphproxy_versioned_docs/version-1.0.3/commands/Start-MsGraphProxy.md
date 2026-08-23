@@ -11,8 +11,7 @@ Starts the self-contained Dev Proxy build in its own process.
 
 ```
 Start-MsGraphProxy [[-ConfigFile] <String>] [[-ApiPort] <Int32>] [-NoRecord] [-Force] [-CI]
- [[-EntraIDLicense] <String>] [[-WatchProcessName] <String[]>] [[-WatchPid] <Int32[]>]
- [-ProgressAction <ActionPreference>] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [[-EntraIDLicense] <String>] [-ProgressAction <ActionPreference>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,17 +32,6 @@ While running, Dev Proxy intercepts and mocks calls to the hosts
 listed in its "urlsToWatch" configuration (Microsoft Graph and the
 Entra ID token endpoint, by default), tunnelling everything else
 through untouched.
-
-Dev Proxy still registers itself as the system-wide HTTP/HTTPS proxy
-regardless of -WatchProcessName/-WatchPid - every proxy-aware app on
-the machine keeps routing through it.
-What those two parameters
-change is which processes' traffic Dev Proxy actually decrypts and
-mocks; everything from an unmatched process passes through
-untouched, same as an unmatched host would.
-Pass -WatchPid $PID to
-scope interception to just the calling session, without touching
-other pwsh windows or apps running at the same time.
 
 ## EXAMPLES
 
@@ -69,15 +57,6 @@ Start-MsGraphProxy -CI
 Starts Dev Proxy configured for a CI pipeline: no certificate prompt to
 block startup, HTTP_PROXY/HTTPS_PROXY set for the current process, and
 its root certificate trusted automatically where possible.
-
-### EXAMPLE 4
-```
-Start-MsGraphProxy -WatchPid $PID
-```
-
-Starts Dev Proxy, but only intercepts traffic from this PowerShell
-session - every other proxy-aware app on the machine passes through
-untouched instead of being mocked.
 
 ## PARAMETERS
 
@@ -187,49 +166,6 @@ Aliases:
 Required: False
 Position: 3
 Default value: P2
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -WatchProcessName
-Only intercept traffic from processes with one of these names (e.g.
-'pwsh', 'msedge') - anything else passes through untouched.
-Dev Proxy
-still registers system-wide either way; see the description above
-for what this does and doesn't scope.
-Maps to Dev Proxy's own
---watch-process-names.
-
-```yaml
-Type: String[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 4
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -WatchPid
-Only intercept traffic from processes with one of these process IDs -
-anything else passes through untouched.
-More precise than
--WatchProcessName when you only want to scope to one specific
-process (e.g.
--WatchPid $PID for the calling session) rather than
-every process sharing its name.
-Maps to Dev Proxy's own --watch-pids.
-
-```yaml
-Type: Int32[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 5
-Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
