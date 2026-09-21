@@ -42,7 +42,7 @@ const moduleDocsPlugins: Config['plugins'] = modulesManifest.modules.map((m) => 
 const config: Config = {
   title: 'Mynster',
   tagline: 'Automation Specialist | PowerShell | Python | Terraform',
-  favicon: 'assets/img/favicon.ico',
+  favicon: 'assets/img/favicons/mynster-it-favicon.ico',
 
   url: 'https://mynster-it.dk',
   baseUrl: '/',
