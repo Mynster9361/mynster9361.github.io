@@ -103,6 +103,7 @@ const config: Config = {
       logo: {
         alt: 'Mynster Logo',
         src: 'assets/img/posts/me.png',
+        href: '/about',
         style: { borderRadius: '50%' },
       },
       items: [
@@ -110,10 +111,11 @@ const config: Config = {
         { to: '/archives', label: 'Archives', position: 'left' },
         {
           type: 'dropdown',
+          to: '/docs/modules',
           label: 'PowerShell Modules',
           position: 'left',
           items: [
-            { to: '/docs/modules', label: 'Overview' },
+            { to: '/docs/modules', label: 'Overview', exact: true },
             ...modulesManifest.modules.map((m) => ({
               to: `/docs/modules/${m.id}`,
               label: m.displayName,
