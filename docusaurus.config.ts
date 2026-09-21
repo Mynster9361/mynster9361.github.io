@@ -163,8 +163,12 @@ const config: Config = {
         {
           title: 'Feeds',
           items: [
-            { label: 'RSS', href: '/rss.xml' },
-            { label: 'Atom', href: '/atom.xml' },
+            // pathname:// forces a plain <a> tag instead of client-side
+            // routing - these are static files, not React app routes, so
+            // Docusaurus's <Link> would otherwise intercept the click and
+            // resolve it to the client-side 404 page.
+            { label: 'RSS', href: 'pathname:///rss.xml' },
+            { label: 'Atom', href: 'pathname:///atom.xml' },
           ],
         },
       ],
