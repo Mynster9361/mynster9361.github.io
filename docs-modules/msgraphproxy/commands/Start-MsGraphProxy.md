@@ -29,6 +29,14 @@ can stop it again and return the resulting reports (such as minimal
 Graph permissions) as an object.
 Pass -NoRecord to opt out.
 
+Dev Proxy's control API rejects every request, including a plain
+status check, without its per-instance bearer token - generated at
+process start and written to a file keyed by its PID (see
+Get-MsGraphProxyApiToken).
+This waits for that file to appear, then
+uses it for every control-API call this function and
+Install-MsGraphProxyCertificate make.
+
 While running, Dev Proxy intercepts and mocks calls to the hosts
 listed in its "urlsToWatch" configuration (Microsoft Graph and the
 Entra ID token endpoint, by default), tunnelling everything else
