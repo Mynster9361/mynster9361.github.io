@@ -14,6 +14,12 @@ msgraphProxy 1.1.1 is now available on the PowerShell Gallery.
 
 https://github.com/Mynster9361/msgraphProxy/blob/main/changelog.md
 
+Fixed the minimal permissions graph recording as a change from Microsoft backend changed late June.
+
+Updated the backend devproxy to correspond with the latest release from devproxy
+
+The devproxy backend now expects a token for communication that has been added to the module so it can get ready status and shut the proxy down properly
+
 ```powershell
 Install-Module -Name msgraphProxy -Scope CurrentUser -Force
 ```
