@@ -75,7 +75,7 @@ From your `maester-tests` folder:
 Install-MtPack Mynster9361/maester-pack-lpms
 ```
 
-![maester pack](/assets/img/posts/2026-10-25 15_04_25-maester-pack)
+![maester pack](/assets/img/posts/2026-10-25 15_04_25-maester-pack.png)
 
 Before anything is saved, Maester downloads the pack and reads every file **without running any of it**, then shows you what the pack reaches and asks you to approve it:
 
@@ -151,7 +151,7 @@ Invoke-Maester -Pack LPMS -SkipBuiltIn
 Invoke-Maester -Pack LPMS
 ```
 
-![maester tests](/assets/img/posts/maester-tests)
+![maester tests](/assets/img/posts/maester-tests.png)
 
 
 The pack runs the LeastPrivilegedMSGraph analysis **once** and all of its tests share the result, so it does not hammer your workspace five times.
@@ -174,7 +174,7 @@ If you want the quick wins first, start with **MP.LPMS.1004**. Just like the "No
 
 Open **Least Privileged MSGraph** under **Reports** in the left menu of the Maester report, or use the button on the **MP.LPMS.1005** result.
 
-![maester tests LPMS](/assets/img/posts/LPMS-tests)
+![maester tests LPMS](/assets/img/posts/LPMS-tests.png)
 
 It is the same interactive report as `Export-LPMSPermissionAnalysisReport` - search, filters, the per-app detail with current vs. optimal permissions, the endpoints each app called, and CSV export. If you have not used the report before, the [How to read the report](/2026/02/26/LeastPrivilegedMSGraphSetup#how-to-read-the-report) section of my previous post walks through it.
 
