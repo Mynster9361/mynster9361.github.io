@@ -11,7 +11,8 @@ current user.
 ## SYNTAX
 
 ```
-Install-MsGraphProxyCertificate [[-ApiPort] <Int32>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
+Install-MsGraphProxyCertificate [[-ApiPort] <Int32>] [[-ProcessId] <Int32>]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,8 +44,8 @@ answered.
 Install-MsGraphProxyCertificate
 ```
 
-Fetches and trusts the root certificate of the Dev Proxy instance
-using the default control-API port.
+Fetches and trusts the root certificate of the currently running
+Dev Proxy instance.
 
 ## PARAMETERS
 
@@ -59,6 +60,24 @@ Aliases:
 Required: False
 Position: 1
 Default value: $script:MsGraphProxyDefaultApiPort
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProcessId
+Process ID of the running Dev Proxy instance, used to look up its
+control-API bearer token (see Get-MsGraphProxyApiToken) - every
+request, including this one, is rejected with 401 without it.
+Defaults to whatever Get-MsGraphProxyStatus currently reports.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: (Get-MsGraphProxyStatus).Id
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
