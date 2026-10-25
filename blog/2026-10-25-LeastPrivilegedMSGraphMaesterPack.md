@@ -75,7 +75,7 @@ From your `maester-tests` folder:
 Install-MtPack Mynster9361/maester-pack-lpms
 ```
 
-![maester pack](/assets/img/posts/2026-10-25 15_04_25-maester-pack.png)
+![maester pack](/assets/img/posts/2026-10-25-maester-pack.png)
 
 Before anything is saved, Maester downloads the pack and reads every file **without running any of it**, then shows you what the pack reaches and asks you to approve it:
 
